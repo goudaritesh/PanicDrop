@@ -13,7 +13,7 @@ export default function ProductsManager() {
   const [price, setPrice] = useState('')
   const [stock, setStock] = useState('')
   const [barcode, setBarcode] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
+  const [images, setImages] = useState(['']) // Array of image URLs
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('')
 
@@ -49,13 +49,16 @@ export default function ProductsManager() {
       return
     }
 
+    const validImages = images.filter(url => url.trim() !== '')
+
     const { error } = await supabase.from('products').insert([{
       name,
       description,
       price: parseFloat(price),
       stock_quantity: parseInt(stock) || 0,
       barcode,
-      image_url: imageUrl,
+      image_url: validImages.length > 0 ? validImages[0] : null, // keep backward compatibility
+      images: validImages, // the new array column
       subcategory_id: selectedSubcategory
     }])
 
@@ -68,11 +71,30 @@ export default function ProductsManager() {
       setPrice('')
       setStock('')
       setBarcode('')
-      setImageUrl('')
+      setImages([''])
       setSelectedCategory('')
       setSelectedSubcategory('')
       fetchData()
     }
+  }
+
+  const handleAddImageField = () => {
+    setImages([...images, ''])
+  }
+
+  const handleImageChange = (index, value) => {
+    const newImages = [...images]
+    newImages[index] = value
+    setImages(newImages)
+  }
+
+  const handleRemoveImageField = (index) => {
+    if (images.length === 1) {
+      setImages([''])
+      return
+    }
+    const newImages = images.filter((_, i) => i !== index)
+    setImages(newImages)
   }
 
   const handleDeleteProduct = async (id) => {
@@ -120,11 +142,37 @@ export default function ProductsManager() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">External Image URL</label>
-              <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="https://example.com/image.jpg" className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
-              {imageUrl && (
-                <div className="mt-2 h-24 w-24 rounded-lg overflow-hidden border border-slate-700">
-                  <img src={imageUrl} alt="Preview" className="h-full w-full object-cover" onError={(e) => e.target.src = 'https://via.placeholder.com/150?text=Invalid+Image'} />
+              <label className="block text-xs font-medium text-slate-400 mb-2">External Image URLs (For Carousel)</label>
+              <div className="space-y-3">
+                {images.map((img, index) => (
+                  <div key={index} className="flex gap-2">
+                    <input 
+                      type="url" 
+                      value={img} 
+                      onChange={e => handleImageChange(index, e.target.value)} 
+                      placeholder={`Image URL ${index + 1}`} 
+                      className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" 
+                    />
+                    <button type="button" onClick={() => handleRemoveImageField(index)} className="px-3 py-2 bg-red-500/10 text-red-400 rounded-lg border border-red-500/20 hover:bg-red-500/20">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                  </div>
+                ))}
+                <button type="button" onClick={handleAddImageField} className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                  Add another image
+                </button>
+              </div>
+
+              {/* Image Previews */}
+              {images.some(url => url.trim() !== '') && (
+                <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
+                  {images.filter(url => url.trim() !== '').map((url, i) => (
+                    <div key={i} className="h-16 w-16 flex-shrink-0 rounded-lg overflow-hidden border border-slate-700 relative group">
+                      <img src={url} alt={`Preview ${i}`} className="h-full w-full object-cover" onError={(e) => e.target.src = 'https://via.placeholder.com/150?text=Error'} />
+                      <div className="absolute top-0 left-0 text-[10px] bg-black/60 text-white px-1">{i + 1}</div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
