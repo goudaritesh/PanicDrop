@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom'
 export default function Landing() {
   return (
     <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center bg-fixed text-white font-sans selection:bg-purple-500/30">
-      <div className="min-h-screen bg-black/50">
+      <div className="min-h-screen bg-black/50 pt-4">
         {/* Navigation */}
-        <nav className="glass-nav flex items-center justify-between px-8 py-4">
+        <nav className="glass-nav flex items-center justify-between px-4 md:px-8 py-3 md:py-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <div className="text-2xl font-bold tracking-tighter text-white">
+            <div className="text-xl md:text-2xl font-bold tracking-tighter text-white">
               PanicDrop
             </div>
           </div>
@@ -24,9 +24,9 @@ export default function Landing() {
             <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Catalog</Link>
             <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Track Order</Link>
           </div>
-          <div className="flex space-x-4">
-            <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-6">Sign In</Button>
-            <Button className="glass-button border-0 text-sm font-semibold h-10">Get Started</Button>
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
+            <Button className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
           </div>
         </nav>
 
