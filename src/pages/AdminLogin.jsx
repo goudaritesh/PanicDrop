@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/button'
+import { supabase } from '../lib/supabaseClient'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     setLoading(true)
-    // Simulate login for now
-    setTimeout(() => {
-      setLoading(false)
-      alert("Login simulation complete! Supabase Auth will be connected here.")
-    }, 1500)
+    setError(null)
+    
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+
+    setLoading(false)
+
+    if (signInError) {
+      setError(signInError.message)
+    } else {
+      // Check if user is actually an admin, but for now just navigate
+      // In a real app we'd fetch the user's role from public.profiles
+      navigate('/admin/dashboard')
+    }
   }
 
   return (
@@ -42,6 +56,15 @@ export default function AdminLogin() {
             <h2 className="text-3xl font-bold tracking-tight text-white mb-2">Admin Portal</h2>
             <p className="text-gray-400 text-sm">Sign in to manage operations at Panic Speed.</p>
           </div>
+
+          {error && (
+            <div className="relative z-10 mb-6 bg-red-500/20 border border-red-500/50 rounded-xl p-4 flex items-start gap-3 backdrop-blur-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <p className="text-sm text-red-200">{error}</p>
+            </div>
+          )}
 
           <form onSubmit={handleLogin} className="relative z-10 space-y-6">
             <div className="space-y-2">
