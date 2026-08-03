@@ -1,23 +1,52 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/button'
 
 export default function UserLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
+  const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleAuth = async (e) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => {
+    setErrorMsg('')
+
+    try {
+      if (isSignUp) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+        })
+        if (error) throw error
+        alert("Success! Check your email for a confirmation link.")
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
+        if (error) throw error
+        navigate('/')
+      }
+    } catch (error) {
+      setErrorMsg(error.message)
+    } finally {
       setLoading(false)
-      alert("Login simulation complete! Supabase Auth will be connected here.")
-    }, 1500)
+    }
   }
 
-  const handleOAuthLogin = (provider) => {
-    alert(`Initiating ${provider} login with Supabase!`)
+  const handleOAuthLogin = async (provider) => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: provider.toLowerCase(),
+      options: {
+        redirectTo: window.location.origin,
+      }
+    })
+    if (error) alert(error.message)
   }
 
   return (
@@ -37,8 +66,8 @@ export default function UserLogin() {
           <div className="absolute -top-32 -left-32 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all duration-1000"></div>
           
           <div className="relative z-10 text-center mb-8">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">Welcome Back</h2>
-            <p className="text-gray-400 text-sm">Sign in to get your drops at Panic Speed.</p>
+            <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">{isSignUp ? "Create Account" : "Welcome Back"}</h2>
+            <p className="text-gray-400 text-sm">{isSignUp ? "Join the Panic Speed drop list." : "Sign in to get your drops at Panic Speed."}</p>
           </div>
 
           <div className="relative z-10 space-y-4 mb-6">
@@ -76,7 +105,12 @@ export default function UserLogin() {
             <div className="flex-grow border-t border-white/10"></div>
           </div>
 
-          <form onSubmit={handleLogin} className="relative z-10 space-y-5">
+          <form onSubmit={handleAuth} className="relative z-10 space-y-5">
+            {errorMsg && (
+              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/50 text-red-400 text-sm text-center">
+                {errorMsg}
+              </div>
+            )}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300 ml-1">Email</label>
               <div className="relative">
@@ -119,14 +153,17 @@ export default function UserLogin() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Signing in...
+                  {isSignUp ? "Signing up..." : "Signing in..."}
                 </div>
-              ) : "Sign In"}
+              ) : (isSignUp ? "Sign Up" : "Sign In")}
             </Button>
           </form>
           
           <p className="relative z-10 text-center text-sm text-gray-400 mt-6">
-            Don't have an account? <a href="#" className="text-white hover:text-blue-400 font-semibold transition-colors">Sign up</a>
+            {isSignUp ? "Already have an account?" : "Don't have an account?"}{' '}
+            <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="text-white hover:text-blue-400 font-semibold transition-colors">
+              {isSignUp ? "Sign in" : "Sign up"}
+            </button>
           </p>
         </div>
       </div>

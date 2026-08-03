@@ -1,10 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '../components/ui/button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabaseClient'
 import StorySequence from '../components/StorySequence'
 
 export default function Landing() {
   const [isStoryActive, setIsStoryActive] = useState(false)
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    setUser(null)
+  }
 
   return (
     <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center bg-fixed text-white font-sans selection:bg-purple-500/30">
@@ -29,9 +49,16 @@ export default function Landing() {
             <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Track Order</Link>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            <Link to="/login">
-              <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
-            </Link>
+            {user ? (
+              <>
+                <span className="text-xs md:text-sm text-gray-400 hidden sm:inline-block truncate max-w-[120px]">{user.email}</span>
+                <Button onClick={handleSignOut} variant="ghost" className="text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign Out</Button>
+              </>
+            ) : (
+              <Link to="/login">
+                <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
+              </Link>
+            )}
             <Button onClick={() => setIsStoryActive(true)} className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
           </div>
         </nav>
