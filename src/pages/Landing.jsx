@@ -25,7 +25,9 @@ export default function Landing() {
             <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Track Order</Link>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
+            <Link to="/login">
+              <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
+            </Link>
             <Button className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
           </div>
         </nav>
