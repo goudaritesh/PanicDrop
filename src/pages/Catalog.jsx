@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/button'
+import { useCart } from '../context/CartContext'
 
 export default function Catalog() {
   const [products, setProducts] = useState([])
@@ -11,6 +12,7 @@ export default function Catalog() {
   const [activeSubcategory, setActiveSubcategory] = useState(null)
   const [user, setUser] = useState(null)
   
+  const { addToCart, getCartCount, setIsCartOpen } = useCart()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -81,9 +83,13 @@ export default function Catalog() {
         </Link>
         
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" className="relative group">
+          <Button variant="ghost" onClick={() => setIsCartOpen(true)} className="relative group">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-            <span className="absolute -top-1 -right-1 bg-blue-600 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+            {getCartCount() > 0 && (
+              <span className="absolute -top-1 -right-1 bg-blue-600 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                {getCartCount()}
+              </span>
+            )}
           </Button>
           {user ? (
             <Button onClick={handleSignOut} variant="ghost" className="text-sm text-red-400 hover:text-red-300">Sign Out</Button>
@@ -188,7 +194,10 @@ export default function Catalog() {
                     
                     <p className="text-sm text-slate-400 line-clamp-2 mb-4">{product.description || 'Premium quality product delivered at Panic Speed.'}</p>
                     
-                    <Button className="w-full bg-white/5 hover:bg-blue-600 text-white border border-white/10 hover:border-blue-500 transition-colors py-5 rounded-xl flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                    <Button 
+                      onClick={() => addToCart(product)}
+                      className="w-full bg-white/5 hover:bg-blue-600 text-white border border-white/10 hover:border-blue-500 transition-colors py-5 rounded-xl flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                    >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                       Add to Cart
                     </Button>

@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/button'
 import CategoriesManager from '../components/admin/CategoriesManager'
 import ProductsManager from '../components/admin/ProductsManager'
+import OrdersManager from '../components/admin/OrdersManager'
 
 export default function AdminDashboard() {
   const [user, setUser] = useState(null)
@@ -136,8 +137,8 @@ export default function AdminDashboard() {
         {activeTab === 'products' && <ProductsManager />}
         
         {activeTab === 'orders' && (
-          <div className="p-8 text-slate-400">
-            This module is under development.
+          <div className="p-6 relative z-10">
+            <OrdersManager />
           </div>
         )}
 
