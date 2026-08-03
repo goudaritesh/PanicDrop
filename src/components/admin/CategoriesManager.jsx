@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { supabase } from '../lib/supabaseClient'
-import { Button } from './ui/button'
+import { supabase } from '../../lib/supabaseClient'
+import { Button } from '../ui/button'
 
 export default function CategoriesManager() {
   const [categories, setCategories] = useState([])
