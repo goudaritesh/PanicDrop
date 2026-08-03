@@ -12,8 +12,8 @@ export default function ProductsManager() {
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [stock, setStock] = useState('')
-  const [barcode, setBarcode] = useState('')
   const [images, setImages] = useState(['']) // Array of image URLs
+  const [specifications, setSpecifications] = useState([]) // Array of { key: '', value: '' }
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('')
 
@@ -44,21 +44,33 @@ export default function ProductsManager() {
 
   const handleAddProduct = async (e) => {
     e.preventDefault()
-    if (!name || !price || !barcode || !selectedSubcategory) {
-      alert("Please fill in the required fields (Name, Price, Barcode, Subcategory)")
+    if (!name || !price || !selectedSubcategory) {
+      alert("Please fill in the required fields (Name, Price, Subcategory)")
       return
     }
 
     const validImages = images.filter(url => url.trim() !== '')
+    
+    // Convert specifications array to JSON object
+    const specsObj = specifications.reduce((acc, curr) => {
+      if (curr.key.trim() && curr.value.trim()) {
+        acc[curr.key.trim()] = curr.value.trim()
+      }
+      return acc
+    }, {})
+
+    // Auto-generate barcode (e.g. PD-123456789)
+    const generatedBarcode = 'PD-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000).toString().padStart(3, '0')
 
     const { error } = await supabase.from('products').insert([{
       name,
       description,
       price: parseFloat(price),
       stock_quantity: parseInt(stock) || 0,
-      barcode,
-      image_url: validImages.length > 0 ? validImages[0] : null, // keep backward compatibility
-      images: validImages, // the new array column
+      barcode: generatedBarcode,
+      image_url: validImages.length > 0 ? validImages[0] : null,
+      images: validImages,
+      specifications: specsObj,
       subcategory_id: selectedSubcategory
     }])
 
@@ -70,8 +82,8 @@ export default function ProductsManager() {
       setDescription('')
       setPrice('')
       setStock('')
-      setBarcode('')
       setImages([''])
+      setSpecifications([])
       setSelectedCategory('')
       setSelectedSubcategory('')
       fetchData()
@@ -95,6 +107,19 @@ export default function ProductsManager() {
     }
     const newImages = images.filter((_, i) => i !== index)
     setImages(newImages)
+  }
+
+  const handleAddSpec = () => setSpecifications([...specifications, { key: '', value: '' }])
+  
+  const handleSpecChange = (index, field, val) => {
+    const newSpecs = [...specifications]
+    newSpecs[index][field] = val
+    setSpecifications(newSpecs)
+  }
+
+  const handleRemoveSpec = (index) => {
+    const newSpecs = specifications.filter((_, i) => i !== index)
+    setSpecifications(newSpecs)
   }
 
   const handleDeleteProduct = async (id) => {
@@ -137,11 +162,6 @@ export default function ProductsManager() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Barcode / Unique ID *</label>
-              <input type="text" required value={barcode} onChange={e => setBarcode(e.target.value)} placeholder="e.g. 890103092221" className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
-            </div>
-
-            <div>
               <label className="block text-xs font-medium text-slate-400 mb-2">External Image URLs (For Carousel)</label>
               <div className="space-y-3">
                 {images.map((img, index) => (
@@ -176,8 +196,7 @@ export default function ProductsManager() {
                 </div>
               )}
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Category *</label>
                 <select 
@@ -209,7 +228,7 @@ export default function ProductsManager() {
               </div>
             </div>
 
-            <div>
+            <div className="pt-2 border-t border-slate-800">
               <label className="block text-xs font-medium text-slate-400 mb-1">Description</label>
               <textarea rows="3" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
             </div>
