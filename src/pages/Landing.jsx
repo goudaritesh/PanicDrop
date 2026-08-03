@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../components/ui/button'
 import { Link } from 'react-router-dom'
+import StorySequence from '../components/StorySequence'
 
 export default function Landing() {
+  const [isStoryActive, setIsStoryActive] = useState(false)
+
   return (
     <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center bg-fixed text-white font-sans selection:bg-purple-500/30">
-      <div className="min-h-screen bg-black/50 pt-4">
+      {isStoryActive && <StorySequence />}
+      <div className={`min-h-screen bg-black/50 pt-4 transition-opacity duration-700 ${isStoryActive ? 'opacity-0' : 'opacity-100'}`}>
         {/* Navigation */}
         <nav className="glass-nav flex items-center justify-between px-4 md:px-8 py-3 md:py-4">
           <div className="flex items-center gap-2">
@@ -28,7 +32,7 @@ export default function Landing() {
             <Link to="/login">
               <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
             </Link>
-            <Button className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
+            <Button onClick={() => setIsStoryActive(true)} className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
           </div>
         </nav>
 
@@ -52,7 +56,7 @@ export default function Landing() {
             <Button className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
               Shop Now
             </Button>
-            <Button className="glass-button text-lg px-10 py-7 h-auto">
+            <Button onClick={() => setIsStoryActive(true)} className="glass-button text-lg px-10 py-7 h-auto">
               Track Package
             </Button>
           </div>
