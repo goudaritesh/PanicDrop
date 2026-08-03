@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { Button } from '../components/ui/button'
 import CategoriesManager from '../components/admin/CategoriesManager'
+import ProductsManager from '../components/admin/ProductsManager'
 
 export default function AdminDashboard() {
   const [user, setUser] = useState(null)
@@ -132,8 +133,9 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'categories' && <CategoriesManager />}
+        {activeTab === 'products' && <ProductsManager />}
         
-        {(activeTab === 'products' || activeTab === 'orders') && (
+        {activeTab === 'orders' && (
           <div className="p-8 text-slate-400">
             This module is under development.
           </div>

@@ -1,0 +1,227 @@
+import React, { useState, useEffect } from 'react'
+import { supabase } from '../../lib/supabaseClient'
+import { Button } from '../ui/button'
+
+export default function ProductsManager() {
+  const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Form State
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState('')
+  const [stock, setStock] = useState('')
+  const [barcode, setBarcode] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedSubcategory, setSelectedSubcategory] = useState('')
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    setLoading(true)
+    
+    // Fetch Products
+    const { data: prodData } = await supabase
+      .from('products')
+      .select('*, subcategories(name, categories(name))')
+      .order('created_at', { ascending: false })
+      
+    // Fetch Categories with their nested Subcategories
+    const { data: catData } = await supabase
+      .from('categories')
+      .select('*, subcategories(*)')
+      .order('name', { ascending: true })
+
+    if (prodData) setProducts(prodData)
+    if (catData) setCategories(catData)
+      
+    setLoading(false)
+  }
+
+  const handleAddProduct = async (e) => {
+    e.preventDefault()
+    if (!name || !price || !barcode || !selectedSubcategory) {
+      alert("Please fill in the required fields (Name, Price, Barcode, Subcategory)")
+      return
+    }
+
+    const { error } = await supabase.from('products').insert([{
+      name,
+      description,
+      price: parseFloat(price),
+      stock_quantity: parseInt(stock) || 0,
+      barcode,
+      image_url: imageUrl,
+      subcategory_id: selectedSubcategory
+    }])
+
+    if (error) {
+      alert("Error adding product: " + error.message)
+    } else {
+      // Reset form
+      setName('')
+      setDescription('')
+      setPrice('')
+      setStock('')
+      setBarcode('')
+      setImageUrl('')
+      setSelectedCategory('')
+      setSelectedSubcategory('')
+      fetchData()
+    }
+  }
+
+  const handleDeleteProduct = async (id) => {
+    if (confirm("Delete this product?")) {
+      await supabase.from('products').delete().eq('id', id)
+      fetchData()
+    }
+  }
+
+  // Get subcategories for the currently selected category
+  const activeSubcategories = categories.find(c => c.id === selectedCategory)?.subcategories || []
+
+  if (loading) return <div className="p-8 text-white">Loading products...</div>
+
+  return (
+    <div className="p-8 space-y-8 relative z-10 text-white">
+      <h2 className="text-2xl font-semibold tracking-tight mb-6">Manage Products</h2>
+      
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        
+        {/* Add Product Form */}
+        <div className="xl:col-span-1 bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm h-fit">
+          <h3 className="text-lg font-semibold mb-6 text-blue-300">Register New Product</h3>
+          
+          <form onSubmit={handleAddProduct} className="space-y-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Product Name *</label>
+              <input type="text" required value={name} onChange={e => setName(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Price ($) *</label>
+                <input type="number" step="0.01" required value={price} onChange={e => setPrice(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Stock</label>
+                <input type="number" value={stock} onChange={e => setStock(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Barcode / Unique ID *</label>
+              <input type="text" required value={barcode} onChange={e => setBarcode(e.target.value)} placeholder="e.g. 890103092221" className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">External Image URL</label>
+              <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="https://example.com/image.jpg" className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              {imageUrl && (
+                <div className="mt-2 h-24 w-24 rounded-lg overflow-hidden border border-slate-700">
+                  <img src={imageUrl} alt="Preview" className="h-full w-full object-cover" onError={(e) => e.target.src = 'https://via.placeholder.com/150?text=Invalid+Image'} />
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Category *</label>
+                <select 
+                  required
+                  value={selectedCategory} 
+                  onChange={e => {
+                    setSelectedCategory(e.target.value)
+                    setSelectedSubcategory('') // Reset subcategory when category changes
+                  }} 
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 [&>option]:bg-slate-900"
+                >
+                  <option value="">Select...</option>
+                  {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Subcategory *</label>
+                <select 
+                  required
+                  disabled={!selectedCategory}
+                  value={selectedSubcategory} 
+                  onChange={e => setSelectedSubcategory(e.target.value)} 
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 [&>option]:bg-slate-900 disabled:opacity-50"
+                >
+                  <option value="">Select...</option>
+                  {activeSubcategories.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Description</label>
+              <textarea rows="3" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500">Register Product</Button>
+          </form>
+        </div>
+
+        {/* Products List */}
+        <div className="xl:col-span-2 bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm">
+          <h3 className="text-lg font-semibold mb-6">Active Inventory</h3>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="text-xs text-slate-400 uppercase bg-slate-800/50 border-b border-slate-700">
+                <tr>
+                  <th className="px-4 py-3 rounded-tl-lg">Product</th>
+                  <th className="px-4 py-3">Barcode</th>
+                  <th className="px-4 py-3">Price</th>
+                  <th className="px-4 py-3">Stock</th>
+                  <th className="px-4 py-3">Category</th>
+                  <th className="px-4 py-3 rounded-tr-lg">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map(p => (
+                  <tr key={p.id} className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                    <td className="px-4 py-3 flex items-center gap-3">
+                      {p.image_url ? (
+                        <img src={p.image_url} alt={p.name} className="w-10 h-10 rounded bg-slate-800 object-cover" />
+                      ) : (
+                        <div className="w-10 h-10 rounded bg-slate-800 flex items-center justify-center text-slate-500 border border-slate-700">No Img</div>
+                      )}
+                      <div>
+                        <div className="font-medium">{p.name}</div>
+                        {p.is_active ? <span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">Active</span> : <span className="text-[10px] text-red-400 bg-red-400/10 px-2 py-0.5 rounded-full">Inactive</span>}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 font-mono text-xs text-slate-400">{p.barcode || 'N/A'}</td>
+                    <td className="px-4 py-3">${p.price.toFixed(2)}</td>
+                    <td className="px-4 py-3">{p.stock_quantity}</td>
+                    <td className="px-4 py-3 text-slate-400">
+                      {p.subcategories?.categories?.name} <span className="text-slate-600">&gt;</span> {p.subcategories?.name}
+                    </td>
+                    <td className="px-4 py-3">
+                      <button onClick={() => handleDeleteProduct(p.id)} className="text-red-400 hover:text-red-300">Delete</button>
+                    </td>
+                  </tr>
+                ))}
+                {products.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="text-center py-8 text-slate-500">No products found. Register one to get started!</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  )
+}
