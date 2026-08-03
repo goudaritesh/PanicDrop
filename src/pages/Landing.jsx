@@ -45,7 +45,7 @@ export default function Landing() {
           
           <div className="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
             <Link to="/" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Home</Link>
-            <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Catalog</Link>
+            <Link to="/catalog" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Catalog</Link>
             <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Track Order</Link>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
@@ -80,9 +80,11 @@ export default function Landing() {
           </p>
           
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-32">
-            <Button className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
-              Shop Now
-            </Button>
+            <Link to="/catalog">
+              <Button className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
+                Shop Now
+              </Button>
+            </Link>
             <Button onClick={() => setIsStoryActive(true)} className="glass-button text-lg px-10 py-7 h-auto">
               Track Package
             </Button>
