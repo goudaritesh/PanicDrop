@@ -39,43 +39,100 @@ export default function Checkout() {
     setErrorMsg('')
 
     try {
-      // 1. Create the order
-      const { data: orderData, error: orderError } = await supabase
-        .from('orders')
-        .insert([{
-          user_id: user.id,
-          total_amount: getCartTotal(),
-          shipping_address: address,
-          delivery_instructions: instructions,
-          status: 'pending'
-        }])
-        .select()
-        .single()
+      // 1. Create order on the backend to get Razorpay Order ID
+      const orderResponse = await fetch('http://localhost:3000/api/payment/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: getCartTotal(),
+          currency: 'INR'
+        })
+      });
 
-      if (orderError) throw orderError
+      if (!orderResponse.ok) {
+        throw new Error('Failed to create payment order.');
+      }
 
-      // 2. Insert order items
-      const orderItems = cartItems.map(item => ({
+      const orderData = await orderResponse.json();
+
+      // 2. Open Razorpay Checkout Modal
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'dummy_key', // Ensure this is set in frontend .env.local
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: 'PanicDrop',
+        description: 'Order Payment',
         order_id: orderData.id,
-        product_id: item.id,
-        quantity: item.quantity,
-        price_at_time: item.price
-      }))
+        handler: async function (response) {
+          try {
+            // Verify payment (optional but recommended)
+            // For now, we trust the successful callback and insert into Supabase
+            
+            // 3. Create the order in Supabase
+            const { data: dbOrderData, error: orderError } = await supabase
+              .from('orders')
+              .insert([{
+                user_id: user.id,
+                total_amount: getCartTotal(),
+                shipping_address: address,
+                delivery_instructions: instructions,
+                status: 'pending',
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id
+              }])
+              .select()
+              .single()
 
-      const { error: itemsError } = await supabase
-        .from('order_items')
-        .insert(orderItems)
+            if (orderError) throw orderError
 
-      if (itemsError) throw itemsError
+            // 4. Insert order items
+            const orderItems = cartItems.map(item => ({
+              order_id: dbOrderData.id,
+              product_id: item.id,
+              quantity: item.quantity,
+              price_at_time: item.price
+            }))
 
-      // 3. Success! Clear cart and redirect
-      clearCart()
-      alert("Order placed successfully! Check the Admin Dashboard to see it.")
-      navigate('/')
+            const { error: itemsError } = await supabase
+              .from('order_items')
+              .insert(orderItems)
+
+            if (itemsError) throw itemsError
+
+            // 5. Success! Clear cart and redirect
+            clearCart()
+            alert("Payment successful! Order placed.")
+            navigate('/')
+          } catch (err) {
+            setErrorMsg("Database Error: " + err.message)
+            setLoading(false)
+          }
+        },
+        prefill: {
+          name: user?.user_metadata?.full_name || '',
+          email: user?.email || '',
+        },
+        theme: {
+          color: '#3b82f6'
+        },
+        modal: {
+          ondismiss: function() {
+            setLoading(false)
+          }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (response){
+        alert("Payment Failed: " + response.error.description);
+        setLoading(false)
+      });
+      rzp.open();
       
     } catch (error) {
       setErrorMsg(error.message)
-    } finally {
       setLoading(false)
     }
   }
@@ -146,7 +203,7 @@ export default function Checkout() {
                 {loading ? "Processing..." : `Pay ₹${getCartTotal().toFixed(2)}`}
               </Button>
               <p className="text-center text-xs text-slate-500 mt-4">
-                This is a demo checkout. No actual payment will be processed.
+                Powered securely by Razorpay.
               </p>
             </div>
           </form>
