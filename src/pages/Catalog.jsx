@@ -189,7 +189,7 @@ export default function Catalog() {
                   <div className="p-5">
                     <div className="flex justify-between items-start gap-4 mb-2">
                       <h3 className="font-semibold text-lg leading-tight line-clamp-2">{product.name}</h3>
-                      <span className="font-bold text-blue-400 whitespace-nowrap">${product.price.toFixed(2)}</span>
+                      <span className="font-bold text-blue-400 whitespace-nowrap">₹{product.price.toFixed(2)}</span>
                     </div>
                     
                     <p className="text-sm text-slate-400 line-clamp-2 mb-4">{product.description || 'Premium quality product delivered at Panic Speed.'}</p>

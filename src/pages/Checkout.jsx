@@ -143,7 +143,7 @@ export default function Checkout() {
                 disabled={loading || !user}
                 className="w-full bg-white text-black hover:bg-slate-200 font-bold py-6 rounded-xl border-0 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all transform hover:-translate-y-0.5 text-lg"
               >
-                {loading ? "Processing..." : `Pay $${getCartTotal().toFixed(2)}`}
+                {loading ? "Processing..." : `Pay ₹${getCartTotal().toFixed(2)}`}
               </Button>
               <p className="text-center text-xs text-slate-500 mt-4">
                 This is a demo checkout. No actual payment will be processed.
@@ -172,7 +172,7 @@ export default function Checkout() {
                   <p className="text-slate-500 text-xs mt-1">{item.subcategories?.name}</p>
                 </div>
                 <div className="font-semibold text-sm">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ₹{(item.price * item.quantity).toFixed(2)}
                 </div>
               </div>
             ))}
@@ -181,7 +181,7 @@ export default function Checkout() {
           <div className="border-t border-white/10 pt-4 space-y-3">
             <div className="flex justify-between text-slate-400 text-sm">
               <span>Subtotal</span>
-              <span>${getCartTotal().toFixed(2)}</span>
+              <span>₹{getCartTotal().toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-slate-400 text-sm">
               <span>Shipping</span>
@@ -189,7 +189,7 @@ export default function Checkout() {
             </div>
             <div className="border-t border-white/10 pt-4 mt-2 flex justify-between text-white font-bold text-xl">
               <span>Total</span>
-              <span>${getCartTotal().toFixed(2)}</span>
+              <span>₹{getCartTotal().toFixed(2)}</span>
             </div>
           </div>
         </div>

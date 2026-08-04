@@ -108,7 +108,7 @@ export default function OrdersManager() {
                     {new Date(order.created_at).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 font-semibold text-blue-400">
-                    ${order.total_amount.toFixed(2)}
+                    ₹{order.total_amount.toFixed(2)}
                   </td>
                   <td className="px-6 py-4">
                     <select
@@ -150,7 +150,7 @@ export default function OrdersManager() {
                                     <div className="text-xs text-slate-400">Barcode: {item.products?.barcode}</div>
                                   </div>
                                   <div className="text-right">
-                                    <div className="text-sm text-white">{item.quantity}x <span className="text-blue-400 font-semibold">${item.price_at_time}</span></div>
+                                    <div className="text-sm text-white">{item.quantity}x <span className="text-blue-400 font-semibold">₹{item.price_at_time}</span></div>
                                   </div>
                                 </div>
                               ))}

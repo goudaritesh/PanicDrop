@@ -198,7 +198,7 @@ export default function ProductsManager() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Price ($) *</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Price (₹) *</label>
                 <input type="number" step="0.01" required value={price} onChange={e => setPrice(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
               </div>
               <div>
@@ -323,7 +323,7 @@ export default function ProductsManager() {
                       </div>
                     </td>
                     <td className="px-4 py-3 font-mono text-xs text-slate-400">{p.barcode || 'N/A'}</td>
-                    <td className="px-4 py-3">${p.price.toFixed(2)}</td>
+                    <td className="px-4 py-3">₹{p.price.toFixed(2)}</td>
                     <td className="px-4 py-3">{p.stock_quantity}</td>
                     <td className="px-4 py-3 text-slate-400">
                       {p.subcategories?.categories?.name} <span className="text-slate-600">&gt;</span> {p.subcategories?.name}
