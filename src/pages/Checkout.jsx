@@ -40,7 +40,8 @@ export default function Checkout() {
 
     try {
       // 1. Create order on the backend to get Razorpay Order ID
-      const orderResponse = await fetch('http://localhost:3000/api/payment/create-order', {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+      const orderResponse = await fetch(`${backendUrl}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
