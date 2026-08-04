@@ -16,6 +16,19 @@ export default function ProductsManager() {
   const [specifications, setSpecifications] = useState([]) // Array of { key: '', value: '' }
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('')
+  const [editingProductId, setEditingProductId] = useState(null)
+
+  const resetForm = () => {
+    setName('')
+    setDescription('')
+    setPrice('')
+    setStock('')
+    setImages([''])
+    setSpecifications([])
+    setSelectedCategory('')
+    setSelectedSubcategory('')
+    setEditingProductId(null)
+  }
 
   useEffect(() => {
     fetchData()
@@ -59,35 +72,66 @@ export default function ProductsManager() {
       return acc
     }, {})
 
-    // Auto-generate barcode (e.g. PD-123456789)
-    const generatedBarcode = 'PD-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+    if (editingProductId) {
+      const { error } = await supabase.from('products').update({
+        name,
+        description,
+        price: parseFloat(price),
+        stock_quantity: parseInt(stock) || 0,
+        image_url: validImages.length > 0 ? validImages[0] : null,
+        images: validImages,
+        specifications: specsObj,
+        subcategory_id: selectedSubcategory
+      }).eq('id', editingProductId)
 
-    const { error } = await supabase.from('products').insert([{
-      name,
-      description,
-      price: parseFloat(price),
-      stock_quantity: parseInt(stock) || 0,
-      barcode: generatedBarcode,
-      image_url: validImages.length > 0 ? validImages[0] : null,
-      images: validImages,
-      specifications: specsObj,
-      subcategory_id: selectedSubcategory
-    }])
-
-    if (error) {
-      alert("Error adding product: " + error.message)
+      if (error) {
+        alert("Error updating product: " + error.message)
+      } else {
+        resetForm()
+        fetchData()
+      }
     } else {
-      // Reset form
-      setName('')
-      setDescription('')
-      setPrice('')
-      setStock('')
-      setImages([''])
-      setSpecifications([])
-      setSelectedCategory('')
-      setSelectedSubcategory('')
-      fetchData()
+      // Auto-generate barcode (e.g. PD-123456789)
+      const generatedBarcode = 'PD-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+
+      const { error } = await supabase.from('products').insert([{
+        name,
+        description,
+        price: parseFloat(price),
+        stock_quantity: parseInt(stock) || 0,
+        barcode: generatedBarcode,
+        image_url: validImages.length > 0 ? validImages[0] : null,
+        images: validImages,
+        specifications: specsObj,
+        subcategory_id: selectedSubcategory
+      }])
+
+      if (error) {
+        alert("Error adding product: " + error.message)
+      } else {
+        resetForm()
+        fetchData()
+      }
     }
+  }
+
+  const handleEditProduct = (p) => {
+    setEditingProductId(p.id)
+    setName(p.name)
+    setDescription(p.description || '')
+    setPrice(p.price.toString())
+    setStock(p.stock_quantity.toString())
+    setImages(p.images && p.images.length > 0 ? p.images : [''])
+    
+    const specsArray = []
+    if (p.specifications) {
+      for (const [key, value] of Object.entries(p.specifications)) {
+        specsArray.push({ key, value })
+      }
+    }
+    setSpecifications(specsArray)
+    setSelectedCategory(p.subcategories?.category_id || '')
+    setSelectedSubcategory(p.subcategory_id || '')
   }
 
   const handleAddImageField = () => {
@@ -142,7 +186,9 @@ export default function ProductsManager() {
         
         {/* Add Product Form */}
         <div className="xl:col-span-1 bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm h-fit">
-          <h3 className="text-lg font-semibold mb-6 text-blue-300">Register New Product</h3>
+          <h3 className="text-lg font-semibold mb-6 text-blue-300">
+            {editingProductId ? 'Edit Product' : 'Register New Product'}
+          </h3>
           
           <form onSubmit={handleAddProduct} className="space-y-4">
             <div>
@@ -233,7 +279,16 @@ export default function ProductsManager() {
               <textarea rows="3" value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
             </div>
 
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500">Register Product</Button>
+            <div className="flex gap-2">
+              <Button type="submit" className={`flex-1 ${editingProductId ? 'bg-amber-600 hover:bg-amber-500' : 'bg-blue-600 hover:bg-blue-500'}`}>
+                {editingProductId ? 'Update Product' : 'Register Product'}
+              </Button>
+              {editingProductId && (
+                <Button type="button" onClick={resetForm} variant="ghost" className="text-slate-400 hover:text-white border border-slate-700">
+                  Cancel
+                </Button>
+              )}
+            </div>
           </form>
         </div>
 
@@ -273,8 +328,10 @@ export default function ProductsManager() {
                     <td className="px-4 py-3 text-slate-400">
                       {p.subcategories?.categories?.name} <span className="text-slate-600">&gt;</span> {p.subcategories?.name}
                     </td>
-                    <td className="px-4 py-3">
-                      <button onClick={() => handleDeleteProduct(p.id)} className="text-red-400 hover:text-red-300">Delete</button>
+                    <td className="px-4 py-3 flex items-center gap-2">
+                      <button onClick={() => handleEditProduct(p)} className="text-blue-400 hover:text-blue-300 transition-colors">Edit</button>
+                      <span className="text-slate-700">|</span>
+                      <button onClick={() => handleDeleteProduct(p.id)} className="text-red-400 hover:text-red-300 transition-colors">Delete</button>
                     </td>
                   </tr>
                 ))}
