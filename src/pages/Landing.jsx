@@ -1,129 +1,253 @@
-import React, { useState, useEffect } from 'react'
-import { Button } from '../components/ui/button'
-import { Link, useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabaseClient'
-import StorySequence from '../components/StorySequence'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import ProductCard from '../components/ProductCard';
+import { api } from '../services/api';
+import {
+  Smartphone,
+  Laptop,
+  Headphones,
+  Watch,
+  Shirt,
+  Home,
+  ChevronRight,
+  ShieldCheck,
+  Truck,
+  RotateCcw,
+  Tag,
+  ArrowRight
+} from 'lucide-react';
 
 export default function Landing() {
-  const [isStoryActive, setIsStoryActive] = useState(false)
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
+  const [deals, setDeals] = useState([]);
+  const [mobiles, setMobiles] = useState([]);
+  const [electronics, setElectronics] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-    })
+    const fetchHomeData = async () => {
+      setLoading(true);
+      try {
+        const [dealsRes, mobilesRes, electronicsRes] = await Promise.all([
+          api.products.getAll({ limit: 4, sort: 'popular' }),
+          api.products.getAll({ category: 'Mobiles & Accessories', limit: 4 }),
+          api.products.getAll({ category: 'Electronics & Audio', limit: 4 }),
+        ]);
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-    })
+        if (dealsRes.success) setDeals(dealsRes.products || []);
+        if (mobilesRes.success) setMobiles(mobilesRes.products || []);
+        if (electronicsRes.success) setElectronics(electronicsRes.products || []);
+      } catch (err) {
+        console.error('Failed to load landing data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return () => subscription.unsubscribe()
-  }, [])
+    fetchHomeData();
+  }, []);
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    setUser(null)
-  }
+  const CATEGORIES = [
+    { name: 'Mobiles & 5G', icon: Smartphone, path: '/catalog?category=Mobiles %26 Accessories' },
+    { name: 'Laptops & PCs', icon: Laptop, path: '/catalog?category=Electronics %26 Audio' },
+    { name: 'Audio & Earbuds', icon: Headphones, path: '/catalog?category=Electronics %26 Audio' },
+    { name: 'Smartwatches', icon: Watch, path: '/catalog?category=Smart Wearables %26 Watches' },
+    { name: 'Fashion & Wear', icon: Shirt, path: '/catalog?category=Fashion %26 Lifestyle' },
+    { name: 'Home & Kitchen', icon: Home, path: '/catalog?category=Home, Kitchen %26 Appliances' },
+  ];
 
   return (
-    <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center bg-fixed text-white font-sans selection:bg-purple-500/30">
-      {isStoryActive && <StorySequence />}
-      <div className={`min-h-screen bg-black/50 pt-4 transition-opacity duration-700 ${isStoryActive ? 'opacity-0' : 'opacity-100'}`}>
-        {/* Navigation */}
-        <nav className="glass-nav flex items-center justify-between px-4 md:px-8 py-3 md:py-4">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div className="text-xl md:text-2xl font-bold tracking-tighter text-white">
-              PanicDrop
-            </div>
-          </div>
-          
-          <div className="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
-            <Link to="/" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Home</Link>
-            <Link to="/catalog" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Catalog</Link>
-            <Link to="#" className="hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all">Track Order</Link>
-          </div>
-          <div className="flex items-center space-x-2 md:space-x-4">
-            {user ? (
-              <>
-                <span className="text-xs md:text-sm text-gray-400 hidden sm:inline-block truncate max-w-[120px]">{user.email}</span>
-                <Button onClick={handleSignOut} variant="ghost" className="text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign Out</Button>
-              </>
-            ) : (
-              <Link to="/login">
-                <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white rounded-full px-3 md:px-6 text-xs md:text-sm whitespace-nowrap">Sign In</Button>
-              </Link>
-            )}
-            <Button onClick={() => setIsStoryActive(true)} className="glass-button border-0 text-xs md:text-sm font-semibold h-8 md:h-10 px-4 md:px-8 whitespace-nowrap">Get Started</Button>
-          </div>
-        </nav>
+    <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col font-sans">
+      <Navbar />
 
-        {/* Hero Section */}
-        <main className="mx-auto max-w-7xl px-6 py-32 flex flex-col items-center justify-center text-center">
-          <div className="inline-block glass rounded-full px-4 py-1.5 mb-8 border-white/20">
-            <span className="text-xs font-semibold tracking-wider text-purple-200">At least we don't reschedule your delivery 3 times like some f-karts 📦💨</span>
+      {/* 1. Category Icons Bar */}
+      <section className="bg-white border-b border-gray-200 py-4 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 text-center">
+            {CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <Link
+                  key={cat.name}
+                  to={cat.path}
+                  className="flex flex-col items-center gap-1.5 p-2 rounded-xl hover:bg-gray-50 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-800 group-hover:text-indigo-600">
+                    {cat.name}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
-          
-          <h1 className="text-7xl md:text-8xl font-extrabold tracking-tight mb-8 leading-tight">
-            Delivery at <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-              Panic Speed.
+        </div>
+      </section>
+
+      {/* 2. Clean Hero Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-700 text-white p-6 sm:p-10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-3 max-w-xl text-center md:text-left">
+            <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-bold rounded-full uppercase tracking-wider">
+              🇮🇳 India&apos;s Curated Tech Store
             </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl font-light leading-relaxed">
-            Order anything. We'll drop it at your door before panic sets in. Premium goods, unbelievable delivery times, all tracked in real-time.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-32">
-            <Link to="/catalog">
-              <Button className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 h-auto rounded-full font-semibold shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all hover:scale-105">
-                Shop Now
-              </Button>
-            </Link>
-            <Button onClick={() => setIsStoryActive(true)} className="glass-button text-lg px-10 py-7 h-auto">
-              Track Package
-            </Button>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              10,000+ Products at Best Indian Prices
+            </h1>
+            <p className="text-xs sm:text-sm text-indigo-100 leading-relaxed font-light">
+              Explore smartphones, laptops, audio, smartwatches, and fashion. Get flat 20% off with code <strong>DESI20</strong>.
+            </p>
+            <div className="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+              <Link
+                to="/catalog"
+                className="px-6 py-3 bg-white hover:bg-gray-100 text-indigo-700 font-bold text-xs rounded-xl shadow transition-all flex items-center gap-2"
+              >
+                <span>Shop 10,000+ Products</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/wishlist"
+                className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20"
+              >
+                View Wishlist
+              </Link>
+            </div>
           </div>
 
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl text-left">
-            <div className="glass-card">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500/30 to-blue-600/10 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Lightning Fast</h3>
-              <p className="text-gray-400 leading-relaxed">Our proprietary logistics network is optimized for unprecedented speed, ensuring your drops happen almost instantly.</p>
+          <div className="hidden lg:grid grid-cols-2 gap-3 w-64 text-center text-xs">
+            <div className="bg-white/10 p-3.5 rounded-xl border border-white/20">
+              <div className="text-xl font-bold text-white">10,000+</div>
+              <div className="text-indigo-100 text-[11px]">Total Items</div>
             </div>
-            
-            <div className="glass-card">
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-500/30 to-purple-600/10 rounded-2xl flex items-center justify-center mb-6 border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Secure Drops</h3>
-              <p className="text-gray-400 leading-relaxed">Every package is insured and tracked with millimeter precision in real-time. Your items are safe with PanicDrop.</p>
+            <div className="bg-white/10 p-3.5 rounded-xl border border-white/20">
+              <div className="text-xl font-bold text-white">417</div>
+              <div className="text-indigo-100 text-[11px]">Catalog Pages</div>
             </div>
-            
-            <div className="glass-card">
-              <div className="w-14 h-14 bg-gradient-to-br from-pink-500/30 to-pink-600/10 rounded-2xl flex items-center justify-center mb-6 border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.3)]">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-pink-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-white">Premium Catalog</h3>
-              <p className="text-gray-400 leading-relaxed">Access exclusive products curated for high-end quality and aesthetic appeal, delivered without the wait.</p>
+            <div className="bg-white/10 p-3.5 rounded-xl border border-white/20">
+              <div className="text-xl font-bold text-white">UPI / COD</div>
+              <div className="text-indigo-100 text-[11px]">Zero Fee</div>
+            </div>
+            <div className="bg-white/10 p-3.5 rounded-xl border border-white/20">
+              <div className="text-xl font-bold text-white">7 Days</div>
+              <div className="text-indigo-100 text-[11px]">Replacement</div>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </section>
+
+      {/* 3. Product Shelves */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full space-y-6">
+        
+        {/* Shelf 1: Trending Deals */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-sm">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Trending Deals & Popular Picks</h2>
+              <p className="text-xs text-gray-500">Top selling items with exclusive discounts</p>
+            </div>
+            <Link
+              to="/catalog"
+              className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+            >
+              <span>View All</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {deals.map((p) => (
+              <ProductCard key={p._id || p.id} product={p} />
+            ))}
+          </div>
+        </div>
+
+        {/* Shelf 2: Mobiles */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-sm">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Mobiles & 5G Smartphones</h2>
+              <p className="text-xs text-gray-500">Apple, Samsung, OnePlus, Realme, Xiaomi</p>
+            </div>
+            <Link
+              to="/catalog?category=Mobiles %26 Accessories"
+              className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+            >
+              <span>View All Mobiles</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {mobiles.map((p) => (
+              <ProductCard key={p._id || p.id} product={p} />
+            ))}
+          </div>
+        </div>
+
+        {/* Shelf 3: Electronics */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-6 shadow-sm">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Laptops, Headphones & Audio</h2>
+              <p className="text-xs text-gray-500">ASUS ROG, MacBooks, Sony ANC, boAt Earbuds</p>
+            </div>
+            <Link
+              to="/catalog?category=Electronics %26 Audio"
+              className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+            >
+              <span>View All Electronics</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {electronics.map((p) => (
+              <ProductCard key={p._id || p.id} product={p} />
+            ))}
+          </div>
+        </div>
+
+      </section>
+
+      {/* 4. Trust Banner */}
+      <section className="bg-white border-t border-gray-200 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="space-y-1">
+              <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2">
+                <Truck className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-xs text-gray-900">Free Express Delivery</h4>
+              <p className="text-[11px] text-gray-500">On all orders above ₹499</p>
+            </div>
+            <div className="space-y-1">
+              <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-xs text-gray-900">100% Genuine Products</h4>
+              <p className="text-[11px] text-gray-500">Official brand warranties</p>
+            </div>
+            <div className="space-y-1">
+              <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2">
+                <RotateCcw className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-xs text-gray-900">7 Days Easy Return</h4>
+              <p className="text-[11px] text-gray-500">Hassle-free replacement</p>
+            </div>
+            <div className="space-y-1">
+              <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2">
+                <Tag className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-xs text-gray-900">Best Price Guarantee</h4>
+              <p className="text-[11px] text-gray-500">UPI, NetBanking & COD</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
-  )
+  );
 }

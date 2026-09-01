@@ -1,80 +1,171 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const CartContext = createContext()
+const CartContext = createContext();
 
-export function useCart() {
-  return useContext(CartContext)
-}
-
-export function CartProvider({ children }) {
+export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    // Load from local storage initially
-    const saved = localStorage.getItem('panicdrop_cart')
-    return saved ? JSON.parse(saved) : []
-  })
+    try {
+      const saved = localStorage.getItem('panicdrop_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
 
-  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [coupon, setCoupon] = useState(null);
+  const [discountPercent, setDiscountPercent] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem('panicdrop_cart', JSON.stringify(cartItems))
-  }, [cartItems])
+    try {
+      localStorage.setItem('panicdrop_cart', JSON.stringify(cartItems));
+    } catch (e) {
+      console.error('Failed to save cart to localStorage', e);
+    }
+  }, [cartItems]);
 
-  const addToCart = (product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id)
+  const addToCart = (product, quantity = 1) => {
+    setCartItems((prevItems) => {
+      const pId = product._id || product.id || product.product;
+      const existing = prevItems.find((item) => (item._id || item.id || item.product) === pId);
       if (existing) {
-        return prev.map(item => 
-          item.id === product.id 
-            ? { ...item, quantity: item.quantity + 1 }
+        return prevItems.map((item) =>
+          (item._id || item.id || item.product) === pId
+            ? { ...item, quantity: Math.min(item.quantity + quantity, product.stock || 99) }
             : item
-        )
+        );
+      } else {
+        return [
+          ...prevItems,
+          {
+            _id: pId,
+            id: pId,
+            product: pId,
+            name: product.name,
+            price: Number(product.price),
+            originalPrice: product.originalPrice ? Number(product.originalPrice) : Number(product.price),
+            image: Array.isArray(product.images) ? product.images[0] : product.image || '',
+            images: Array.isArray(product.images) ? product.images : [product.image || ''],
+            stock: product.stock !== undefined ? product.stock : 99,
+            quantity: Math.min(quantity, product.stock || 99),
+            category: product.category,
+            brand: product.brand,
+          },
+        ];
       }
-      return [...prev, { ...product, quantity: 1 }]
-    })
-    setIsCartOpen(true) // Open cart when adding
-  }
+    });
+  };
 
   const removeFromCart = (productId) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId))
-  }
+    setCartItems((prev) => prev.filter((item) => (item._id || item.id || item.product) !== productId));
+  };
 
-  const updateQuantity = (productId, newQuantity) => {
-    if (newQuantity < 1) {
-      removeFromCart(productId)
-      return
+  const updateQuantity = (productId, quantity) => {
+    if (quantity <= 0) {
+      removeFromCart(productId);
+      return;
     }
-    setCartItems(prev => prev.map(item => 
-      item.id === productId ? { ...item, quantity: newQuantity } : item
-    ))
-  }
+    setCartItems((prev) =>
+      prev.map((item) => {
+        if ((item._id || item.id || item.product) === productId) {
+          return { ...item, quantity: Math.min(quantity, item.stock || 99) };
+        }
+        return item;
+      })
+    );
+  };
 
   const clearCart = () => {
-    setCartItems([])
-  }
+    setCartItems([]);
+    setCoupon(null);
+    setDiscountPercent(0);
+  };
 
-  const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
-  }
+  const applyCoupon = (code) => {
+    const formatted = code.trim().toUpperCase();
+    if (formatted === 'DESI20' || formatted === 'PANIC20') {
+      setCoupon({ code: formatted, discountPercent: 20 });
+      setDiscountPercent(20);
+      return { success: true, message: '🎉 20% Indian Festive Discount Applied!' };
+    } else if (formatted === 'INDIA10' || formatted === 'DROP10') {
+      setCoupon({ code: formatted, discountPercent: 10 });
+      setDiscountPercent(10);
+      return { success: true, message: '🎉 10% Welcome Bharat Discount Applied!' };
+    } else if (formatted === 'FREESHIP') {
+      setCoupon({ code: 'FREESHIP', discountPercent: 5 });
+      setDiscountPercent(5);
+      return { success: true, message: '🚚 Free Express Shipping Coupon Applied!' };
+    } else {
+      return { success: false, message: 'Invalid or expired coupon code. Try DESI20' };
+    }
+  };
+
+  const removeCoupon = () => {
+    setCoupon(null);
+    setDiscountPercent(0);
+  };
 
   const getCartCount = () => {
-    return cartItems.reduce((count, item) => count + item.quantity, 0)
-  }
+    return cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  };
 
-  const value = {
-    cartItems,
-    isCartOpen,
-    setIsCartOpen,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    getCartTotal,
-    getCartCount
-  }
+  const getSubtotal = () => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
+
+  const getDiscountAmount = () => {
+    return Math.round((getSubtotal() * discountPercent) / 100);
+  };
+
+  const getShippingFee = () => {
+    const subtotal = getSubtotal();
+    return subtotal > 499 || subtotal === 0 ? 0 : 49;
+  };
+
+  const getTaxAmount = () => {
+    return Math.round((getSubtotal() - getDiscountAmount()) * 0.18);
+  };
+
+  const getTotal = () => {
+    const subtotal = getSubtotal();
+    const discount = getDiscountAmount();
+    const shipping = getShippingFee();
+    return Math.max(0, subtotal - discount + shipping);
+  };
 
   return (
-    <CartContext.Provider value={value}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        isCartOpen,
+        coupon,
+        discountPercent,
+        setIsCartOpen,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        applyCoupon,
+        removeCoupon,
+        getCartCount,
+        getSubtotal,
+        getCartSubtotal: getSubtotal,
+        getDiscountAmount,
+        getShippingFee,
+        getTaxAmount,
+        getTotal,
+        getCartTotal: getTotal,
+      }}
+    >
       {children}
     </CartContext.Provider>
-  )
-}
+  );
+};
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
