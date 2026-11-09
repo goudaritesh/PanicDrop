@@ -1,5 +1,6 @@
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
+import { invalidateOrderCaches } from '../middleware/cacheMiddleware.js';
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -52,6 +53,7 @@ export const createOrder = async (req, res) => {
     });
 
     const createdOrder = await order.save();
+    invalidateOrderCaches();
     res.status(201).json({
       success: true,
       message: 'Order placed successfully',
@@ -157,6 +159,7 @@ export const updateOrderStatus = async (req, res) => {
     }
 
     const updatedOrder = await order.save();
+    invalidateOrderCaches();
     res.json({
       success: true,
       message: `Order status updated to ${updatedOrder.orderStatus}`,

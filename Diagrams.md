@@ -169,6 +169,8 @@ flowchart TB
 
 ### 2.3 Hybrid Persistence Proxy Pattern
 
+![PanicDrop 3.1: Hybrid Persistence Proxy Pattern](./docs/diagrams/3.1-proxy-pattern.svg)
+
 To ensure seamless operation during development, cloud demonstrations, and production deployments without hard database dependencies, PanicDrop introduces an **ES6 Transparent Proxy Database Abstraction Layer**:
 
 ```mermaid

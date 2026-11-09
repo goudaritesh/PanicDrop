@@ -355,12 +355,16 @@ export const generate10kProducts = async (targetCount = 10000) => {
 
   // Create fast indexes on Product collection for instant search & filtering
   try {
-    const rawCollection = Product.collection;
-    if (rawCollection && rawCollection.createIndex) {
-      await rawCollection.createIndex({ category: 1, price: 1, rating: -1 });
-      await rawCollection.createIndex({ brand: 1 });
-      await rawCollection.createIndex({ name: 'text', description: 'text', brand: 'text' });
-      console.log('[10K Generator] MongoDB high-performance indexes created successfully.');
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      const rawCollection = Product.collection;
+      if (rawCollection && rawCollection.createIndex) {
+        await rawCollection.createIndex({ category: 1, price: 1, rating: -1 });
+        await rawCollection.createIndex({ brand: 1 });
+        await rawCollection.createIndex({ name: 'text', description: 'text', brand: 'text' });
+        console.log('[10K Generator] MongoDB high-performance indexes created successfully.');
+      }
+    } else {
+      console.log('[10K Generator] In-memory mode active; skipped MongoDB index creation.');
     }
   } catch (idxErr) {
     console.warn('[10K Generator] Index note:', idxErr.message);

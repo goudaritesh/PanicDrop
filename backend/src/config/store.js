@@ -61,7 +61,7 @@ export class MemoryUser {
     }).length;
   }
 
-  static async find(query = {}) {
+  static find(query = {}) {
     let result = db.users.filter((u) => {
       if (query.role && query.role !== 'all' && u.role !== query.role) return false;
       if (query.$or) {
@@ -74,12 +74,26 @@ export class MemoryUser {
       return true;
     });
 
-    return {
-      select: () => ({
-        sort: () => result.map((u) => new MemoryUser(u)),
-      }),
-      sort: () => result.map((u) => new MemoryUser(u)),
+    const chain = {
+      _data: result,
+      select: function () {
+        return this;
+      },
+      sort: function () {
+        return this;
+      },
+      lean: function () {
+        return this;
+      },
+      then: function (resolve) {
+        resolve(this._data.map((u) => new MemoryUser(u)));
+      },
+      catch: function (reject) {
+        return Promise.resolve(this._data.map((u) => new MemoryUser(u))).catch(reject);
+      },
     };
+
+    return chain;
   }
 
   static async findOne(query) {
@@ -184,7 +198,7 @@ export class MemoryProduct {
     }).length;
   }
 
-  static async find(query = {}) {
+  static find(query = {}) {
     let result = db.products.filter((p) => {
       if (query.isActive !== undefined && p.isActive !== query.isActive) return false;
       if (query.featured && !p.featured) return false;
@@ -219,12 +233,13 @@ export class MemoryProduct {
     });
 
     const chain = {
-      _data: result,
+      _data: [...result],
       sort: function (sortOpts) {
         if (sortOpts?.price === 1) this._data.sort((a, b) => a.price - b.price);
         else if (sortOpts?.price === -1) this._data.sort((a, b) => b.price - a.price);
         else if (sortOpts?.rating === -1) this._data.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         else if (sortOpts?.name === 1) this._data.sort((a, b) => a.name.localeCompare(b.name));
+        else if (sortOpts?.numReviews === -1) this._data.sort((a, b) => (b.numReviews || 0) - (a.numReviews || 0));
         return this;
       },
       skip: function (num) {
@@ -238,8 +253,17 @@ export class MemoryProduct {
       select: function () {
         return this;
       },
+      lean: function () {
+        return this;
+      },
+      populate: function () {
+        return this;
+      },
       then: function (resolve) {
         resolve(this._data.map((p) => new MemoryProduct(p)));
+      },
+      catch: function (reject) {
+        return Promise.resolve(this._data.map((p) => new MemoryProduct(p))).catch(reject);
       },
     };
 
@@ -364,7 +388,7 @@ export class MemoryOrder {
     }).length;
   }
 
-  static async find(query = {}) {
+  static find(query = {}) {
     let result = db.orders.filter((o) => {
       if (query.user && o.user?._id?.toString() !== query.user.toString() && o.user?.toString() !== query.user.toString()) {
         return false;
@@ -379,7 +403,7 @@ export class MemoryOrder {
     });
 
     const chain = {
-      _data: result,
+      _data: [...result],
       populate: function () {
         this._data = this._data.map((o) => {
           const userObj = db.users.find((u) => u._id.toString() === (o.user?._id || o.user)?.toString());
@@ -402,8 +426,17 @@ export class MemoryOrder {
         this._data = this._data.slice(0, num);
         return this;
       },
+      select: function () {
+        return this;
+      },
+      lean: function () {
+        return this;
+      },
       then: function (resolve) {
         resolve(this._data.map((o) => new MemoryOrder(o)));
+      },
+      catch: function (reject) {
+        return Promise.resolve(this._data.map((o) => new MemoryOrder(o))).catch(reject);
       },
     };
 
