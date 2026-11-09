@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 890" width="100%" height="100%">
   <defs>
     <filter id="shadow7" x="-5%" y="-5%" width="110%" height="110%">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
@@ -14,15 +14,17 @@
     .panel-header { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 800; fill: #0f172a; }
     .node-title { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
     .node-title-white { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
-    .node-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; fill: #475569; text-anchor: middle; }
+    .node-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 9.5px; fill: #475569; text-anchor: middle; }
+    .node-item { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; fill: #334155; }
+    .node-item-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 700; fill: #0f172a; }
     .api-verb { font-family: monospace, system-ui; font-size: 10px; font-weight: 800; }
-    .api-path { font-family: monospace, system-ui; font-size: 10px; font-weight: 700; fill: #0f172a; }
-    .api-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #475569; }
-    .pipe-step { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+    .api-path { font-family: monospace, system-ui; font-size: 9.5px; font-weight: 700; fill: #0f172a; }
+    .api-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 9.5px; fill: #475569; }
+    .pipe-step { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; text-anchor: middle; }
   </style>
 
   <!-- Clean White Canvas -->
-  <rect width="1200" height="850" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+  <rect width="1260" height="890" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
@@ -30,222 +32,239 @@
     <text x="0" y="38" class="cd-sub">React Component Hierarchy &#x2022; React Context State Engine &#x2022; RESTful Endpoints &#x2022; Middleware Execution Pipeline</text>
   </g>
 
-  <!-- LEFT PANEL: REACT COMPONENT TREE (width: 540, height: 490) -->
+  <!-- LEFT PANEL: REACT COMPONENT TREE (width: 570, height: 505) -->
   <g transform="translate(40, 85)" filter="url(#shadow7)">
-    <rect width="540" height="490" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
-    <text x="20" y="30" class="panel-header">PART 1: REACT 18 COMPONENT TREE &amp; ROUTING STRUCTURE</text>
+    <rect width="570" height="505" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+    <text x="20" y="28" class="panel-header">PART 1: REACT 18 COMPONENT TREE &amp; ROUTING STRUCTURE</text>
 
     <!-- Root App Node -->
-    <g transform="translate(195, 50)">
-      <rect width="150" height="34" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
-      <text x="75" y="21" class="node-title" fill="#1d4ed8">App.jsx (Root)</text>
+    <g transform="translate(210, 48)">
+      <rect width="150" height="32" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
+      <text x="75" y="20" class="node-title" fill="#1d4ed8">App.jsx (Root)</text>
     </g>
 
-    <line x1="270" y1="84" x2="270" y2="105" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+    <line x1="285" y1="80" x2="285" y2="100" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
     <!-- Context Providers Container -->
-    <g transform="translate(70, 105)">
-      <rect width="400" height="42" rx="6" fill="#ffffff" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="3" />
-      <text x="200" y="26" class="node-title" fill="#4338ca">AuthProvider &gt; CartProvider &gt; WishlistProvider</text>
+    <g transform="translate(85, 100)">
+      <rect width="400" height="38" rx="6" fill="#ffffff" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="3" />
+      <text x="200" y="24" class="node-title" fill="#4338ca">AuthProvider &gt; CartProvider &gt; WishlistProvider</text>
     </g>
 
-    <line x1="270" y1="147" x2="270" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+    <line x1="285" y1="138" x2="285" y2="158" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
     <!-- Router Node -->
-    <g transform="translate(180, 170)">
-      <rect width="180" height="34" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
-      <text x="90" y="21" class="node-title" fill="#1d4ed8">BrowserRouter &amp; CartDrawer</text>
+    <g transform="translate(185, 158)">
+      <rect width="200" height="32" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
+      <text x="100" y="20" class="node-title" fill="#1d4ed8">BrowserRouter &amp; CartDrawer</text>
     </g>
 
     <!-- Branching to 3 Route Categories -->
-    <line x1="270" y1="204" x2="270" y2="230" stroke="#64748b" stroke-width="1.5" />
-    <line x1="100" y1="230" x2="440" y2="230" stroke="#64748b" stroke-width="1.5" />
-    <line x1="100" y1="230" x2="100" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
-    <line x1="270" y1="230" x2="270" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
-    <line x1="440" y1="230" x2="440" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+    <line x1="285" y1="190" x2="285" y2="215" stroke="#64748b" stroke-width="1.5" />
+    <line x1="104" y1="215" x2="466" y2="215" stroke="#64748b" stroke-width="1.5" />
+    <line x1="104" y1="215" x2="104" y2="235" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+    <line x1="285" y1="215" x2="285" y2="235" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+    <line x1="466" y1="215" x2="466" y2="235" stroke="#64748b" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
-    <!-- Category 1: Public Storefront -->
-    <g transform="translate(20, 250)">
-      <rect width="160" height="215" rx="6" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.2" />
-      <rect width="160" height="24" rx="6" fill="#059669" />
-      <rect y="16" width="160" height="8" fill="#059669" />
-      <text x="80" y="17" class="node-title-white">Public Storefront</text>
-      <text x="12" y="42" class="node-sub" text-anchor="start">&#x2022; Landing.jsx (Hero/Deals)</text>
-      <text x="12" y="60" class="node-sub" text-anchor="start">&#x2022; Catalog.jsx (10k items)</text>
-      <text x="12" y="78" class="node-sub" text-anchor="start">&#x2022; ProductDetail.jsx (PDP)</text>
-      <text x="12" y="96" class="node-sub" text-anchor="start">&#x2022; Wishlist.jsx (Saved)</text>
-      <text x="12" y="114" class="node-sub" text-anchor="start">&#x2022; Login.jsx / Register.jsx</text>
-      <line x1="10" y1="130" x2="150" y2="130" stroke="#cbd5e1" stroke-width="1" />
-      <text x="12" y="148" class="node-sub" text-anchor="start" font-weight="700">Shared Components:</text>
-      <text x="12" y="166" class="node-sub" text-anchor="start">&#x2022; Navbar.jsx (Search/Cart)</text>
-      <text x="12" y="184" class="node-sub" text-anchor="start">&#x2022; ProductCard.jsx (Badge)</text>
-      <text x="12" y="202" class="node-sub" text-anchor="start">&#x2022; Footer.jsx (Indian INR)</text>
+    <!-- Category 1: Public Storefront (width: 168) -->
+    <g transform="translate(20, 235)">
+      <rect width="168" height="248" rx="6" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.2" />
+      <rect width="168" height="26" rx="6" fill="#059669" />
+      <rect y="18" width="168" height="8" fill="#059669" />
+      <text x="84" y="18" class="node-title-white">Public Storefront</text>
+
+      <text x="10" y="44" class="node-item">&#x2022; Landing.jsx (Deals)</text>
+      <text x="10" y="62" class="node-item">&#x2022; Catalog.jsx (10k SKUs)</text>
+      <text x="10" y="80" class="node-item">&#x2022; ProductDetail.jsx (PDP)</text>
+      <text x="10" y="98" class="node-item">&#x2022; Wishlist.jsx (Saved)</text>
+      <text x="10" y="116" class="node-item">&#x2022; Login.jsx / Register.jsx</text>
+
+      <line x1="10" y1="130" x2="158" y2="130" stroke="#cbd5e1" stroke-width="1" />
+      <text x="10" y="146" class="node-item-bold">Shared Components:</text>
+      <text x="10" y="164" class="node-item">&#x2022; Navbar.jsx (Search)</text>
+      <text x="10" y="182" class="node-item">&#x2022; ProductCard.jsx (INR)</text>
+      <text x="10" y="200" class="node-item">&#x2022; CartDrawer.jsx (Slide)</text>
+      <text x="10" y="218" class="node-item">&#x2022; Footer.jsx (Badges)</text>
+      <text x="10" y="236" class="node-item">&#x2022; Pagination.jsx (10k)</text>
     </g>
 
-    <!-- Category 2: Customer Protected -->
-    <g transform="translate(190, 250)">
-      <rect width="160" height="215" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2" />
-      <rect width="160" height="24" rx="6" fill="#7c3aed" />
-      <rect y="16" width="160" height="8" fill="#7c3aed" />
-      <text x="80" y="17" class="node-title-white">&lt;ProtectedRoute&gt;</text>
-      <text x="12" y="42" class="node-sub" text-anchor="start">&#x2022; Checkout.jsx</text>
-      <text x="20" y="58" class="node-sub" text-anchor="start" fill="#6d28d9">- PIN Code Validator</text>
-      <text x="20" y="74" class="node-sub" text-anchor="start" fill="#6d28d9">- UPI / COD Selector</text>
-      <text x="20" y="90" class="node-sub" text-anchor="start" fill="#6d28d9">- Order Summary Calc</text>
-      <text x="12" y="114" class="node-sub" text-anchor="start">&#x2022; Orders.jsx</text>
-      <text x="20" y="130" class="node-sub" text-anchor="start" fill="#6d28d9">- TRK-ID tracker</text>
-      <text x="20" y="146" class="node-sub" text-anchor="start" fill="#6d28d9">- Order item list</text>
-      <text x="12" y="170" class="node-sub" text-anchor="start">&#x2022; Profile.jsx</text>
-      <text x="20" y="186" class="node-sub" text-anchor="start" fill="#6d28d9">- Addresses &amp; contact</text>
+    <!-- Category 2: Customer Protected (width: 168) -->
+    <g transform="translate(201, 235)">
+      <rect width="168" height="248" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2" />
+      <rect width="168" height="26" rx="6" fill="#7c3aed" />
+      <rect y="18" width="168" height="8" fill="#7c3aed" />
+      <text x="84" y="18" class="node-title-white">&lt;ProtectedRoute&gt;</text>
+
+      <text x="10" y="44" class="node-item-bold">&#x2022; Checkout.jsx</text>
+      <text x="18" y="62" class="node-item" fill="#6d28d9">- PIN Code Check</text>
+      <text x="18" y="80" class="node-item" fill="#6d28d9">- UPI / COD Selector</text>
+      <text x="18" y="98" class="node-item" fill="#6d28d9">- Bill Summary Calc</text>
+
+      <line x1="10" y1="112" x2="158" y2="112" stroke="#cbd5e1" stroke-width="1" />
+      <text x="10" y="128" class="node-item-bold">&#x2022; Orders.jsx</text>
+      <text x="18" y="146" class="node-item" fill="#6d28d9">- TRK-ID Tracking</text>
+      <text x="18" y="164" class="node-item" fill="#6d28d9">- Order Item List</text>
+
+      <line x1="10" y1="178" x2="158" y2="178" stroke="#cbd5e1" stroke-width="1" />
+      <text x="10" y="194" class="node-item-bold">&#x2022; Profile.jsx</text>
+      <text x="18" y="212" class="node-item" fill="#6d28d9">- Saved Addresses</text>
+      <text x="18" y="230" class="node-item" fill="#6d28d9">- Contact Info Edit</text>
     </g>
 
-    <!-- Category 3: Admin Dashboard -->
-    <g transform="translate(360, 250)">
-      <rect width="160" height="215" rx="6" fill="#ffffff" stroke="#fde68a" stroke-width="1.2" />
-      <rect width="160" height="24" rx="6" fill="#d97706" />
-      <rect y="16" width="160" height="8" fill="#d97706" />
-      <text x="80" y="17" class="node-title-white">&lt;AdminRoute&gt;</text>
-      <text x="12" y="42" class="node-sub" text-anchor="start">&#x2022; AdminDashboard.jsx</text>
-      <text x="20" y="58" class="node-sub" text-anchor="start" fill="#b45309">- KPI Metric Cards</text>
-      <text x="20" y="74" class="node-sub" text-anchor="start" fill="#b45309">- Recharts Sales Graph</text>
-      <text x="20" y="90" class="node-sub" text-anchor="start" fill="#b45309">- Demand Alerts (&lt;=5)</text>
-      <text x="12" y="114" class="node-sub" text-anchor="start">&#x2022; ProductsManager.jsx</text>
-      <text x="20" y="130" class="node-sub" text-anchor="start" fill="#b45309">- Restock &amp; SKU CRUD</text>
-      <text x="12" y="154" class="node-sub" text-anchor="start">&#x2022; OrdersManager.jsx</text>
-      <text x="20" y="170" class="node-sub" text-anchor="start" fill="#b45309">- Dispatch &amp; Tracking</text>
-      <text x="12" y="194" class="node-sub" text-anchor="start">&#x2022; UsersManager.jsx</text>
+    <!-- Category 3: Admin Dashboard (width: 168) -->
+    <g transform="translate(382, 235)">
+      <rect width="168" height="248" rx="6" fill="#ffffff" stroke="#fde68a" stroke-width="1.2" />
+      <rect width="168" height="26" rx="6" fill="#d97706" />
+      <rect y="18" width="168" height="8" fill="#d97706" />
+      <text x="84" y="18" class="node-title-white">&lt;AdminRoute&gt;</text>
+
+      <text x="10" y="44" class="node-item-bold">&#x2022; AdminDashboard.jsx</text>
+      <text x="18" y="60" class="node-item" fill="#b45309">- KPI Metric Cards</text>
+      <text x="18" y="76" class="node-item" fill="#b45309">- Recharts Graphs</text>
+      <text x="18" y="92" class="node-item" fill="#b45309">- Demand Alerts</text>
+
+      <text x="10" y="112" class="node-item-bold">&#x2022; ProductsManager.jsx</text>
+      <text x="18" y="128" class="node-item" fill="#b45309">- SKU CRUD &amp; Stock</text>
+      <text x="18" y="144" class="node-item" fill="#b45309">- Pricing &amp; Category</text>
+
+      <text x="10" y="164" class="node-item-bold">&#x2022; OrdersManager.jsx</text>
+      <text x="18" y="180" class="node-item" fill="#b45309">- Dispatch &amp; Status</text>
+      <text x="18" y="196" class="node-item" fill="#b45309">- Courier Tracking</text>
+
+      <text x="10" y="216" class="node-item-bold">&#x2022; UsersManager.jsx</text>
+      <text x="18" y="232" class="node-item" fill="#b45309">- Role Management</text>
     </g>
   </g>
 
-  <!-- RIGHT PANEL: RESTFUL ENDPOINTS SPECIFICATION (width: 560, height: 490) -->
-  <g transform="translate(600, 85)" filter="url(#shadow7)">
-    <rect width="560" height="490" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
-    <text x="20" y="30" class="panel-header">PART 2: RESTFUL ENDPOINT SPECIFICATION TABLE</text>
+  <!-- RIGHT PANEL: RESTFUL ENDPOINTS SPECIFICATION (width: 580, height: 505) -->
+  <g transform="translate(640, 85)" filter="url(#shadow7)">
+    <rect width="580" height="505" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+    <text x="20" y="28" class="panel-header">PART 2: RESTFUL ENDPOINT SPECIFICATION TABLE</text>
 
-    <g transform="translate(20, 50)">
+    <g transform="translate(20, 46)">
       <!-- Row 1 -->
-      <rect width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="21" class="api-verb" fill="#047857">POST</text>
-      <text x="50" y="21" class="api-path">/api/auth/register</text>
-      <text x="250" y="21" class="api-desc">Create customer or admin account (bcrypt)</text>
+      <rect width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="22" class="api-verb" fill="#047857">POST</text>
+      <text x="54" y="22" class="api-path">/api/auth/register</text>
+      <text x="240" y="22" class="api-desc">Create customer or admin account (bcrypt)</text>
 
       <!-- Row 2 -->
-      <rect y="40" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="61" class="api-verb" fill="#047857">POST</text>
-      <text x="50" y="61" class="api-path">/api/auth/login</text>
-      <text x="250" y="61" class="api-desc">Authenticate &amp; return 30-day Bearer JWT</text>
+      <rect y="40" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="62" class="api-verb" fill="#047857">POST</text>
+      <text x="54" y="62" class="api-path">/api/auth/login</text>
+      <text x="240" y="62" class="api-desc">Authenticate &amp; return 30-day Bearer JWT</text>
 
       <!-- Row 3 -->
-      <rect y="80" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="101" class="api-verb" fill="#1d4ed8">GET</text>
-      <text x="50" y="101" class="api-path">/api/products</text>
-      <text x="250" y="101" class="api-desc">Faceted filters, 10k pagination, sort, search</text>
+      <rect y="80" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="102" class="api-verb" fill="#1d4ed8">GET</text>
+      <text x="54" y="102" class="api-path">/api/products</text>
+      <text x="240" y="102" class="api-desc">Faceted filters, 10k pagination, sort, search</text>
 
       <!-- Row 4 -->
-      <rect y="120" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="141" class="api-verb" fill="#1d4ed8">GET</text>
-      <text x="50" y="141" class="api-path">/api/products/:id</text>
-      <text x="250" y="141" class="api-desc">Product metadata, reviews, related items</text>
+      <rect y="120" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="142" class="api-verb" fill="#1d4ed8">GET</text>
+      <text x="54" y="142" class="api-path">/api/products/:id</text>
+      <text x="240" y="142" class="api-desc">Product metadata, reviews, related items</text>
 
       <!-- Row 5 -->
-      <rect y="160" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="181" class="api-verb" fill="#047857">POST</text>
-      <text x="50" y="181" class="api-path">/api/products/:id/reviews</text>
-      <text x="250" y="181" class="api-desc">Submit verified rating &amp; comment (Protected)</text>
+      <rect y="160" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="182" class="api-verb" fill="#047857">POST</text>
+      <text x="54" y="182" class="api-path">/api/products/:id/reviews</text>
+      <text x="240" y="182" class="api-desc">Submit verified rating &amp; comment (Protected)</text>
 
       <!-- Row 6 -->
-      <rect y="200" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="221" class="api-verb" fill="#047857">POST</text>
-      <text x="50" y="221" class="api-path">/api/orders</text>
-      <text x="250" y="221" class="api-desc">Validate stock, atomic decrement, TRK code</text>
+      <rect y="200" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="222" class="api-verb" fill="#047857">POST</text>
+      <text x="54" y="222" class="api-path">/api/orders</text>
+      <text x="240" y="222" class="api-desc">Validate stock, atomic decrement, TRK code</text>
 
       <!-- Row 7 -->
-      <rect y="240" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="261" class="api-verb" fill="#1d4ed8">GET</text>
-      <text x="50" y="261" class="api-path">/api/orders/myorders</text>
-      <text x="250" y="261" class="api-desc">List logged-in user's orders (Protected)</text>
+      <rect y="240" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="262" class="api-verb" fill="#1d4ed8">GET</text>
+      <text x="54" y="262" class="api-path">/api/orders/myorders</text>
+      <text x="240" y="262" class="api-desc">List logged-in user's orders (Protected)</text>
 
       <!-- Row 8 -->
-      <rect y="280" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="301" class="api-verb" fill="#b45309">PUT</text>
-      <text x="50" y="301" class="api-path">/api/orders/:id/status</text>
-      <text x="250" y="301" class="api-desc">Update shipping status &amp; courier tracking (Admin)</text>
+      <rect y="280" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="302" class="api-verb" fill="#b45309">PUT</text>
+      <text x="54" y="302" class="api-path">/api/orders/:id/status</text>
+      <text x="240" y="302" class="api-desc">Update shipping status &amp; courier tracking (Admin)</text>
 
       <!-- Row 9 -->
-      <rect y="320" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="341" class="api-verb" fill="#1d4ed8">GET</text>
-      <text x="50" y="341" class="api-path">/api/admin/stats</text>
-      <text x="250" y="341" class="api-desc">Revenue in INR, low stock alerts, trends (Admin)</text>
+      <rect y="320" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="342" class="api-verb" fill="#1d4ed8">GET</text>
+      <text x="54" y="342" class="api-path">/api/admin/stats</text>
+      <text x="240" y="342" class="api-desc">Revenue in INR, low stock alerts, trends (Admin)</text>
 
       <!-- Row 10 -->
-      <rect y="360" width="520" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
-      <text x="10" y="381" class="api-verb" fill="#1d4ed8">GET</text>
-      <text x="50" y="381" class="api-path">/api/users</text>
-      <text x="250" y="381" class="api-desc">User directory with order count &amp; spend (Admin)</text>
+      <rect y="360" width="540" height="35" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="12" y="382" class="api-verb" fill="#1d4ed8">GET</text>
+      <text x="54" y="382" class="api-path">/api/users</text>
+      <text x="240" y="382" class="api-desc">User directory with order count &amp; spend (Admin)</text>
     </g>
   </g>
 
-  <!-- BOTTOM PANEL: EXPRESS REQUEST MIDDLEWARE PIPELINE (width: 1120, height: 215) -->
-  <g transform="translate(40, 595)" filter="url(#shadow7)">
-    <rect width="1120" height="215" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+  <!-- BOTTOM PANEL: EXPRESS REQUEST MIDDLEWARE PIPELINE (width: 1180, height: 245) -->
+  <g transform="translate(40, 610)" filter="url(#shadow7)">
+    <rect width="1180" height="245" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
     <text x="20" y="28" class="panel-header">PART 3: EXPRESS.JS REQUEST / RESPONSE EXECUTION PIPELINE</text>
 
-    <!-- Pipeline Step Boxes -->
-    <g transform="translate(20, 50)">
+    <!-- Pipeline Step Boxes (total span: 1140) -->
+    <g transform="translate(20, 48)">
       <!-- 1 -->
-      <rect width="135" height="55" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
-      <text x="67" y="24" class="pipe-step" fill="#1d4ed8">1. Client Request</text>
-      <text x="67" y="42" class="node-sub">HTTPS JSON / Headers</text>
+      <rect width="136" height="58" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" />
+      <text x="68" y="25" class="pipe-step" fill="#1d4ed8">1. Client Request</text>
+      <text x="68" y="44" class="node-sub">HTTPS JSON / Headers</text>
 
-      <line x1="135" y1="27" x2="160" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="136" y1="29" x2="160" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 2 -->
-      <rect x="160" y="0" width="135" height="55" rx="6" fill="#ffffff" stroke="#c7d2fe" stroke-width="1" />
-      <text x="227" y="24" class="pipe-step" fill="#4338ca">2. CORS &amp; Parser</text>
-      <text x="227" y="42" class="node-sub">cors() &amp; express.json()</text>
+      <rect x="160" y="0" width="140" height="58" rx="6" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2" />
+      <text x="230" y="25" class="pipe-step" fill="#4338ca">2. CORS &amp; Parser</text>
+      <text x="230" y="44" class="node-sub">cors() &amp; express.json()</text>
 
-      <line x1="295" y1="27" x2="320" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="300" y1="29" x2="324" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 3 -->
-      <rect x="320" y="0" width="135" height="55" rx="6" fill="#ffffff" stroke="#c7d2fe" stroke-width="1" />
-      <text x="387" y="24" class="pipe-step" fill="#4338ca">3. Morgan Logger</text>
-      <text x="387" y="42" class="node-sub">Method, URL, Latency</text>
+      <rect x="324" y="0" width="140" height="58" rx="6" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2" />
+      <text x="394" y="25" class="pipe-step" fill="#4338ca">3. Morgan Logger</text>
+      <text x="394" y="44" class="node-sub">Method, URL, Latency</text>
 
-      <line x1="455" y1="27" x2="480" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="464" y1="29" x2="488" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 4 -->
-      <rect x="480" y="0" width="145" height="55" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1" />
-      <text x="552" y="24" class="pipe-step" fill="#6d28d9">4. JWT Guard (protect)</text>
-      <text x="552" y="42" class="node-sub">Verify Bearer Token</text>
+      <rect x="488" y="0" width="148" height="58" rx="6" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.2" />
+      <text x="562" y="25" class="pipe-step" fill="#6d28d9">4. JWT Guard</text>
+      <text x="562" y="44" class="node-sub">protect (Bearer Token)</text>
 
-      <line x1="625" y1="27" x2="650" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="636" y1="29" x2="660" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 5 -->
-      <rect x="650" y="0" width="145" height="55" rx="6" fill="#ffffff" stroke="#fde68a" stroke-width="1" />
-      <text x="722" y="24" class="pipe-step" fill="#b45309">5. RBAC (adminOnly)</text>
-      <text x="722" y="42" class="node-sub">Check user.role === admin</text>
+      <rect x="660" y="0" width="148" height="58" rx="6" fill="#ffffff" stroke="#fde68a" stroke-width="1.2" />
+      <text x="734" y="25" class="pipe-step" fill="#b45309">5. RBAC Guard</text>
+      <text x="734" y="44" class="node-sub">adminOnly (Role Check)</text>
 
-      <line x1="795" y1="27" x2="820" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="808" y1="29" x2="832" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 6 -->
-      <rect x="820" y="0" width="135" height="55" rx="6" fill="#ffffff" stroke="#a7f3d0" stroke-width="1" />
-      <text x="887" y="24" class="pipe-step" fill="#047857">6. Controller</text>
-      <text x="887" y="42" class="node-sub">Business Logic &amp; Proxy</text>
+      <rect x="832" y="0" width="140" height="58" rx="6" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.2" />
+      <text x="902" y="25" class="pipe-step" fill="#047857">6. Controller</text>
+      <text x="902" y="44" class="node-sub">Business Logic &amp; DB</text>
 
-      <line x1="955" y1="27" x2="980" y2="27" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
+      <line x1="972" y1="29" x2="996" y2="29" stroke="#2563eb" stroke-width="1.5" marker-end="url(#comp-arrow)" />
 
       <!-- 7 -->
-      <rect x="980" y="0" width="100" height="55" rx="6" fill="#ffffff" stroke="#fca5a5" stroke-width="1" />
-      <text x="1030" y="24" class="pipe-step" fill="#b91c1c">7. Output</text>
-      <text x="1030" y="42" class="node-sub">200 OK / 500 Err</text>
+      <rect x="996" y="0" width="144" height="58" rx="6" fill="#ffffff" stroke="#fca5a5" stroke-width="1.2" />
+      <text x="1068" y="25" class="pipe-step" fill="#b91c1c">7. HTTP Output</text>
+      <text x="1068" y="44" class="node-sub">200 OK / 4xx / 500</text>
     </g>
 
     <!-- Context Explanation Banner -->
     <g transform="translate(20, 130)">
-      <rect width="1080" height="65" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
-      <text x="20" y="25" class="api-path">Client-Side State Synchronization (React Context + LocalStorage):</text>
-      <text x="20" y="44" class="api-desc">&#x2022; AuthContext restores user authentication token from 'panicdrop_token' on initial application mount.</text>
-      <text x="20" y="58" class="api-desc">&#x2022; CartContext and WishlistContext continuously persist array payloads to 'panicdrop_cart' and 'panicdrop_wishlist' for offline resilience.</text>
+      <rect width="1140" height="90" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+      <text x="24" y="26" class="api-path" font-size="11">Client-Side State Synchronization (React Context + LocalStorage):</text>
+      <text x="24" y="48" class="api-desc">&#x2022; AuthContext: Restores user authentication token from 'panicdrop_token' on app mount and maintains global auth state.</text>
+      <text x="24" y="68" class="api-desc">&#x2022; CartContext &amp; WishlistContext: Continuously persist array payloads to 'panicdrop_cart' and 'panicdrop_wishlist' for offline resilience.</text>
     </g>
   </g>
 </svg>

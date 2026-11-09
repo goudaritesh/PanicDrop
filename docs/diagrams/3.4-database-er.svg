@@ -1,8 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 860" width="100%" height="100%">
   <defs>
     <filter id="shadow4" x="-5%" y="-5%" width="110%" height="110%">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
+    <marker id="erArrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb" />
+    </marker>
+    <marker id="erArrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669" />
+    </marker>
+    <marker id="erArrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7c3aed" />
+    </marker>
   </defs>
 
   <style>
@@ -11,13 +20,13 @@
     .table-header { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
     .pk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 800; fill: #b45309; }
     .fk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 800; fill: #1d4ed8; }
-    .fld-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 600; fill: #0f172a; }
-    .typ-txt { font-family: monospace, system-ui; font-size: 9px; fill: #64748b; }
-    .card-label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #2563eb; }
+    .fld-txt { font-family: monospace, system-ui; font-size: 11px; font-weight: 600; fill: #0f172a; }
+    .typ-txt { font-family: monospace, system-ui; font-size: 10px; fill: #64748b; }
+    .rel-badge { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700; }
   </style>
 
   <!-- Clean White Canvas -->
-  <rect width="1200" height="800" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+  <rect width="1320" height="860" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
@@ -25,259 +34,292 @@
     <text x="0" y="38" class="er-sub">Mongoose ODM Document Models &#x2022; Relational Cardinalities &#x2022; Foreign Key Constraints &#x2022; Indian Localization Fields</text>
   </g>
 
-  <!-- ENTITY 1: USER (x: 50, y: 90) -->
-  <g transform="translate(50, 90)" filter="url(#shadow4)">
-    <rect width="250" height="270" rx="8" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.5" />
-    <rect width="250" height="28" rx="8" fill="#2563eb" />
-    <rect y="18" width="250" height="10" fill="#2563eb" />
-    <text x="125" y="19" class="table-header">USERS (Collection)</text>
+  <!-- COLUMN 1: USERS & ADDRESS (Left: x: 40, width: 350) -->
 
-    <text x="12" y="48" class="pk-txt">PK</text>
-    <text x="35" y="48" class="fld-txt">_id</text>
-    <text x="175" y="48" class="typ-txt">ObjectId</text>
+  <!-- ENTITY 1: USERS -->
+  <g transform="translate(40, 85)" filter="url(#shadow4)">
+    <rect width="350" height="330" rx="8" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.5" />
+    <rect width="350" height="30" rx="8" fill="#2563eb" />
+    <rect y="18" width="350" height="12" fill="#2563eb" />
+    <text x="175" y="20" class="table-header">USERS (Collection)</text>
 
-    <text x="35" y="68" class="fld-txt">name</text>
-    <text x="175" y="68" class="typ-txt">String</text>
+    <!-- Fields with comfortable spacing -->
+    <text x="14" y="52" class="pk-txt">PK</text>
+    <text x="42" y="52" class="fld-txt">_id</text>
+    <text x="240" y="52" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="88" class="fld-txt">email (Unique)</text>
-    <text x="175" y="88" class="typ-txt">String</text>
+    <text x="42" y="74" class="fld-txt">name</text>
+    <text x="240" y="74" class="typ-txt">String</text>
 
-    <text x="35" y="108" class="fld-txt">password (Hash)</text>
-    <text x="175" y="108" class="typ-txt">String</text>
+    <text x="42" y="96" class="fld-txt">email (Unique)</text>
+    <text x="240" y="96" class="typ-txt">String</text>
 
-    <text x="35" y="128" class="fld-txt">role (enum)</text>
-    <text x="175" y="128" class="typ-txt">'cust'|'admin'</text>
+    <text x="42" y="118" class="fld-txt">password (Bcrypt)</text>
+    <text x="240" y="118" class="typ-txt">String</text>
 
-    <text x="35" y="148" class="fld-txt">phone</text>
-    <text x="175" y="148" class="typ-txt">String (+91)</text>
+    <text x="42" y="140" class="fld-txt">role</text>
+    <text x="240" y="140" class="typ-txt">'cust' | 'admin'</text>
 
-    <text x="35" y="168" class="fld-txt">avatar</text>
-    <text x="175" y="168" class="typ-txt">String (URL)</text>
+    <text x="42" y="162" class="fld-txt">phone</text>
+    <text x="240" y="162" class="typ-txt">String (+91)</text>
 
-    <text x="35" y="188" class="fld-txt">address (Subdoc)</text>
-    <text x="175" y="188" class="typ-txt">Object</text>
+    <text x="42" y="184" class="fld-txt">avatar</text>
+    <text x="240" y="184" class="typ-txt">String (URL)</text>
 
-    <text x="35" y="208" class="fld-txt">isActive</text>
-    <text x="175" y="208" class="typ-txt">Boolean</text>
+    <text x="42" y="206" class="fld-txt">address (Subdoc)</text>
+    <text x="240" y="206" class="typ-txt">Address Object</text>
 
-    <text x="35" y="228" class="fld-txt">createdAt</text>
-    <text x="175" y="228" class="typ-txt">Date</text>
+    <text x="42" y="228" class="fld-txt">isActive</text>
+    <text x="240" y="228" class="typ-txt">Boolean</text>
 
-    <text x="35" y="248" class="fld-txt">updatedAt</text>
-    <text x="175" y="248" class="typ-txt">Date</text>
+    <text x="42" y="250" class="fld-txt">createdAt</text>
+    <text x="240" y="250" class="typ-txt">Date</text>
+
+    <text x="42" y="272" class="fld-txt">updatedAt</text>
+    <text x="240" y="272" class="typ-txt">Date</text>
+
+    <rect x="14" y="296" width="322" height="22" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="0.8" />
+    <text x="22" y="311" class="rel-badge" fill="#1d4ed8">Unique Index: { email: 1 }</text>
   </g>
 
-  <!-- ENTITY 2: USER ADDRESS (x: 50, y: 410) -->
-  <g transform="translate(50, 410)" filter="url(#shadow4)">
-    <rect width="250" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
-    <rect width="250" height="26" rx="8" fill="#475569" />
-    <rect y="16" width="250" height="10" fill="#475569" />
-    <text x="125" y="18" class="table-header">ADDRESS (Subdocument)</text>
+  <!-- Vertical Connector: USERS to ADDRESS -->
+  <line x1="215" y1="415" x2="215" y2="465" stroke="#2563eb" stroke-width="2" marker-end="url(#erArrowBlue)" />
+  <rect x="165" y="430" width="100" height="20" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" />
+  <text x="215" y="444" class="rel-badge" fill="#1d4ed8" text-anchor="middle">1:1 Embedded</text>
 
-    <text x="18" y="48" class="fld-txt">street</text>
-    <text x="175" y="48" class="typ-txt">String</text>
+  <!-- ENTITY 2: USER ADDRESS (Bottom Left) -->
+  <g transform="translate(40, 465)" filter="url(#shadow4)">
+    <rect width="350" height="200" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+    <rect width="350" height="28" rx="8" fill="#475569" />
+    <rect y="18" width="350" height="10" fill="#475569" />
+    <text x="175" y="19" class="table-header">ADDRESS (Subdocument)</text>
 
-    <text x="18" y="70" class="fld-txt">city</text>
-    <text x="175" y="70" class="typ-txt">String</text>
+    <text x="20" y="52" class="fld-txt">street</text>
+    <text x="240" y="52" class="typ-txt">String</text>
 
-    <text x="18" y="92" class="fld-txt">state</text>
-    <text x="175" y="92" class="typ-txt">Indian State</text>
+    <text x="20" y="74" class="fld-txt">city</text>
+    <text x="240" y="74" class="typ-txt">String</text>
 
-    <text x="18" y="114" class="fld-txt">postalCode</text>
-    <text x="175" y="114" class="typ-txt">6-digit PIN</text>
+    <text x="20" y="96" class="fld-txt">state</text>
+    <text x="240" y="96" class="typ-txt">Indian State</text>
 
-    <text x="18" y="136" class="fld-txt">country</text>
-    <text x="175" y="136" class="typ-txt">'India'</text>
+    <text x="20" y="118" class="fld-txt">postalCode</text>
+    <text x="240" y="118" class="typ-txt">6-digit PIN Code</text>
 
-    <text x="18" y="156" class="fld-txt">landmark</text>
-    <text x="175" y="156" class="typ-txt">String</text>
+    <text x="20" y="140" class="fld-txt">country</text>
+    <text x="240" y="140" class="typ-txt">'India'</text>
+
+    <text x="20" y="162" class="fld-txt">landmark</text>
+    <text x="240" y="162" class="typ-txt">String</text>
+
+    <rect x="14" y="172" width="322" height="18" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="22" y="185" class="rel-badge" fill="#475569">Validated via 6-digit Indian PIN regex</text>
   </g>
 
-  <!-- Connector User to Address -->
-  <line x1="175" y1="360" x2="175" y2="410" stroke="#2563eb" stroke-width="2" />
-  <text x="185" y="388" class="card-label">1:1 Embedded</text>
 
-  <!-- ENTITY 3: PRODUCT (x: 460, y: 90) -->
-  <g transform="translate(460, 90)" filter="url(#shadow4)">
-    <rect width="280" height="370" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.5" />
-    <rect width="280" height="28" rx="8" fill="#059669" />
-    <rect y="18" width="280" height="10" fill="#059669" />
-    <text x="140" y="19" class="table-header">PRODUCTS (10k SKUs)</text>
+  <!-- COLUMN 2: ORDERS & ORDER ITEMS (Middle: x: 480, width: 370) -->
 
-    <text x="12" y="48" class="pk-txt">PK</text>
-    <text x="35" y="48" class="fld-txt">_id</text>
-    <text x="195" y="48" class="typ-txt">ObjectId</text>
+  <!-- Horizontal Connector: USERS to ORDERS (in the 90px gap between x=390 and x=480) -->
+  <line x1="390" y1="180" x2="480" y2="180" stroke="#2563eb" stroke-width="2" marker-end="url(#erArrowBlue)" />
+  <rect x="400" y="169" width="70" height="22" rx="11" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" />
+  <text x="435" y="184" class="rel-badge" fill="#1d4ed8" text-anchor="middle">1:N Places</text>
 
-    <text x="35" y="68" class="fld-txt">name</text>
-    <text x="195" y="68" class="typ-txt">String (Indexed)</text>
+  <!-- ENTITY 3: ORDERS -->
+  <g transform="translate(480, 85)" filter="url(#shadow4)">
+    <rect width="370" height="355" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.5" />
+    <rect width="370" height="30" rx="8" fill="#7c3aed" />
+    <rect y="18" width="370" height="12" fill="#7c3aed" />
+    <text x="185" y="20" class="table-header">ORDERS (Collection)</text>
 
-    <text x="35" y="88" class="fld-txt">slug</text>
-    <text x="195" y="88" class="typ-txt">String</text>
+    <text x="14" y="52" class="pk-txt">PK</text>
+    <text x="42" y="52" class="fld-txt">_id</text>
+    <text x="245" y="52" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="108" class="fld-txt">price (Selling)</text>
-    <text x="195" y="108" class="typ-txt">Number (Rs.)</text>
+    <text x="14" y="74" class="fk-txt">FK</text>
+    <text x="42" y="74" class="fld-txt">user (Ref: User)</text>
+    <text x="245" y="74" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="128" class="fld-txt">originalPrice (MRP)</text>
-    <text x="195" y="128" class="typ-txt">Number (Rs.)</text>
+    <text x="42" y="96" class="fld-txt">orderItems</text>
+    <text x="245" y="96" class="typ-txt">Array[OrderItem]</text>
 
-    <text x="35" y="148" class="fld-txt">category</text>
-    <text x="195" y="148" class="typ-txt">String (Indexed)</text>
+    <text x="42" y="118" class="fld-txt">shippingAddress</text>
+    <text x="245" y="118" class="typ-txt">Address Subdocument</text>
 
-    <text x="35" y="168" class="fld-txt">subcategory</text>
-    <text x="195" y="168" class="typ-txt">String</text>
+    <text x="42" y="140" class="fld-txt">paymentMethod</text>
+    <text x="245" y="140" class="typ-txt">'UPI' | 'COD' | 'NetBank'</text>
 
-    <text x="35" y="188" class="fld-txt">brand</text>
-    <text x="195" y="188" class="typ-txt">String (Indexed)</text>
+    <text x="42" y="162" class="fld-txt">itemsPrice</text>
+    <text x="245" y="162" class="typ-txt">Number (INR &#x20B9;)</text>
 
-    <text x="35" y="208" class="fld-txt">stock (Inventory)</text>
-    <text x="195" y="208" class="typ-txt">Number</text>
+    <text x="42" y="184" class="fld-txt">taxPrice (GST)</text>
+    <text x="245" y="184" class="typ-txt">Number (18% GST)</text>
 
-    <text x="35" y="228" class="fld-txt">images</text>
-    <text x="195" y="228" class="typ-txt">Array[String]</text>
+    <text x="42" y="206" class="fld-txt">shippingPrice</text>
+    <text x="245" y="206" class="typ-txt">Number (Free &gt; &#x20B9;500)</text>
 
-    <text x="35" y="248" class="fld-txt">rating</text>
-    <text x="195" y="248" class="typ-txt">Number (0-5)</text>
+    <text x="42" y="228" class="fld-txt">totalAmount</text>
+    <text x="245" y="228" class="typ-txt">Number (Final &#x20B9;)</text>
 
-    <text x="35" y="268" class="fld-txt">numReviews</text>
-    <text x="195" y="268" class="typ-txt">Number</text>
+    <text x="42" y="250" class="fld-txt">isPaid</text>
+    <text x="245" y="250" class="typ-txt">Boolean</text>
 
-    <text x="35" y="288" class="fld-txt">reviews</text>
-    <text x="195" y="288" class="typ-txt">Array[Review]</text>
+    <text x="42" y="272" class="fld-txt">orderStatus</text>
+    <text x="245" y="272" class="typ-txt">5-State Lifecycle</text>
 
-    <text x="35" y="308" class="fld-txt">specs</text>
-    <text x="195" y="308" class="typ-txt">Map[String]</text>
+    <text x="42" y="294" class="fld-txt">trackingNumber</text>
+    <text x="245" y="294" class="typ-txt">'TRK-XXXXXXX'</text>
 
-    <text x="35" y="328" class="fld-txt">featured</text>
-    <text x="195" y="328" class="typ-txt">Boolean</text>
+    <text x="42" y="316" class="fld-txt">paidAt / deliveredAt</text>
+    <text x="245" y="316" class="typ-txt">Date</text>
 
-    <text x="35" y="348" class="fld-txt">isActive</text>
-    <text x="195" y="348" class="typ-txt">Boolean</text>
+    <rect x="14" y="326" width="342" height="20" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="0.8" />
+    <text x="22" y="340" class="rel-badge" fill="#6d28d9" font-size="9.5">Indexes: { user: 1, createdAt: -1 }, { orderStatus: 1 }</text>
   </g>
 
-  <!-- ENTITY 4: REVIEWS (x: 460, y: 500) -->
-  <g transform="translate(460, 500)" filter="url(#shadow4)">
-    <rect width="280" height="155" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.2" />
-    <rect width="280" height="26" rx="8" fill="#047857" />
-    <rect y="16" width="280" height="10" fill="#047857" />
-    <text x="140" y="18" class="table-header">REVIEWS (Subdocument)</text>
+  <!-- Vertical Connector: ORDERS to ORDER_ITEM -->
+  <line x1="665" y1="440" x2="665" y2="485" stroke="#7c3aed" stroke-width="2" marker-end="url(#erArrowPurple)" />
+  <rect x="615" y="452" width="100" height="20" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1" />
+  <text x="665" y="466" class="rel-badge" fill="#6d28d9" text-anchor="middle">1:N Contains</text>
 
-    <text x="12" y="48" class="fk-txt">FK</text>
-    <text x="35" y="48" class="fld-txt">user (Ref: User)</text>
-    <text x="195" y="48" class="typ-txt">ObjectId</text>
+  <!-- ENTITY 4: ORDER ITEMS (Middle Bottom) -->
+  <g transform="translate(480, 485)" filter="url(#shadow4)">
+    <rect width="370" height="180" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
+    <rect width="370" height="28" rx="8" fill="#6d28d9" />
+    <rect y="18" width="370" height="10" fill="#6d28d9" />
+    <text x="185" y="19" class="table-header">ORDER_ITEM (Subdocument)</text>
 
-    <text x="35" y="70" class="fld-txt">name</text>
-    <text x="195" y="70" class="typ-txt">String</text>
+    <text x="14" y="52" class="fk-txt">FK</text>
+    <text x="42" y="52" class="fld-txt">product (Ref: Product)</text>
+    <text x="245" y="52" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="92" class="fld-txt">rating</text>
-    <text x="195" y="92" class="typ-txt">Number (1-5)</text>
+    <text x="42" y="76" class="fld-txt">name</text>
+    <text x="245" y="76" class="typ-txt">String</text>
 
-    <text x="35" y="114" class="fld-txt">comment</text>
-    <text x="195" y="114" class="typ-txt">String</text>
+    <text x="42" y="100" class="fld-txt">image</text>
+    <text x="245" y="100" class="typ-txt">String (CDN URL)</text>
 
-    <text x="35" y="136" class="fld-txt">createdAt</text>
-    <text x="195" y="136" class="typ-txt">Date</text>
+    <text x="42" y="124" class="fld-txt">price (Snapshot at sale)</text>
+    <text x="245" y="124" class="typ-txt">Number (INR &#x20B9;)</text>
+
+    <text x="42" y="148" class="fld-txt">quantity</text>
+    <text x="245" y="148" class="typ-txt">Number (&gt;= 1)</text>
+
+    <rect x="14" y="158" width="342" height="16" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="0.8" />
+    <text x="22" y="170" class="rel-badge" fill="#6d28d9">Atomic stock deduction before item save</text>
   </g>
 
-  <!-- Connector Product to Reviews -->
-  <line x1="600" y1="460" x2="600" y2="500" stroke="#059669" stroke-width="2" />
-  <text x="610" y="482" class="card-label" fill="#047857">1:N Subdocs</text>
 
-  <!-- ENTITY 5: ORDER (x: 880, y: 90) -->
-  <g transform="translate(880, 90)" filter="url(#shadow4)">
-    <rect width="270" height="340" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.5" />
-    <rect width="270" height="28" rx="8" fill="#7c3aed" />
-    <rect y="18" width="270" height="10" fill="#7c3aed" />
-    <text x="135" y="19" class="table-header">ORDERS (Collection)</text>
+  <!-- COLUMN 3: PRODUCTS & REVIEWS (Right: x: 940, width: 340) -->
 
-    <text x="12" y="48" class="pk-txt">PK</text>
-    <text x="35" y="48" class="fld-txt">_id</text>
-    <text x="190" y="48" class="typ-txt">ObjectId</text>
+  <!-- Orthogonal Connector: PRODUCTS to ORDER_ITEM (in 90px gap between x=850 and x=940) -->
+  <path d="M 940 330 L 895 330 L 895 550 L 850 550" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#erArrowGreen)" />
+  <rect x="858" y="430" width="74" height="20" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1" />
+  <text x="895" y="444" class="rel-badge" fill="#047857" text-anchor="middle">1:N Ref</text>
 
-    <text x="12" y="68" class="fk-txt">FK</text>
-    <text x="35" y="68" class="fld-txt">user (Ref: User)</text>
-    <text x="190" y="68" class="typ-txt">ObjectId</text>
+  <!-- ENTITY 5: PRODUCTS -->
+  <g transform="translate(940, 85)" filter="url(#shadow4)">
+    <rect width="340" height="380" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.5" />
+    <rect width="340" height="30" rx="8" fill="#059669" />
+    <rect y="18" width="340" height="12" fill="#059669" />
+    <text x="170" y="20" class="table-header">PRODUCTS (10,000 SKUs)</text>
 
-    <text x="35" y="88" class="fld-txt">orderItems</text>
-    <text x="190" y="88" class="typ-txt">Array[OrderItem]</text>
+    <text x="14" y="52" class="pk-txt">PK</text>
+    <text x="42" y="52" class="fld-txt">_id</text>
+    <text x="225" y="52" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="108" class="fld-txt">shippingAddress</text>
-    <text x="190" y="108" class="typ-txt">Address Subdoc</text>
+    <text x="42" y="74" class="fld-txt">name</text>
+    <text x="225" y="74" class="typ-txt">String (Text Index)</text>
 
-    <text x="35" y="128" class="fld-txt">paymentMethod</text>
-    <text x="190" y="128" class="typ-txt">'UPI'|'COD'|'Card'</text>
+    <text x="42" y="96" class="fld-txt">slug</text>
+    <text x="225" y="96" class="typ-txt">String (SEO)</text>
 
-    <text x="35" y="148" class="fld-txt">itemsPrice</text>
-    <text x="190" y="148" class="typ-txt">Number (Rs.)</text>
+    <text x="42" y="118" class="fld-txt">price (Selling)</text>
+    <text x="225" y="118" class="typ-txt">Number (INR &#x20B9;)</text>
 
-    <text x="35" y="168" class="fld-txt">taxPrice (GST)</text>
-    <text x="190" y="168" class="typ-txt">Number (Rs.)</text>
+    <text x="42" y="140" class="fld-txt">originalPrice (MRP)</text>
+    <text x="225" y="140" class="typ-txt">Number (INR &#x20B9;)</text>
 
-    <text x="35" y="188" class="fld-txt">shippingPrice</text>
-    <text x="190" y="188" class="typ-txt">Number (Free)</text>
+    <text x="42" y="162" class="fld-txt">category</text>
+    <text x="225" y="162" class="typ-txt">String (Index)</text>
 
-    <text x="35" y="208" class="fld-txt">totalAmount</text>
-    <text x="190" y="208" class="typ-txt">Number (Rs.)</text>
+    <text x="42" y="184" class="fld-txt">subcategory</text>
+    <text x="225" y="184" class="typ-txt">String</text>
 
-    <text x="35" y="228" class="fld-txt">isPaid</text>
-    <text x="190" y="228" class="typ-txt">Boolean</text>
+    <text x="42" y="206" class="fld-txt">brand</text>
+    <text x="225" y="206" class="typ-txt">String (Index)</text>
 
-    <text x="35" y="248" class="fld-txt">orderStatus</text>
-    <text x="190" y="248" class="typ-txt">enum (5 states)</text>
+    <text x="42" y="228" class="fld-txt">stock (Inventory)</text>
+    <text x="225" y="228" class="typ-txt">Number (Index)</text>
 
-    <text x="35" y="268" class="fld-txt">trackingNumber</text>
-    <text x="190" y="268" class="typ-txt">'TRK-XXXX'</text>
+    <text x="42" y="250" class="fld-txt">images</text>
+    <text x="225" y="250" class="typ-txt">Array[String]</text>
 
-    <text x="35" y="288" class="fld-txt">paidAt</text>
-    <text x="190" y="288" class="typ-txt">Date</text>
+    <text x="42" y="272" class="fld-txt">rating / numReviews</text>
+    <text x="225" y="272" class="typ-txt">Number / Number</text>
 
-    <text x="35" y="308" class="fld-txt">deliveredAt</text>
-    <text x="190" y="308" class="typ-txt">Date</text>
+    <text x="42" y="294" class="fld-txt">reviews</text>
+    <text x="225" y="294" class="typ-txt">Array[Review]</text>
 
-    <text x="35" y="328" class="fld-txt">createdAt</text>
-    <text x="190" y="328" class="typ-txt">Date</text>
+    <text x="42" y="316" class="fld-txt">specs</text>
+    <text x="225" y="316" class="typ-txt">Map[String, String]</text>
+
+    <text x="42" y="338" class="fld-txt">featured / isActive</text>
+    <text x="225" y="338" class="typ-txt">Boolean / Boolean</text>
+
+    <rect x="14" y="350" width="312" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="0.8" />
+    <text x="20" y="364" class="rel-badge" fill="#047857" font-size="9">Compound: { category: 1, price: 1, rating: -1 }</text>
   </g>
 
-  <!-- ENTITY 6: ORDER ITEMS (x: 880, y: 470) -->
-  <g transform="translate(880, 470)" filter="url(#shadow4)">
-    <rect width="270" height="160" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
-    <rect width="270" height="26" rx="8" fill="#6d28d9" />
-    <rect y="16" width="270" height="10" fill="#6d28d9" />
-    <text x="135" y="18" class="table-header">ORDER_ITEM (Subdocument)</text>
+  <!-- Vertical Connector: PRODUCTS to REVIEWS -->
+  <line x1="1110" y1="465" x2="1110" y2="515" stroke="#059669" stroke-width="2" marker-end="url(#erArrowGreen)" />
+  <rect x="1060" y="480" width="100" height="20" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1" />
+  <text x="1110" y="494" class="rel-badge" fill="#047857" text-anchor="middle">1:N Reviews</text>
 
-    <text x="12" y="48" class="fk-txt">FK</text>
-    <text x="35" y="48" class="fld-txt">product (Ref: Product)</text>
-    <text x="190" y="48" class="typ-txt">ObjectId</text>
+  <!-- ENTITY 6: REVIEWS (Right Bottom) -->
+  <g transform="translate(940, 515)" filter="url(#shadow4)">
+    <rect width="340" height="150" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.2" />
+    <rect width="340" height="28" rx="8" fill="#047857" />
+    <rect y="18" width="340" height="10" fill="#047857" />
+    <text x="170" y="19" class="table-header">REVIEWS (Subdocument)</text>
 
-    <text x="35" y="70" class="fld-txt">name</text>
-    <text x="190" y="70" class="typ-txt">String</text>
+    <text x="14" y="52" class="fk-txt">FK</text>
+    <text x="42" y="52" class="fld-txt">user (Ref: User)</text>
+    <text x="225" y="52" class="typ-txt">ObjectId</text>
 
-    <text x="35" y="92" class="fld-txt">image</text>
-    <text x="190" y="92" class="typ-txt">String</text>
+    <text x="42" y="76" class="fld-txt">name</text>
+    <text x="225" y="76" class="typ-txt">String</text>
 
-    <text x="35" y="114" class="fld-txt">price (Snapshot)</text>
-    <text x="190" y="114" class="typ-txt">Number (Rs.)</text>
+    <text x="42" y="100" class="fld-txt">rating</text>
+    <text x="225" y="100" class="typ-txt">Number (1 - 5 Stars)</text>
 
-    <text x="35" y="136" class="fld-txt">quantity</text>
-    <text x="190" y="136" class="typ-txt">Number (&gt;=1)</text>
+    <text x="42" y="124" class="fld-txt">comment</text>
+    <text x="225" y="124" class="typ-txt">String</text>
+
+    <rect x="14" y="132" width="312" height="14" rx="3" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="0.8" />
+    <text x="20" y="143" class="rel-badge" fill="#047857">Aggregated into product.rating on save</text>
   </g>
 
-  <!-- Connector Order to Order Items -->
-  <line x1="1015" y1="430" x2="1015" y2="470" stroke="#7c3aed" stroke-width="2" />
-  <text x="1025" y="452" class="card-label" fill="#7c3aed">1:N Items</text>
+  <!-- Bottom Legend / Specifications -->
+  <g transform="translate(40, 700)" filter="url(#shadow4)">
+    <rect width="1240" height="125" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
+    <text x="24" y="28" class="fld-txt" font-size="12" font-weight="800">PERFORMANCE INDEXING &amp; HIGH-THROUGHPUT CATALOG STRATEGY (10,000+ SKUs):</text>
 
-  <!-- Connector User to Orders -->
-  <path d="M 300 200 C 400 200, 800 200, 880 200" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4" />
-  <text x="430" y="192" class="card-label">places 1:N orders (user._id)</text>
+    <!-- Strategy Card 1 -->
+    <rect x="24" y="44" width="380" height="65" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="36" y="64" class="rel-badge" fill="#047857">Compound Filter Index</text>
+    <text x="36" y="82" class="typ-txt">{ category: 1, price: 1, rating: -1 }</text>
+    <text x="36" y="98" class="typ-txt">Sub-15ms latency across 10,000 seeded catalog products</text>
 
-  <!-- Connector Product to Order Items -->
-  <path d="M 740 320 C 800 320, 800 520, 880 520" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4" />
-  <text x="760" y="430" class="card-label" fill="#047857">referenced by 1:N</text>
+    <!-- Strategy Card 2 -->
+    <rect x="430" y="44" width="380" height="65" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="442" y="64" class="rel-badge" fill="#1d4ed8">Full-Text Search Index</text>
+    <text x="442" y="82" class="typ-txt">{ name: "text", description: "text", brand: "text" }</text>
+    <text x="442" y="98" class="typ-txt">Instant regex-free text search for Indian e-commerce terms</text>
 
-  <!-- Bottom Legend -->
-  <g transform="translate(50, 715)">
-    <rect width="1100" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
-    <text x="20" y="24" class="fld-txt" font-weight="700">INDEXING &amp; STORAGE SPECIFICATIONS:</text>
-    <text x="20" y="42" class="typ-txt">&#x2022; Compound Index: { category: 1, price: 1, rating: -1 } for sub-15ms catalog filter queries across 10k Flipkart items</text>
-    <text x="590" y="42" class="typ-txt">&#x2022; Text Index: { name: "text", description: "text", brand: "text" } for full-text search</text>
+    <!-- Strategy Card 3 -->
+    <rect x="836" y="44" width="380" height="65" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="848" y="64" class="rel-badge" fill="#6d28d9">Order History &amp; Lookup Index</text>
+    <text x="848" y="82" class="typ-txt">{ user: 1, createdAt: -1 }, { trackingNumber: 1 }</text>
+    <text x="848" y="98" class="typ-txt">Instant customer order lookup and courier dispatch filtering</text>
   </g>
 </svg>
