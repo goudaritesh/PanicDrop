@@ -10,44 +10,60 @@ Format: Single-paragraph summary per system diagram
 
 1. DIAGRAM 3.1: SYSTEM ARCHITECTURE BLUEPRINT (3.1-system-architecture.svg)
 --------------------------------------------------------------------------------
-This diagram illustrates PanicDrop's multi-tier micro-modular architecture, spanning the client presentation tier (React 18 SPA built with Vite 5.4 and served via Vercel's global edge network), the API gateway and security tier (Express.js 4.21 hosted on Render handling CORS, Morgan request logging, and JWT authentication guards), the core controller and domain services (Auth, Product, Order, User, and Admin controllers), the abstracted persistence tier featuring dual-mode storage, and the predictive inventory forecasting subsystem. It maps the end-to-end request-response cycle from user browser interactions through secure HTTPS endpoints down to data persistence layers, highlighting how each decoupled tier communicates via stateless RESTful APIs to deliver high availability and sub-15ms catalog response times.
+This diagram shows a multi-tier micro-modular architecture comprising of the client presentation tier 
+(React 18 SPA built with Vite 5.4 and served through Vercel's global edge network), 
+the API gateway and security tier (Express.js 4.21 served with a global edge network with CORS, 
+Morgan request logging, and JWT authentication guards), the core controller and domain services (Auth, Product, Order, User, and Admin controllers), 
+abstracted persistence tier (dual-mode storage), and the predictive inventory forecasting subsystem. 
+It illustrates end-to-end request/response interactions starting with user browser interactions 
+all the way down to data persistence layers and how each layer communicates with each other through stateless RESTful APIs to achieve high availability and sub-15ms catalog response time.
 
 
 2. DIAGRAM 3.1 (SUPPLEMENTARY): DUAL-MODE PERSISTENCE PROXY PATTERN (3.1-proxy-pattern.svg)
 --------------------------------------------------------------------------------
-This diagram models PanicDrop's fault-tolerant database abstraction layer, which uses ES6 JavaScript Proxies to dynamically and transparently route CRUD operations between primary MongoDB Atlas collections and a zero-config in-memory fallback store (store.js). By inspecting Mongoose's connection state (readyState === 1) at runtime, the proxy interceptor automatically switches to the embedded in-memory array store populated with 10,000 pre-seeded Flipkart catalog products whenever MongoDB is disconnected or unconfigured, ensuring 100% application uptime, instant sub-10ms query execution, and seamless developer onboarding with zero mandatory database configuration.
+PanicDrop's fault-tolerant database abstraction layer encapsulated a zero-config in-memory fall-back store (store.js)
+ that dynamically and transparently interlopers CRUD operations between primary Mongo Atlas Collections and store.js. 
+ The application connectivity interceptor automatically switches to the embedded in-memory array store by using the 
+ readyState === 1 predicate at runtime, ensuring 100% uptime with application response times in sub-10ms when the database 
+ shuts down or is not configured; developers don't need to dedicate any effort to database configuration, hence seamless developer onboarding.
 
 
 3. DIAGRAM 3.2: SYSTEM WORKFLOW & ORDER LIFECYCLE (3.2-system-workflow.svg)
 --------------------------------------------------------------------------------
-This workflow diagram captures the complete customer shopping journey, administrative control pipeline, and order state machine across PanicDrop. It tracks customer interactions from landing page discovery, faceted catalog browsing across 10,000 SKUs, and cart management to Indian 6-digit PIN-code delivery validation, UPI/Cash-on-Delivery payment selection, and instant order tracking generation, while tracing the five-stage order state machine (Pending -> Processing -> Shipped -> Delivered / Cancelled). In parallel, it portrays the administrative operational loop, illustrating how inventory thresholds (stock <= 5) trigger automated restocking alerts, allow stock level updates, and feed real-time analytics into an executive dashboard.
-
+This is the entire customer shopping experience, administrative control pipeline and Order state machine that span PanicDrop.
+It logs customer touch points as they hit the landing page and access catalogs using facets to navigate more than 10,000 SKUs,electing the payment on UPI, Cash-on-Delivery or instant payment tracking and generation of order while monitoring the five-state 
+order state machine (Pending -> Processing -> Shipped -> Delivered / Cancelled). On the other hand, it depicts the operational process
+that occurs in the back office, which includes automatic restocking notifications (stock <= 5) in cooperation with inventory updates,
+and the realtime statistics that are presented in an executive dashboard.
 
 4. DIAGRAM 3.3: UML CLASS & COMPONENT MODEL (3.3-uml-diagrams.svg)
 --------------------------------------------------------------------------------
-This UML class diagram formalizes the structural object-oriented domain model, attributes, methods, and relationships powering the PanicDrop backend. It documents the core Mongoose models including User (encapsulating role-based authorization flags, bcrypt passwords, and embedded Address subdocuments), Product (featuring compound filter indexes, SKU pricing, Flipkart department tags, and embedded Review arrays), and Order (containing OrderItem line items, tax/shipping bill calculations, and courier tracking identifiers), alongside their corresponding Express controller classes and middleware guards (protect and adminOnly), clearly defining entity cardinalities, subdocument embeddings, and system contracts.
-
+This UML diagram represents all structural relations, attributes, methods and domains of an object-oriented application schema of the PanicDrop backend.
+It introduces the core models of the Mongoose like User (with role-based authorization flags, bcrypt passwords, and embedded Address subdocuments), 
+Product (with compound filter indexes, SKU pricing, Flipkart department tags, and embedded Review arrays), Order (with OrderItem line items, calculating tax/shipping bill,
+and courier tracking identifier), defines entity cardinalities, subdocument embeddings, system contracts etc. clearly with example usage of the models.
+Contains documentation for the core models of the Mongoose like User (with role based authorization flags, bcrypt password etc., embedded Address subdocuments) 
+Product (compound filter indexes, SKU pricing etc., embedded Review array etc.), Order (OrderItem line item, billing for the tax/shipping etc., courier tracking identifiers etc.), 
+defines entity cardinalities, subdocument embeddings, and system contracts clearly and by example.
 
 5. DIAGRAM 3.3 (SUPPLEMENTARY): UML SEQUENCE EXECUTION - CHECKOUT & STOCK RESERVATION (3.3-uml-sequence.svg)
 --------------------------------------------------------------------------------
-This sequence diagram visualizes the chronological, message-by-message execution flow between the React Client, Express Middleware Pipeline, Order Controller, Database Proxy Layer, and Payment/Notification services during order checkout. It details the step-by-step transaction: verifying the client's Bearer JWT token, checking real-time stock levels, performing an atomic inventory decrement in MongoDB or memory to prevent overselling, generating a localized courier tracking number (TRK-XXXXXXX), recording billing snapshots, and returning a standardized HTTP 201 Created response, illustrating both synchronous validation gates and asynchronous database operations.
+Order checkout sequence diagram illustrates the execution of the checkout process for an order, in sequence, from the outside-in, running from the React Client through the Express Middleware Pipeline, Order Controller, Database Proxy Layer, and Payment/Notification services. It explains each step of the transaction - valid client Bearer JWT, checking real-time stock level, doing an atomic inventory decrement in MongoDB or in memory to prevent overselling, generating a localized courier tracking number (TRK-XXXXXXX), client side storing of billing snapshots, and issuing a standardized HTTP 201 response - both with synchronous validation gates and with asynchronous calls to the database.
 
 
 6. DIAGRAM 3.4: DATABASE ENTITY-RELATIONSHIP (ER) SCHEMA (3.4-database-er.svg)
 --------------------------------------------------------------------------------
-This entity-relationship schema outlines the document models and relational structures within PanicDrop's database across three clean columns: Users and Addresses, Orders and Order Items, and Products and Reviews. It defines primary keys, foreign key references, subdocument embeddings, and Indian retail localization fields (such as 6-digit postal PIN codes, state dropdowns, and INR currency fields), while specifying high-throughput database index configurations including compound category-price-rating filter indexes, text search indexes, and user-order query indexes that enable ultra-fast retrieval across 10,000+ catalog SKUs and high-volume order histories.
+The above entity-relationship schema represents the various document models and relationships that exist in PanicDrop's database. There are three clean columns shown: Users and Addresses, Orders and Order Items, and Products and Reviews. It specifies high-throughput database index configurations such as compound category-price-rating filter indexes, text search indexes and user-order query indexes for returning data almost instantaneously when ordered by user from 10,000+ catalog SKUs and high-volume order histories, defines primary keys, foreign key references, subdocument embeddings and Indian retail localization fields like 6-digit postal PIN codes, state dropdowns and INR currency fields.
 
 
 7. DIAGRAM 3.5: INTERFACE WIREFRAMES & NAVIGATION ARCHITECTURE (3.5-interface-wireframes.svg)
 --------------------------------------------------------------------------------
-This wireframe blueprint maps out the visual layouts, component hierarchy, and navigation flow of PanicDrop across its five core screens: the Storefront Landing Page (featuring hero banners, flash deals, and category shortcuts), the High-Throughput Catalog (with price slider filters, rating facets, and 10,000-item pagination), the Product Detail Page (with image galleries, stock status badges, and verified customer reviews), the Express Indian Checkout (equipped with 6-digit PIN code delivery checks, UPI/COD radio selectors, and order summary breakdowns), and the Admin Operations Dashboard (displaying KPI summary cards, low-stock restock alerts, and Recharts monthly sales graphs).
-
+This wireframed blueprint brings together the visible layout, hierarchy of the components, and how one moves on the app through five key screens: Storefront Landing Page (hero banners, flash deals, and category shortcuts); High Throughput Catalog (filters by price slider, rating facets and 10,000 item pagination); Product Detail Page (image galleries, stock status badges, and validated customer reviews); Express Indian Checkout (with 6-digit PIN code delivery checks, UPI/COD radio selectors, and order summary break-downs); Admin Operations Dashboard (KPI Summary Cards, low stock restock notifications, and Recharts monthly sales graphs).
 
 8. DIAGRAM 3.6: TECHNOLOGY STACK & INFRASTRUCTURE ECOSYSTEM (3.6-technology-stack.svg)
 --------------------------------------------------------------------------------
-This technology ecosystem diagram provides an architectural matrix of all software libraries, frameworks, runtime environments, and cloud infrastructure powering PanicDrop. It categorizes technologies into seven dedicated layers: Frontend Presentation (React 18, Vite 5.4, Tailwind CSS, Lucide React), Backend Execution (Node.js 20 LTS, Express 4.21), Security & Authentication (JWT, bcryptjs, CORS), Database & Caching (MongoDB 8.9, Mongoose ODM, ES6 Proxy Memory Store), Data Visualization (Recharts 3.10), Quality Assurance (ESLint, Postman, Vitest), and Cloud Infrastructure (Vercel Global Edge CDN, Render PaaS, GitHub CI/CD), detailing the architectural role of each technology in supporting high scalability and developer velocity.
-
+This technology ecosystem diagram illustrate the architectural matrix of all software libraries, frameworks, runtime environments and cloud infrastructure powering PanicDrop. It breaks down the different technologies into 7 distinct layers; Frontend Presentation (React 18, Vite 5.4, Tailwind CSS, Lucide React), Backend Execution (Node.js 20 LTS, Express 4.21), Security & Authentication (JWT, bcryptjs, CORS), Database & Caching (MongoDB 8.9, Mongoose ODM, ES6 Proxy Memory Store), Data Visualization (Recharts 3.10), Quality Assurance (ESLint, Postman, Vitest), Cloud Infrastructure (Vercel Global Edge CDN, Render PaaS, GitHub CI/CD), explaining the architecture of each technology and its attendant benefits for high scalability and developer velocity.
 
 9. DIAGRAM 3.7: API & COMPONENT SYSTEM DESIGN (3.7-api-component-design.svg)
 --------------------------------------------------------------------------------
-This system design diagram integrates frontend component topology, RESTful API specifications, and Express request execution into a unified architectural specification. It illustrates the React 18 component tree branching from App.jsx through global context providers (AuthContext, CartContext, WishlistContext) into public storefront routes, customer-protected routes, and admin-only routes; presents a structured RESTful endpoint table detailing HTTP verbs, URI endpoints, and authorization requirements; and depicts the seven-stage Express request middleware pipeline (from CORS parsing and Morgan logging to JWT/RBAC guards and controller dispatch) alongside client-side localStorage synchronization.
+This system design diagram combines the front-end topology of the components with the specification of the RESTful APIs and executes the requests using Express. It shows the structure of React 18, the tree of components, starting from App.jsx towards global context providers (AuthContext, CartContext, WishlistContext), public storefront routes, customer-only routes and admin-only routes, public storefront RESTful endpoint table (HTTP verbs, URI endpoints, and authorisations needed), and public storefront client-side localStorage sync.
