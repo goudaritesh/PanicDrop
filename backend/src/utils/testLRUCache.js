@@ -35,3 +35,4 @@ console.assert(stats.capacity === 3, 'Capacity should be 3');
 console.assert(stats.hits > 0, 'Hits should be > 0');
 
 console.log('✅ ALL LRU CACHE UNIT TESTS PASSED SUCCESSFULLY!');
+

@@ -94,3 +94,4 @@ export const invalidateOrderCaches = () => {
   const productsCleared = productCache.clearPrefix('');
   return { statsCleared, productsCleared };
 };
+

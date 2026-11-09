@@ -104,3 +104,4 @@ run().catch((err) => {
   clusterProcess.kill();
   process.exit(1);
 });
+

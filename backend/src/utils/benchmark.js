@@ -125,3 +125,4 @@ runBenchmark().catch((err) => {
   console.error('[Benchmark ERROR]', err);
   process.exit(1);
 });
+

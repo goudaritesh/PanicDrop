@@ -238,3 +238,4 @@ export const adminStatsCache = new LRUCache({
   capacity: 50,
   defaultTTL: 30 * 1000, // 30 seconds
 });
+
