@@ -1,115 +1,109 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="100%" height="100%">
   <defs>
-    <linearGradient id="seqBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090e1a" />
-      <stop offset="100%" stop-color="#141c2e" />
-    </linearGradient>
     <filter id="seqShadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
     <marker id="seqArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb" />
     </marker>
     <marker id="seqArrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669" />
     </marker>
   </defs>
 
   <style>
-    .seq-title { font-family: system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 700; fill: #ffffff; }
-    .seq-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #94a3b8; }
+    .seq-title { font-family: system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 800; fill: #0f172a; }
+    .seq-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #475569; }
     .lifeline-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
-    .msg-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #f8fafc; }
-    .ret-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #34d399; font-style: italic; }
-    .loop-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700; fill: #fbbf24; }
+    .msg-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ret-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #047857; font-weight: 600; font-style: italic; }
+    .loop-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 800; fill: #b45309; }
   </style>
 
-  <rect width="1000" height="680" rx="16" fill="url(#seqBg)" stroke="#1e293b" stroke-width="1.5" />
+  <!-- Clean White Canvas -->
+  <rect width="1000" height="680" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
-    <text x="0" y="18" class="seq-title">PanicDrop — UML Sequence Diagram: Order Checkout &amp; Stock Deduction</text>
-    <text x="0" y="38" class="seq-sub">Synchronous Invocations • Atomic Inventory Validation • Token Verification • Order Creation</text>
+    <text x="0" y="18" class="seq-title">PanicDrop &#x2014; UML Sequence Diagram: Order Checkout &amp; Stock Deduction</text>
+    <text x="0" y="38" class="seq-sub">Synchronous Invocations &#x2022; Atomic Inventory Validation &#x2022; Token Verification &#x2022; Order Creation</text>
   </g>
 
   <!-- Lifeline Headers (5 entities) -->
   <!-- 1. Customer (x: 100) -->
-  <rect x="35" y="80" width="130" height="36" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+  <rect x="35" y="80" width="130" height="36" rx="6" fill="#2563eb" />
   <text x="100" y="103" class="lifeline-txt">Customer (UI)</text>
-  <line x1="100" y1="116" x2="100" y2="620" stroke="#334155" stroke-width="1.5" stroke-dasharray="4" />
+  <line x1="100" y1="116" x2="100" y2="620" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4" />
 
   <!-- 2. React Client Service (x: 290) -->
-  <rect x="225" y="80" width="130" height="36" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" />
+  <rect x="225" y="80" width="130" height="36" rx="6" fill="#0891b2" />
   <text x="290" y="103" class="lifeline-txt">api.orders Service</text>
-  <line x1="290" y1="116" x2="290" y2="620" stroke="#334155" stroke-width="1.5" stroke-dasharray="4" />
+  <line x1="290" y1="116" x2="290" y2="620" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4" />
 
   <!-- 3. Auth Guard (x: 480) -->
-  <rect x="415" y="80" width="130" height="36" rx="6" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" />
+  <rect x="415" y="80" width="130" height="36" rx="6" fill="#7c3aed" />
   <text x="480" y="103" class="lifeline-txt">authMiddleware</text>
-  <line x1="480" y1="116" x2="480" y2="620" stroke="#334155" stroke-width="1.5" stroke-dasharray="4" />
+  <line x1="480" y1="116" x2="480" y2="620" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4" />
 
   <!-- 4. OrderController (x: 670) -->
-  <rect x="605" y="80" width="130" height="36" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+  <rect x="605" y="80" width="130" height="36" rx="6" fill="#059669" />
   <text x="670" y="103" class="lifeline-txt">OrderController</text>
-  <line x1="670" y1="116" x2="670" y2="620" stroke="#334155" stroke-width="1.5" stroke-dasharray="4" />
+  <line x1="670" y1="116" x2="670" y2="620" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4" />
 
   <!-- 5. Database Models (x: 860) -->
-  <rect x="795" y="80" width="130" height="36" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+  <rect x="795" y="80" width="130" height="36" rx="6" fill="#d97706" />
   <text x="860" y="103" class="lifeline-txt">Product &amp; Order DB</text>
-  <line x1="860" y1="116" x2="860" y2="620" stroke="#334155" stroke-width="1.5" stroke-dasharray="4" />
+  <line x1="860" y1="116" x2="860" y2="620" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4" />
 
-  <!-- Message 1: Click Place Order -->
-  <line x1="100" y1="140" x2="290" y2="140" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <!-- Message 1 -->
+  <line x1="100" y1="140" x2="290" y2="140" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="110" y="133" class="msg-txt">1. Submit Checkout (Items, Address, UPI)</text>
 
-  <!-- Message 2: POST to API -->
-  <line x1="290" y1="180" x2="480" y2="180" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <!-- Message 2 -->
+  <line x1="290" y1="180" x2="480" y2="180" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="300" y="173" class="msg-txt">2. POST /api/orders (Bearer JWT)</text>
 
   <!-- Activation on Auth -->
-  <rect x="475" y="180" width="10" height="50" fill="#8b5cf6" />
-  <text x="495" y="200" class="msg-txt" font-size="10" fill="#c084fc">jwt.verify(token)</text>
-  <text x="495" y="215" class="msg-txt" font-size="10" fill="#c084fc">req.user = decoded</text>
+  <rect x="475" y="180" width="10" height="50" fill="#c4b5fd" stroke="#7c3aed" />
+  <text x="495" y="200" class="msg-txt" font-size="10" fill="#6d28d9">jwt.verify(token)</text>
+  <text x="495" y="215" class="msg-txt" font-size="10" fill="#6d28d9">req.user = decoded</text>
 
-  <!-- Message 3: Pass to Controller -->
-  <line x1="480" y1="230" x2="670" y2="230" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <!-- Message 3 -->
+  <line x1="480" y1="230" x2="670" y2="230" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="495" y="223" class="msg-txt">3. createOrder(req, res)</text>
 
-  <!-- LOOP BOX: For each order item -->
-  <rect x="580" y="260" width="370" height="170" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3" opacity="0.9" />
+  <!-- LOOP BOX -->
+  <rect x="580" y="260" width="370" height="170" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2" stroke-dasharray="3" />
   <text x="590" y="278" class="loop-txt">[LOOP: For each item in orderItems]</text>
 
   <!-- 4. findById -->
-  <line x1="670" y1="300" x2="860" y2="300" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <line x1="670" y1="300" x2="860" y2="300" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="680" y="293" class="msg-txt">4. Product.findById(item.product)</text>
 
-  <!-- Return Product -->
-  <line x1="860" y1="330" x2="670" y2="330" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
+  <line x1="860" y1="330" x2="670" y2="330" stroke="#059669" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
   <text x="680" y="323" class="ret-txt">Returns Product (stock count)</text>
 
-  <!-- Validate stock -->
-  <text x="680" y="360" class="msg-txt" font-size="10" fill="#fbbf24">Validate product.stock >= item.quantity</text>
+  <text x="680" y="360" class="msg-txt" font-size="10" fill="#b45309">Validate product.stock &gt;= item.quantity</text>
 
-  <!-- Decrement & save -->
-  <line x1="670" y1="390" x2="860" y2="390" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <!-- 5. Decrement & save -->
+  <line x1="670" y1="390" x2="860" y2="390" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="680" y="383" class="msg-txt">5. product.stock -= qty; product.save()</text>
 
-  <line x1="860" y1="415" x2="670" y2="415" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
+  <line x1="860" y1="415" x2="670" y2="415" stroke="#059669" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
   <text x="680" y="410" class="ret-txt">Product stock decremented</text>
 
   <!-- 6. Create Order -->
-  <line x1="670" y1="455" x2="860" y2="455" stroke="#38bdf8" stroke-width="2" marker-end="url(#seqArrow)" />
+  <line x1="670" y1="455" x2="860" y2="455" stroke="#2563eb" stroke-width="2" marker-end="url(#seqArrow)" />
   <text x="680" y="448" class="msg-txt">6. new Order({...}).save()</text>
 
-  <!-- Return saved order -->
-  <line x1="860" y1="490" x2="670" y2="490" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
+  <line x1="860" y1="490" x2="670" y2="490" stroke="#059669" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
   <text x="680" y="483" class="ret-txt">Persisted with TRK-XXXXXX tracking code</text>
 
-  <!-- 7. Return 201 Created to api client -->
-  <line x1="670" y1="530" x2="290" y2="530" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
+  <!-- 7. Return 201 Created -->
+  <line x1="670" y1="530" x2="290" y2="530" stroke="#059669" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
   <text x="320" y="523" class="ret-txt">7. 201 Created { success: true, order: {...} }</text>
 
-  <!-- 8. Update UI & clear cart -->
-  <line x1="290" y1="570" x2="100" y2="570" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
+  <!-- 8. Update UI -->
+  <line x1="290" y1="570" x2="100" y2="570" stroke="#059669" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#seqArrowGreen)" />
   <text x="110" y="563" class="ret-txt">8. clearCart() &amp; Show Order Success Screen</text>
 </svg>

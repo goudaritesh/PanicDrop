@@ -1,159 +1,137 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0f1d" />
-      <stop offset="100%" stop-color="#151e33" />
-    </linearGradient>
     <filter id="shadow3" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
-    <marker id="uml-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
-    </marker>
     <marker id="diamond" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M 6 0 L 12 6 L 6 12 L 0 6 Z" fill="#64748b" />
     </marker>
   </defs>
 
   <style>
-    .uml-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #ffffff; }
-    .uml-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94a3b8; }
-    .sec-header { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #38bdf8; }
+    .uml-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; }
+    .uml-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
+    .sec-header { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 800; fill: #1e293b; }
     .cls-name { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
-    .cls-text { font-family: monospace, system-ui; font-size: 10px; fill: #cbd5e1; }
-    .uc-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #f8fafc; text-anchor: middle; }
-    .actor-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #38bdf8; text-anchor: middle; }
-    .rel-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+    .cls-text { font-family: monospace, system-ui; font-size: 10px; fill: #1e293b; }
+    .uc-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #0f172a; text-anchor: middle; }
+    .actor-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 800; text-anchor: middle; }
   </style>
 
-  <!-- Background -->
-  <rect width="1200" height="850" rx="16" fill="url(#bgGrad3)" />
-  <rect x="1" y="1" width="1198" height="848" rx="15" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <!-- Clean White Canvas -->
+  <rect width="1200" height="850" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
-    <text x="0" y="18" class="uml-title">PanicDrop — 3.3: UML Use Case &amp; Class Architecture Specification</text>
-    <text x="0" y="38" class="uml-sub">Object-Oriented Domain Entities • Role Actors • Method Signatures • Entity Composition &amp; Cardinalities</text>
+    <text x="0" y="18" class="uml-title">PanicDrop &#x2014; 3.3: UML Use Case &amp; Class Architecture Specification</text>
+    <text x="0" y="38" class="uml-sub">Object-Oriented Domain Entities &#x2022; Role Actors &#x2022; Method Signatures &#x2022; Entity Composition &amp; Cardinalities</text>
   </g>
 
   <!-- LEFT COLUMN: UML USE CASE DIAGRAM (width: 380) -->
   <g transform="translate(40, 85)" filter="url(#shadow3)">
-    <rect width="380" height="725" rx="12" fill="#111827" stroke="#334155" stroke-width="1.2" />
+    <rect width="380" height="725" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
     <text x="20" y="30" class="sec-header">PART 1: UML USE CASE MODEL</text>
 
-    <!-- ACTORS -->
     <!-- Guest Actor -->
     <g transform="translate(40, 70)">
-      <circle cx="20" cy="15" r="10" fill="none" stroke="#38bdf8" stroke-width="2" />
-      <line x1="20" y1="25" x2="20" y2="45" stroke="#38bdf8" stroke-width="2" />
-      <line x1="8" y1="33" x2="32" y2="33" stroke="#38bdf8" stroke-width="2" />
-      <line x1="20" y1="45" x2="10" y2="60" stroke="#38bdf8" stroke-width="2" />
-      <line x1="20" y1="45" x2="30" y2="60" stroke="#38bdf8" stroke-width="2" />
-      <text x="20" y="78" class="actor-txt">Guest User</text>
+      <circle cx="20" cy="15" r="10" fill="none" stroke="#2563eb" stroke-width="2" />
+      <line x1="20" y1="25" x2="20" y2="45" stroke="#2563eb" stroke-width="2" />
+      <line x1="8" y1="33" x2="32" y2="33" stroke="#2563eb" stroke-width="2" />
+      <line x1="20" y1="45" x2="10" y2="60" stroke="#2563eb" stroke-width="2" />
+      <line x1="20" y1="45" x2="30" y2="60" stroke="#2563eb" stroke-width="2" />
+      <text x="20" y="78" class="actor-txt" fill="#2563eb">Guest User</text>
     </g>
 
     <!-- Customer Actor -->
     <g transform="translate(40, 260)">
-      <circle cx="20" cy="15" r="10" fill="none" stroke="#a78bfa" stroke-width="2" />
-      <line x1="20" y1="25" x2="20" y2="45" stroke="#a78bfa" stroke-width="2" />
-      <line x1="8" y1="33" x2="32" y2="33" stroke="#a78bfa" stroke-width="2" />
-      <line x1="20" y1="45" x2="10" y2="60" stroke="#a78bfa" stroke-width="2" />
-      <line x1="20" y1="45" x2="30" y2="60" stroke="#a78bfa" stroke-width="2" />
-      <text x="20" y="78" class="actor-txt" fill="#a78bfa">Customer</text>
+      <circle cx="20" cy="15" r="10" fill="none" stroke="#7c3aed" stroke-width="2" />
+      <line x1="20" y1="25" x2="20" y2="45" stroke="#7c3aed" stroke-width="2" />
+      <line x1="8" y1="33" x2="32" y2="33" stroke="#7c3aed" stroke-width="2" />
+      <line x1="20" y1="45" x2="10" y2="60" stroke="#7c3aed" stroke-width="2" />
+      <line x1="20" y1="45" x2="30" y2="60" stroke="#7c3aed" stroke-width="2" />
+      <text x="20" y="78" class="actor-txt" fill="#7c3aed">Customer</text>
     </g>
 
     <!-- Admin Actor -->
     <g transform="translate(40, 480)">
-      <circle cx="20" cy="15" r="10" fill="none" stroke="#f59e0b" stroke-width="2" />
-      <line x1="20" y1="25" x2="20" y2="45" stroke="#f59e0b" stroke-width="2" />
-      <line x1="8" y1="33" x2="32" y2="33" stroke="#f59e0b" stroke-width="2" />
-      <line x1="20" y1="45" x2="10" y2="60" stroke="#f59e0b" stroke-width="2" />
-      <line x1="20" y1="45" x2="30" y2="60" stroke="#f59e0b" stroke-width="2" />
-      <text x="20" y="78" class="actor-txt" fill="#fbbf24">Administrator</text>
+      <circle cx="20" cy="15" r="10" fill="none" stroke="#d97706" stroke-width="2" />
+      <line x1="20" y1="25" x2="20" y2="45" stroke="#d97706" stroke-width="2" />
+      <line x1="8" y1="33" x2="32" y2="33" stroke="#d97706" stroke-width="2" />
+      <line x1="20" y1="45" x2="10" y2="60" stroke="#d97706" stroke-width="2" />
+      <line x1="20" y1="45" x2="30" y2="60" stroke="#d97706" stroke-width="2" />
+      <text x="20" y="78" class="actor-txt" fill="#d97706">Administrator</text>
     </g>
 
     <!-- USE CASE OVALS -->
-    <!-- UC1: Browse & Search 10k Items -->
-    <ellipse cx="240" cy="80" rx="110" ry="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <ellipse cx="240" cy="80" rx="110" ry="24" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
     <text x="240" y="84" class="uc-txt">Browse &amp; Search 10k SKUs</text>
-    <line x1="75" y1="90" x2="130" y2="85" stroke="#38bdf8" stroke-width="1" />
+    <line x1="75" y1="90" x2="130" y2="85" stroke="#2563eb" stroke-width="1" />
 
-    <!-- UC2: Check Delivery PIN -->
-    <ellipse cx="240" cy="140" rx="110" ry="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <ellipse cx="240" cy="140" rx="110" ry="24" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
     <text x="240" y="144" class="uc-txt">Check Indian PIN Delivery</text>
-    <line x1="75" y1="105" x2="135" y2="135" stroke="#38bdf8" stroke-width="1" />
+    <line x1="75" y1="105" x2="135" y2="135" stroke="#2563eb" stroke-width="1" />
 
-    <!-- UC3: Manage Cart & Wishlist -->
-    <ellipse cx="240" cy="200" rx="110" ry="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <ellipse cx="240" cy="200" rx="110" ry="24" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
     <text x="240" y="204" class="uc-txt">Manage Cart &amp; Wishlist</text>
-    <line x1="75" y1="115" x2="135" y2="190" stroke="#38bdf8" stroke-width="1" />
-    <line x1="75" y1="280" x2="135" y2="210" stroke="#a78bfa" stroke-width="1" />
+    <line x1="75" y1="115" x2="135" y2="190" stroke="#2563eb" stroke-width="1" />
+    <line x1="75" y1="280" x2="135" y2="210" stroke="#7c3aed" stroke-width="1" />
 
-    <!-- UC4: Checkout (UPI/COD) -->
-    <ellipse cx="240" cy="265" rx="110" ry="24" fill="#1e293b" stroke="#a78bfa" stroke-width="1.2" />
+    <ellipse cx="240" cy="265" rx="110" ry="24" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5" />
     <text x="240" y="269" class="uc-txt">Checkout (UPI / COD / Cards)</text>
-    <line x1="75" y1="290" x2="130" y2="270" stroke="#a78bfa" stroke-width="1" />
+    <line x1="75" y1="290" x2="130" y2="270" stroke="#7c3aed" stroke-width="1" />
 
-    <!-- UC5: Track Order Status -->
-    <ellipse cx="240" cy="325" rx="110" ry="24" fill="#1e293b" stroke="#a78bfa" stroke-width="1.2" />
+    <ellipse cx="240" cy="325" rx="110" ry="24" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5" />
     <text x="240" y="329" class="uc-txt">Track Orders (TRK-ID)</text>
-    <line x1="75" y1="300" x2="130" y2="325" stroke="#a78bfa" stroke-width="1" />
+    <line x1="75" y1="300" x2="130" y2="325" stroke="#7c3aed" stroke-width="1" />
 
-    <!-- UC6: Submit Rating & Review -->
-    <ellipse cx="240" cy="385" rx="110" ry="24" fill="#1e293b" stroke="#a78bfa" stroke-width="1.2" />
+    <ellipse cx="240" cy="385" rx="110" ry="24" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5" />
     <text x="240" y="389" class="uc-txt">Submit Verified Reviews</text>
-    <line x1="75" y1="310" x2="135" y2="380" stroke="#a78bfa" stroke-width="1" />
+    <line x1="75" y1="310" x2="135" y2="380" stroke="#7c3aed" stroke-width="1" />
 
-    <!-- UC7: Real-Time Business KPIs -->
-    <ellipse cx="240" cy="470" rx="115" ry="24" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+    <ellipse cx="240" cy="470" rx="115" ry="24" fill="#ffffff" stroke="#fde68a" stroke-width="1.5" />
     <text x="240" y="474" class="uc-txt">View Business Analytics &amp; KPIs</text>
-    <line x1="75" y1="500" x2="125" y2="475" stroke="#f59e0b" stroke-width="1" />
+    <line x1="75" y1="500" x2="125" y2="475" stroke="#d97706" stroke-width="1" />
 
-    <!-- UC8: Manage Catalog Products -->
-    <ellipse cx="240" cy="530" rx="115" ry="24" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+    <ellipse cx="240" cy="530" rx="115" ry="24" fill="#ffffff" stroke="#fde68a" stroke-width="1.5" />
     <text x="240" y="534" class="uc-txt">CRUD Products &amp; Categories</text>
-    <line x1="75" y1="510" x2="125" y2="530" stroke="#f59e0b" stroke-width="1" />
+    <line x1="75" y1="510" x2="125" y2="530" stroke="#d97706" stroke-width="1" />
 
-    <!-- UC9: Low-Stock Demand Alerts -->
-    <ellipse cx="240" cy="590" rx="115" ry="24" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+    <ellipse cx="240" cy="590" rx="115" ry="24" fill="#ffffff" stroke="#fde68a" stroke-width="1.5" />
     <text x="240" y="594" class="uc-txt">Monitor Stock Alerts (&lt;= 5)</text>
-    <line x1="75" y1="520" x2="125" y2="585" stroke="#f59e0b" stroke-width="1" />
+    <line x1="75" y1="520" x2="125" y2="585" stroke="#d97706" stroke-width="1" />
 
-    <!-- UC10: Order Fulfillment & User Directory -->
-    <ellipse cx="240" cy="650" rx="115" ry="24" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+    <ellipse cx="240" cy="650" rx="115" ry="24" fill="#ffffff" stroke="#fde68a" stroke-width="1.5" />
     <text x="240" y="654" class="uc-txt">Fulfillment &amp; User Clearance</text>
-    <line x1="75" y1="530" x2="125" y2="645" stroke="#f59e0b" stroke-width="1" />
+    <line x1="75" y1="530" x2="125" y2="645" stroke="#d97706" stroke-width="1" />
   </g>
 
   <!-- RIGHT COLUMN: UML CLASS DIAGRAM (width: 710) -->
   <g transform="translate(450, 85)" filter="url(#shadow3)">
-    <rect width="710" height="725" rx="12" fill="#111827" stroke="#334155" stroke-width="1.2" />
+    <rect width="710" height="725" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
     <text x="20" y="30" class="sec-header">PART 2: UML DOMAIN CLASS DIAGRAM &amp; DATA STRUCTURES</text>
 
     <!-- CLASS 1: USER -->
     <g transform="translate(20, 50)">
-      <rect width="215" height="195" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+      <rect width="215" height="195" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
       <rect width="215" height="24" rx="6" fill="#2563eb" />
       <rect y="16" width="215" height="8" fill="#2563eb" />
       <text x="107" y="17" class="cls-name">User</text>
-      <!-- Attributes -->
       <text x="10" y="40" class="cls-text">+ ObjectId _id</text>
       <text x="10" y="54" class="cls-text">+ String name</text>
       <text x="10" y="68" class="cls-text">+ String email (Unique)</text>
       <text x="10" y="82" class="cls-text">+ String password (Hash)</text>
-      <text x="10" y="96" class="cls-text">+ String role: 'customer'|'admin'</text>
+      <text x="10" y="96" class="cls-text">+ String role: 'cust'|'admin'</text>
       <text x="10" y="110" class="cls-text">+ String phone</text>
       <text x="10" y="124" class="cls-text">+ Address address</text>
       <text x="10" y="138" class="cls-text">+ Boolean isActive</text>
-      <!-- Methods -->
-      <line x1="0" y1="148" x2="215" y2="148" stroke="#3b82f6" stroke-width="1" />
+      <line x1="0" y1="148" x2="215" y2="148" stroke="#e2e8f0" stroke-width="1" />
       <text x="10" y="164" class="cls-text">+ matchPassword(pwd): Boolean</text>
       <text x="10" y="178" class="cls-text">+ save(): Promise&lt;User&gt;</text>
     </g>
 
-    <!-- CLASS 2: ADDRESS (Value Object) -->
+    <!-- CLASS 2: ADDRESS -->
     <g transform="translate(20, 265)">
-      <rect width="215" height="120" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1.2" />
+      <rect width="215" height="120" rx="6" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
       <rect width="215" height="22" rx="6" fill="#475569" />
       <rect y="14" width="215" height="8" fill="#475569" />
       <text x="107" y="16" class="cls-name">&lt;&lt;Value Object&gt;&gt; Address</text>
@@ -168,14 +146,14 @@
 
     <!-- CLASS 3: PRODUCT -->
     <g transform="translate(260, 50)">
-      <rect width="225" height="295" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+      <rect width="225" height="295" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5" />
       <rect width="225" height="24" rx="6" fill="#059669" />
       <rect y="16" width="225" height="8" fill="#059669" />
       <text x="112" y="17" class="cls-name">Product</text>
       <text x="10" y="40" class="cls-text">+ ObjectId _id</text>
       <text x="10" y="54" class="cls-text">+ String name</text>
       <text x="10" y="68" class="cls-text">+ String slug</text>
-      <text x="10" y="82" class="cls-text">+ Number price (₹)</text>
+      <text x="10" y="82" class="cls-text">+ Number price (Rs.)</text>
       <text x="10" y="96" class="cls-text">+ Number originalPrice (MRP)</text>
       <text x="10" y="110" class="cls-text">+ String category</text>
       <text x="10" y="124" class="cls-text">+ String subcategory</text>
@@ -187,14 +165,14 @@
       <text x="10" y="208" class="cls-text">+ Array&lt;Review&gt; reviews</text>
       <text x="10" y="222" class="cls-text">+ Boolean featured</text>
       <text x="10" y="236" class="cls-text">+ Map specs</text>
-      <line x1="0" y1="248" x2="225" y2="248" stroke="#10b981" stroke-width="1" />
-      <text x="10" y="264" class="cls-text">+ preSave(): void (generate slug)</text>
+      <line x1="0" y1="248" x2="225" y2="248" stroke="#e2e8f0" stroke-width="1" />
+      <text x="10" y="264" class="cls-text">+ preSave(): void (make slug)</text>
       <text x="10" y="278" class="cls-text">+ save(): Promise&lt;Product&gt;</text>
     </g>
 
     <!-- CLASS 4: REVIEW -->
     <g transform="translate(260, 365)">
-      <rect width="225" height="110" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.2" />
+      <rect width="225" height="110" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.2" />
       <rect width="225" height="22" rx="6" fill="#047857" />
       <rect y="14" width="225" height="8" fill="#047857" />
       <text x="112" y="16" class="cls-name">Review</text>
@@ -205,11 +183,11 @@
       <text x="10" y="94" class="cls-text">+ Date createdAt</text>
     </g>
 
-    <line x1="372" y1="345" x2="372" y2="365" stroke="#10b981" stroke-width="1.5" marker-start="url(#diamond)" />
+    <line x1="372" y1="345" x2="372" y2="365" stroke="#059669" stroke-width="1.5" marker-start="url(#diamond)" />
 
     <!-- CLASS 5: ORDER -->
     <g transform="translate(505, 50)">
-      <rect width="190" height="275" rx="6" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" />
+      <rect width="190" height="275" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" />
       <rect width="190" height="24" rx="6" fill="#7c3aed" />
       <rect y="16" width="190" height="8" fill="#7c3aed" />
       <text x="95" y="17" class="cls-name">Order</text>
@@ -218,77 +196,73 @@
       <text x="10" y="68" class="cls-text">+ Array&lt;OrderItem&gt; items</text>
       <text x="10" y="82" class="cls-text">+ Address shippingAddress</text>
       <text x="10" y="96" class="cls-text">+ String paymentMethod</text>
-      <text x="10" y="110" class="cls-text">+ Number itemsPrice (₹)</text>
-      <text x="10" y="124" class="cls-text">+ Number taxPrice (₹)</text>
+      <text x="10" y="110" class="cls-text">+ Number itemsPrice (Rs.)</text>
+      <text x="10" y="124" class="cls-text">+ Number taxPrice (Rs.)</text>
       <text x="10" y="138" class="cls-text">+ Number shippingPrice</text>
-      <text x="10" y="152" class="cls-text">+ Number totalAmount (₹)</text>
+      <text x="10" y="152" class="cls-text">+ Number totalAmount (Rs.)</text>
       <text x="10" y="166" class="cls-text">+ Boolean isPaid</text>
       <text x="10" y="180" class="cls-text">+ String orderStatus</text>
       <text x="10" y="194" class="cls-text">+ String trackingNumber</text>
       <text x="10" y="208" class="cls-text">+ Date paidAt</text>
-      <line x1="0" y1="218" x2="190" y2="218" stroke="#8b5cf6" stroke-width="1" />
+      <line x1="0" y1="218" x2="190" y2="218" stroke="#e2e8f0" stroke-width="1" />
       <text x="10" y="234" class="cls-text">+ save(): Promise&lt;Order&gt;</text>
     </g>
 
     <!-- CLASS 6: ORDER ITEM -->
     <g transform="translate(505, 345)">
-      <rect width="190" height="110" rx="6" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.2" />
+      <rect width="190" height="110" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" />
       <rect width="190" height="22" rx="6" fill="#6d28d9" />
       <rect y="14" width="190" height="8" fill="#6d28d9" />
       <text x="95" y="16" class="cls-name">OrderItem</text>
       <text x="10" y="38" class="cls-text">+ ObjectId product (Ref)</text>
       <text x="10" y="52" class="cls-text">+ String name</text>
       <text x="10" y="66" class="cls-text">+ String image</text>
-      <text x="10" y="80" class="cls-text">+ Number price (₹)</text>
+      <text x="10" y="80" class="cls-text">+ Number price (Rs.)</text>
       <text x="10" y="94" class="cls-text">+ Number quantity</text>
     </g>
 
-    <line x1="600" y1="325" x2="600" y2="345" stroke="#8b5cf6" stroke-width="1.5" marker-start="url(#diamond)" />
+    <line x1="600" y1="325" x2="600" y2="345" stroke="#7c3aed" stroke-width="1.5" marker-start="url(#diamond)" />
 
-    <!-- CONTROLLER CLASSES ROW -->
+    <!-- CONTROLLER SUBSYSTEMS -->
     <g transform="translate(20, 500)">
-      <rect width="670" height="205" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+      <rect width="670" height="205" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
       <text x="16" y="24" class="sec-header" font-size="13">CONTROLLER SUBSYSTEMS &amp; ROUTE DISPATCHERS</text>
 
-      <!-- AuthController -->
       <g transform="translate(15, 38)">
-        <rect width="200" height="70" rx="4" fill="#1e293b" stroke="#3b82f6" stroke-width="1" />
-        <text x="10" y="18" class="cls-text" font-weight="700" fill="#60a5fa">AuthController</text>
+        <rect width="200" height="70" rx="4" fill="#f8fafc" stroke="#93c5fd" stroke-width="1" />
+        <text x="10" y="18" class="cls-text" font-weight="700" fill="#1d4ed8">AuthController</text>
         <text x="10" y="34" class="cls-text">+ registerUser(req, res)</text>
         <text x="10" y="48" class="cls-text">+ loginUser(req, res)</text>
         <text x="10" y="62" class="cls-text">+ getMe(req, res)</text>
       </g>
 
-      <!-- ProductController -->
       <g transform="translate(230, 38)">
-        <rect width="215" height="70" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1" />
-        <text x="10" y="18" class="cls-text" font-weight="700" fill="#34d399">ProductController</text>
+        <rect width="215" height="70" rx="4" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1" />
+        <text x="10" y="18" class="cls-text" font-weight="700" fill="#047857">ProductController</text>
         <text x="10" y="34" class="cls-text">+ getProducts(req, res)</text>
         <text x="10" y="48" class="cls-text">+ getProductById(req, res)</text>
         <text x="10" y="62" class="cls-text">+ createProductReview()</text>
       </g>
 
-      <!-- OrderController -->
       <g transform="translate(460, 38)">
-        <rect width="195" height="70" rx="4" fill="#1e293b" stroke="#8b5cf6" stroke-width="1" />
-        <text x="10" y="18" class="cls-text" font-weight="700" fill="#c084fc">OrderController</text>
+        <rect width="195" height="70" rx="4" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1" />
+        <text x="10" y="18" class="cls-text" font-weight="700" fill="#6d28d9">OrderController</text>
         <text x="10" y="34" class="cls-text">+ createOrder(req, res)</text>
         <text x="10" y="48" class="cls-text">+ getMyOrders(req, res)</text>
         <text x="10" y="62" class="cls-text">+ updateOrderStatus()</text>
       </g>
 
-      <!-- AdminController & UserController -->
       <g transform="translate(15, 120)">
-        <rect width="310" height="70" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1" />
-        <text x="10" y="18" class="cls-text" font-weight="700" fill="#fbbf24">AdminController</text>
-        <text x="10" y="34" class="cls-text">+ getAdminStats(req, res) // Revenue &amp; KPI</text>
+        <rect width="310" height="70" rx="4" fill="#f8fafc" stroke="#fde68a" stroke-width="1" />
+        <text x="10" y="18" class="cls-text" font-weight="700" fill="#b45309">AdminController</text>
+        <text x="10" y="34" class="cls-text">+ getAdminStats(req, res) // KPIs</text>
         <text x="10" y="48" class="cls-text">+ aggregateCategorySales()</text>
         <text x="10" y="62" class="cls-text">+ calculateMonthlySales()</text>
       </g>
 
       <g transform="translate(345, 120)">
-        <rect width="310" height="70" rx="4" fill="#1e293b" stroke="#06b6d4" stroke-width="1" />
-        <text x="10" y="18" class="cls-text" font-weight="700" fill="#22d3ee">UserController</text>
+        <rect width="310" height="70" rx="4" fill="#f8fafc" stroke="#a5f3fc" stroke-width="1" />
+        <text x="10" y="18" class="cls-text" font-weight="700" fill="#0e7490">UserController</text>
         <text x="10" y="34" class="cls-text">+ getAllUsers(req, res) // with Spend</text>
         <text x="10" y="48" class="cls-text">+ updateUser(req, res) // Role clearance</text>
         <text x="10" y="62" class="cls-text">+ deleteUser(req, res)</text>
@@ -296,4 +270,3 @@
     </g>
   </g>
 </svg>
-

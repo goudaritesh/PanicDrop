@@ -1,38 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#080e1a" />
-      <stop offset="100%" stop-color="#121b2d" />
-    </linearGradient>
     <filter id="shadow4" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.4" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
   </defs>
 
   <style>
-    .er-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #ffffff; }
-    .er-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94a3b8; }
+    .er-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; }
+    .er-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
     .table-header { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
-    .pk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 700; fill: #f59e0b; }
-    .fk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 700; fill: #38bdf8; }
-    .fld-txt { font-family: monospace, system-ui; font-size: 10px; fill: #f1f5f9; }
-    .typ-txt { font-family: monospace, system-ui; font-size: 9px; fill: #94a3b8; }
-    .card-label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #38bdf8; }
+    .pk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 800; fill: #b45309; }
+    .fk-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 800; fill: #1d4ed8; }
+    .fld-txt { font-family: monospace, system-ui; font-size: 10px; font-weight: 600; fill: #0f172a; }
+    .typ-txt { font-family: monospace, system-ui; font-size: 9px; fill: #64748b; }
+    .card-label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #2563eb; }
   </style>
 
-  <!-- Background -->
-  <rect width="1200" height="800" rx="16" fill="url(#bgGrad4)" />
-  <rect x="1" y="1" width="1198" height="798" rx="15" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <!-- Clean White Canvas -->
+  <rect width="1200" height="800" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
-    <text x="0" y="18" class="er-title">PanicDrop — 3.4: Database Entity-Relationship (ER) Schema</text>
-    <text x="0" y="38" class="er-sub">Mongoose ODM Document Models • Relational Cardinalities • Foreign Key Constraints • Indian Localization Fields</text>
+    <text x="0" y="18" class="er-title">PanicDrop &#x2014; 3.4: Database Entity-Relationship (ER) Schema</text>
+    <text x="0" y="38" class="er-sub">Mongoose ODM Document Models &#x2022; Relational Cardinalities &#x2022; Foreign Key Constraints &#x2022; Indian Localization Fields</text>
   </g>
 
   <!-- ENTITY 1: USER (x: 50, y: 90) -->
   <g transform="translate(50, 90)" filter="url(#shadow4)">
-    <rect width="250" height="270" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+    <rect width="250" height="270" rx="8" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.5" />
     <rect width="250" height="28" rx="8" fill="#2563eb" />
     <rect y="18" width="250" height="10" fill="#2563eb" />
     <text x="125" y="19" class="table-header">USERS (Collection)</text>
@@ -72,9 +67,9 @@
     <text x="175" y="248" class="typ-txt">Date</text>
   </g>
 
-  <!-- ENTITY 2: USER ADDRESS (Embedded Subdocument) (x: 50, y: 400) -->
+  <!-- ENTITY 2: USER ADDRESS (x: 50, y: 410) -->
   <g transform="translate(50, 410)" filter="url(#shadow4)">
-    <rect width="250" height="170" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="1.2" />
+    <rect width="250" height="170" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" />
     <rect width="250" height="26" rx="8" fill="#475569" />
     <rect y="16" width="250" height="10" fill="#475569" />
     <text x="125" y="18" class="table-header">ADDRESS (Subdocument)</text>
@@ -98,13 +93,13 @@
     <text x="175" y="156" class="typ-txt">String</text>
   </g>
 
-  <!-- Relation Line: USER 1 --- 1 ADDRESS -->
-  <line x1="175" y1="360" x2="175" y2="410" stroke="#3b82f6" stroke-width="2" />
+  <!-- Connector User to Address -->
+  <line x1="175" y1="360" x2="175" y2="410" stroke="#2563eb" stroke-width="2" />
   <text x="185" y="388" class="card-label">1:1 Embedded</text>
 
   <!-- ENTITY 3: PRODUCT (x: 460, y: 90) -->
   <g transform="translate(460, 90)" filter="url(#shadow4)">
-    <rect width="280" height="370" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <rect width="280" height="370" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.5" />
     <rect width="280" height="28" rx="8" fill="#059669" />
     <rect y="18" width="280" height="10" fill="#059669" />
     <text x="140" y="19" class="table-header">PRODUCTS (10k SKUs)</text>
@@ -119,11 +114,11 @@
     <text x="35" y="88" class="fld-txt">slug</text>
     <text x="195" y="88" class="typ-txt">String</text>
 
-    <text x="35" y="108" class="fld-txt">price (Selling Price)</text>
-    <text x="195" y="108" class="typ-txt">Number (₹)</text>
+    <text x="35" y="108" class="fld-txt">price (Selling)</text>
+    <text x="195" y="108" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="128" class="fld-txt">originalPrice (MRP)</text>
-    <text x="195" y="128" class="typ-txt">Number (₹)</text>
+    <text x="195" y="128" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="148" class="fld-txt">category</text>
     <text x="195" y="148" class="typ-txt">String (Indexed)</text>
@@ -159,9 +154,9 @@
     <text x="195" y="348" class="typ-txt">Boolean</text>
   </g>
 
-  <!-- ENTITY 4: REVIEWS (Embedded in Product) (x: 460, y: 510) -->
+  <!-- ENTITY 4: REVIEWS (x: 460, y: 500) -->
   <g transform="translate(460, 500)" filter="url(#shadow4)">
-    <rect width="280" height="155" rx="8" fill="#1e293b" stroke="#047857" stroke-width="1.2" />
+    <rect width="280" height="155" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.2" />
     <rect width="280" height="26" rx="8" fill="#047857" />
     <rect y="16" width="280" height="10" fill="#047857" />
     <text x="140" y="18" class="table-header">REVIEWS (Subdocument)</text>
@@ -183,13 +178,13 @@
     <text x="195" y="136" class="typ-txt">Date</text>
   </g>
 
-  <!-- Relation: PRODUCT 1 --- N REVIEWS -->
-  <line x1="600" y1="460" x2="600" y2="500" stroke="#10b981" stroke-width="2" />
-  <text x="610" y="482" class="card-label">1:N Subdocs</text>
+  <!-- Connector Product to Reviews -->
+  <line x1="600" y1="460" x2="600" y2="500" stroke="#059669" stroke-width="2" />
+  <text x="610" y="482" class="card-label" fill="#047857">1:N Subdocs</text>
 
   <!-- ENTITY 5: ORDER (x: 880, y: 90) -->
   <g transform="translate(880, 90)" filter="url(#shadow4)">
-    <rect width="270" height="340" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" />
+    <rect width="270" height="340" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.5" />
     <rect width="270" height="28" rx="8" fill="#7c3aed" />
     <rect y="18" width="270" height="10" fill="#7c3aed" />
     <text x="135" y="19" class="table-header">ORDERS (Collection)</text>
@@ -212,16 +207,16 @@
     <text x="190" y="128" class="typ-txt">'UPI'|'COD'|'Card'</text>
 
     <text x="35" y="148" class="fld-txt">itemsPrice</text>
-    <text x="190" y="148" class="typ-txt">Number (₹)</text>
+    <text x="190" y="148" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="168" class="fld-txt">taxPrice (GST)</text>
-    <text x="190" y="168" class="typ-txt">Number (₹)</text>
+    <text x="190" y="168" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="188" class="fld-txt">shippingPrice</text>
     <text x="190" y="188" class="typ-txt">Number (Free)</text>
 
     <text x="35" y="208" class="fld-txt">totalAmount</text>
-    <text x="190" y="208" class="typ-txt">Number (₹)</text>
+    <text x="190" y="208" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="228" class="fld-txt">isPaid</text>
     <text x="190" y="228" class="typ-txt">Boolean</text>
@@ -244,7 +239,7 @@
 
   <!-- ENTITY 6: ORDER ITEMS (x: 880, y: 470) -->
   <g transform="translate(880, 470)" filter="url(#shadow4)">
-    <rect width="270" height="160" rx="8" fill="#1e293b" stroke="#6d28d9" stroke-width="1.2" />
+    <rect width="270" height="160" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
     <rect width="270" height="26" rx="8" fill="#6d28d9" />
     <rect y="16" width="270" height="10" fill="#6d28d9" />
     <text x="135" y="18" class="table-header">ORDER_ITEM (Subdocument)</text>
@@ -260,30 +255,29 @@
     <text x="190" y="92" class="typ-txt">String</text>
 
     <text x="35" y="114" class="fld-txt">price (Snapshot)</text>
-    <text x="190" y="114" class="typ-txt">Number (₹)</text>
+    <text x="190" y="114" class="typ-txt">Number (Rs.)</text>
 
     <text x="35" y="136" class="fld-txt">quantity</text>
     <text x="190" y="136" class="typ-txt">Number (&gt;=1)</text>
   </g>
 
-  <!-- Relation: ORDER 1 --- N ORDER ITEMS -->
-  <line x1="1015" y1="430" x2="1015" y2="470" stroke="#8b5cf6" stroke-width="2" />
-  <text x="1025" y="452" class="card-label">1:N Items</text>
+  <!-- Connector Order to Order Items -->
+  <line x1="1015" y1="430" x2="1015" y2="470" stroke="#7c3aed" stroke-width="2" />
+  <text x="1025" y="452" class="card-label" fill="#7c3aed">1:N Items</text>
 
-  <!-- Relation: USER 1 --- N ORDERS (Cross-connecting curve) -->
-  <path d="M 300 200 C 400 200, 800 200, 880 200" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4" />
-  <text x="430" y="192" class="card-label" fill="#60a5fa">places 1:N orders (user._id)</text>
+  <!-- Connector User to Orders -->
+  <path d="M 300 200 C 400 200, 800 200, 880 200" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4" />
+  <text x="430" y="192" class="card-label">places 1:N orders (user._id)</text>
 
-  <!-- Relation: PRODUCT 1 --- N ORDER_ITEMS (Cross-connecting curve) -->
-  <path d="M 740 320 C 800 320, 800 520, 880 520" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4" />
-  <text x="760" y="430" class="card-label" fill="#34d399">referenced by 1:N</text>
+  <!-- Connector Product to Order Items -->
+  <path d="M 740 320 C 800 320, 800 520, 880 520" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4" />
+  <text x="760" y="430" class="card-label" fill="#047857">referenced by 1:N</text>
 
   <!-- Bottom Legend -->
   <g transform="translate(50, 715)">
-    <rect width="1100" height="55" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <rect width="1100" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
     <text x="20" y="24" class="fld-txt" font-weight="700">INDEXING &amp; STORAGE SPECIFICATIONS:</text>
-    <text x="20" y="42" class="typ-txt">• Compound Index: { category: 1, price: 1, rating: -1 } for sub-15ms catalog filter queries across 10k Flipkart items</text>
-    <text x="590" y="42" class="typ-txt">• Text Index: { name: "text", description: "text", brand: "text" } for full-text elastic search</text>
+    <text x="20" y="42" class="typ-txt">&#x2022; Compound Index: { category: 1, price: 1, rating: -1 } for sub-15ms catalog filter queries across 10k Flipkart items</text>
+    <text x="590" y="42" class="typ-txt">&#x2022; Text Index: { name: "text", description: "text", brand: "text" } for full-text search</text>
   </g>
 </svg>
-

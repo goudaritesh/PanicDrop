@@ -1,136 +1,130 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b1120" />
-      <stop offset="100%" stop-color="#162035" />
-    </linearGradient>
     <filter id="shadow5" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
   </defs>
 
   <style>
-    .ui-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #ffffff; }
-    .ui-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94a3b8; }
-    .wf-frame-title { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #38bdf8; }
-    .ui-mock-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; fill: #cbd5e1; }
+    .ui-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; }
+    .ui-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
+    .wf-frame-title { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #ffffff; }
+    .ui-mock-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; fill: #1e293b; }
     .ui-btn { font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
-    .ui-tag { font-family: system-ui, -apple-system, sans-serif; font-size: 8px; font-weight: 700; fill: #38bdf8; }
   </style>
 
-  <!-- Background -->
-  <rect width="1200" height="850" rx="16" fill="url(#bgGrad5)" />
-  <rect x="1" y="1" width="1198" height="848" rx="15" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <!-- Clean White Canvas -->
+  <rect width="1200" height="850" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
-    <text x="0" y="18" class="ui-title">PanicDrop — 3.5: User Interface &amp; Wireframe Architecture</text>
-    <text x="0" y="38" class="ui-sub">Structural Layouts • Indian E-Commerce Design Patterns • High-Performance Catalog • Operations Dashboard</text>
+    <text x="0" y="18" class="ui-title">PanicDrop &#x2014; 3.5: User Interface &amp; Wireframe Architecture</text>
+    <text x="0" y="38" class="ui-sub">Structural Layouts &#x2022; Indian E-Commerce Design Patterns &#x2022; High-Performance Catalog &#x2022; Operations Dashboard</text>
   </g>
 
   <!-- WIREFRAME 1: LANDING STOREFRONT (Top Left: 360x340) -->
   <g transform="translate(40, 85)" filter="url(#shadow5)">
-    <rect width="360" height="340" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
-    <rect width="360" height="26" rx="8" fill="#0369a1" />
-    <rect y="16" width="360" height="10" fill="#0369a1" />
-    <text x="12" y="18" class="wf-frame-title" fill="#ffffff">WIREFRAME 1: STOREFRONT LANDING PAGE (/)</text>
+    <rect width="360" height="340" rx="8" fill="#f8fafc" stroke="#93c5fd" stroke-width="1.2" />
+    <rect width="360" height="26" rx="8" fill="#2563eb" />
+    <rect y="16" width="360" height="10" fill="#2563eb" />
+    <text x="12" y="18" class="wf-frame-title">WIREFRAME 1: STOREFRONT LANDING PAGE (/)</text>
 
     <!-- Nav Bar -->
-    <rect x="10" y="34" width="340" height="24" rx="4" fill="#0f172a" />
-    <text x="18" y="49" class="ui-mock-txt" font-weight="700" fill="#38bdf8">PANICDROP</text>
-    <rect x="90" y="38" width="150" height="16" rx="3" fill="#1e293b" stroke="#475569" stroke-width="0.8" />
-    <text x="96" y="49" class="ui-mock-txt" font-size="8">Search 10k items... Q</text>
+    <rect x="10" y="34" width="340" height="24" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="18" y="49" class="ui-mock-txt" font-weight="800" fill="#2563eb">PANICDROP</text>
+    <rect x="90" y="38" width="150" height="16" rx="3" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" />
+    <text x="96" y="49" class="ui-mock-txt" font-size="8" fill="#64748b">Search 10k items... Q</text>
     <text x="250" y="49" class="ui-mock-txt" font-size="8">Wishlist | Cart (2)</text>
     <rect x="315" y="38" width="30" height="16" rx="3" fill="#2563eb" />
     <text x="330" y="49" class="ui-btn" font-size="7">Login</text>
 
     <!-- Hero Banner -->
-    <rect x="10" y="64" width="340" height="75" rx="6" fill="#0284c7" opacity="0.25" stroke="#0284c7" stroke-width="1" />
-    <text x="22" y="86" class="ui-mock-txt" font-weight="700" font-size="11" fill="#f8fafc">AI DEMAND DEALS FESTIVAL: UP TO 65% OFF</text>
-    <text x="22" y="102" class="ui-mock-txt" font-size="9">Smartphones, Laptops &amp; Audio Gear • Same Day Dispatch</text>
-    <rect x="22" y="112" width="90" height="18" rx="4" fill="#0284c7" />
-    <text x="67" y="124" class="ui-btn">Explore Catalog -></text>
+    <rect x="10" y="64" width="340" height="75" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
+    <text x="22" y="86" class="ui-mock-txt" font-weight="800" font-size="11" fill="#1e3a8a">AI DEMAND DEALS FESTIVAL: UP TO 65% OFF</text>
+    <text x="22" y="102" class="ui-mock-txt" font-size="9" fill="#1e40af">Smartphones, Laptops &amp; Audio Gear &#x2022; Same Day Dispatch</text>
+    <rect x="22" y="112" width="95" height="18" rx="4" fill="#2563eb" />
+    <text x="69" y="124" class="ui-btn">Explore Catalog -></text>
 
     <!-- Category Pills -->
     <text x="10" y="153" class="ui-mock-txt" font-weight="700">POPULAR DEPARTMENTS</text>
     <g transform="translate(10, 160)">
-      <rect x="0" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="26" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Mobiles</text>
-      <rect x="57" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="83" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Laptops</text>
-      <rect x="114" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="140" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Audio</text>
-      <rect x="171" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="197" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Watches</text>
-      <rect x="228" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="254" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Fashion</text>
-      <rect x="285" y="0" width="52" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="311" y="16" class="ui-btn" font-size="7" fill="#cbd5e1">Home</text>
+      <rect x="0" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="26" y="16" class="ui-btn" font-size="7" fill="#1e293b">Mobiles</text>
+      <rect x="57" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="83" y="16" class="ui-btn" font-size="7" fill="#1e293b">Laptops</text>
+      <rect x="114" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="140" y="16" class="ui-btn" font-size="7" fill="#1e293b">Audio</text>
+      <rect x="171" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="197" y="16" class="ui-btn" font-size="7" fill="#1e293b">Watches</text>
+      <rect x="228" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="254" y="16" class="ui-btn" font-size="7" fill="#1e293b">Fashion</text>
+      <rect x="285" y="0" width="52" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="311" y="16" class="ui-btn" font-size="7" fill="#1e293b">Home</text>
     </g>
 
     <!-- Product Deal Cards (3 cards) -->
     <text x="10" y="202" class="ui-mock-txt" font-weight="700">TOP FLASH DEALS</text>
     <g transform="translate(10, 208)">
-      <rect x="0" y="0" width="108" height="120" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="8" y="8" width="92" height="50" rx="4" fill="#1e293b" />
+      <rect x="0" y="0" width="108" height="120" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="8" y="8" width="92" height="50" rx="4" fill="#f1f5f9" />
       <text x="54" y="36" class="ui-btn" font-size="8" fill="#64748b">[iPhone 15]</text>
       <text x="8" y="70" class="ui-mock-txt" font-weight="700">iPhone 15 Pro</text>
-      <text x="8" y="82" class="ui-mock-txt" fill="#38bdf8" font-weight="700">₹1,24,999</text>
-      <text x="8" y="94" class="ui-mock-txt" font-size="7">★★★★★ (4.9)</text>
+      <text x="8" y="82" class="ui-mock-txt" fill="#2563eb" font-weight="700">Rs. 1,24,999</text>
+      <text x="8" y="94" class="ui-mock-txt" font-size="7">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; (4.9)</text>
       <rect x="8" y="98" width="92" height="16" rx="3" fill="#2563eb" />
       <text x="54" y="109" class="ui-btn" font-size="7">Add to Cart</text>
 
-      <rect x="116" y="0" width="108" height="120" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="124" y="8" width="92" height="50" rx="4" fill="#1e293b" />
+      <rect x="116" y="0" width="108" height="120" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="124" y="8" width="92" height="50" rx="4" fill="#f1f5f9" />
       <text x="170" y="36" class="ui-btn" font-size="8" fill="#64748b">[boAt ANC]</text>
       <text x="124" y="70" class="ui-mock-txt" font-weight="700">boAt Nirvana</text>
-      <text x="124" y="82" class="ui-mock-txt" fill="#38bdf8" font-weight="700">₹2,499 (50%)</text>
-      <text x="124" y="94" class="ui-mock-txt" font-size="7">★★★★★ (4.8)</text>
+      <text x="124" y="82" class="ui-mock-txt" fill="#2563eb" font-weight="700">Rs. 2,499 (50%)</text>
+      <text x="124" y="94" class="ui-mock-txt" font-size="7">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; (4.8)</text>
       <rect x="124" y="98" width="92" height="16" rx="3" fill="#2563eb" />
       <text x="170" y="109" class="ui-btn" font-size="7">Add to Cart</text>
 
-      <rect x="232" y="0" width="108" height="120" rx="6" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="240" y="8" width="92" height="50" rx="4" fill="#1e293b" />
+      <rect x="232" y="0" width="108" height="120" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="240" y="8" width="92" height="50" rx="4" fill="#f1f5f9" />
       <text x="286" y="36" class="ui-btn" font-size="8" fill="#64748b">[Galaxy S24]</text>
       <text x="240" y="70" class="ui-mock-txt" font-weight="700">Samsung S24</text>
-      <text x="240" y="82" class="ui-mock-txt" fill="#38bdf8" font-weight="700">₹1,19,999</text>
-      <text x="240" y="94" class="ui-mock-txt" font-size="7">★★★★★ (4.9)</text>
+      <text x="240" y="82" class="ui-mock-txt" fill="#2563eb" font-weight="700">Rs. 1,19,999</text>
+      <text x="240" y="94" class="ui-mock-txt" font-size="7">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; (4.9)</text>
       <rect x="240" y="98" width="92" height="16" rx="3" fill="#2563eb" />
       <text x="286" y="109" class="ui-btn" font-size="7">Add to Cart</text>
     </g>
   </g>
 
-  <!-- WIREFRAME 2: HIGH PERFORMANCE CATALOG (Top Right: 410x340) -->
+  <!-- WIREFRAME 2: CATALOG WITH FACETED FILTERS (Top Right: 410x340) -->
   <g transform="translate(420, 85)" filter="url(#shadow5)">
-    <rect width="410" height="340" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2" />
+    <rect width="410" height="340" rx="8" fill="#f8fafc" stroke="#a7f3d0" stroke-width="1.2" />
     <rect width="410" height="26" rx="8" fill="#059669" />
     <rect y="16" width="410" height="10" fill="#059669" />
-    <text x="12" y="18" class="wf-frame-title" fill="#ffffff">WIREFRAME 2: CATALOG WITH FACETED FILTERS (/catalog)</text>
+    <text x="12" y="18" class="wf-frame-title">WIREFRAME 2: CATALOG WITH FACETED FILTERS (/catalog)</text>
 
-    <!-- Catalog Top Bar -->
-    <rect x="10" y="34" width="390" height="20" rx="3" fill="#0f172a" />
+    <!-- Top Bar -->
+    <rect x="10" y="34" width="390" height="20" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
     <text x="16" y="47" class="ui-mock-txt">Showing 1-24 of 10,000 Products | Query: 14ms</text>
-    <text x="310" y="47" class="ui-mock-txt" fill="#34d399">Sort: Popular v</text>
+    <text x="310" y="47" class="ui-mock-txt" fill="#047857" font-weight="700">Sort: Popular v</text>
 
-    <!-- Left Filter Sidebar (width: 105) -->
+    <!-- Left Filter Sidebar -->
     <g transform="translate(10, 60)">
-      <rect width="105" height="265" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="8" y="18" class="ui-mock-txt" font-weight="700" fill="#34d399">FACETED FILTERS</text>
+      <rect width="105" height="265" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="8" y="18" class="ui-mock-txt" font-weight="800" fill="#047857">FACETED FILTERS</text>
 
       <text x="8" y="36" class="ui-mock-txt" font-weight="700" font-size="8">Category</text>
       <text x="8" y="50" class="ui-mock-txt" font-size="8">(o) All Categories</text>
       <text x="8" y="62" class="ui-mock-txt" font-size="8">( ) Mobiles</text>
       <text x="8" y="74" class="ui-mock-txt" font-size="8">( ) Electronics</text>
 
-      <text x="8" y="94" class="ui-mock-txt" font-weight="700" font-size="8">Price Range (₹)</text>
-      <text x="8" y="108" class="ui-mock-txt" font-size="8">Min: ₹500  Max: ₹50k</text>
+      <text x="8" y="94" class="ui-mock-txt" font-weight="700" font-size="8">Price Range (Rs.)</text>
+      <text x="8" y="108" class="ui-mock-txt" font-size="8">Min: Rs.500 Max: 50k</text>
 
       <text x="8" y="128" class="ui-mock-txt" font-weight="700" font-size="8">Brands</text>
-      <text x="8" y="142" class="ui-mock-txt" font-size="8">[x] Apple  [x] boAt</text>
+      <text x="8" y="142" class="ui-mock-txt" font-size="8">[x] Apple [x] boAt</text>
       <text x="8" y="154" class="ui-mock-txt" font-size="8">[ ] Samsung [ ] Sony</text>
 
       <text x="8" y="174" class="ui-mock-txt" font-weight="700" font-size="8">Ratings</text>
-      <text x="8" y="188" class="ui-mock-txt" font-size="8">[x] 4.0★ &amp; Above</text>
+      <text x="8" y="188" class="ui-mock-txt" font-size="8">[x] 4.0&#x2605; &amp; Above</text>
 
       <text x="8" y="208" class="ui-mock-txt" font-weight="700" font-size="8">Stock Availability</text>
       <text x="8" y="222" class="ui-mock-txt" font-size="8">[x] In-Stock Only</text>
@@ -139,264 +133,254 @@
       <text x="52" y="247" class="ui-btn" font-size="7">Apply Filters</text>
     </g>
 
-    <!-- Product Grid (2 columns x 2 rows) -->
+    <!-- Product Grid -->
     <g transform="translate(125, 60)">
-      <!-- Item 1 -->
-      <rect x="0" y="0" width="132" height="110" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="6" y="6" width="120" height="40" rx="3" fill="#1e293b" />
+      <rect x="0" y="0" width="132" height="110" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="6" y="6" width="120" height="40" rx="3" fill="#f1f5f9" />
       <text x="6" y="58" class="ui-mock-txt" font-weight="700">OnePlus 12R 5G</text>
-      <text x="6" y="70" class="ui-mock-txt" fill="#34d399" font-weight="700">₹39,999</text>
-      <text x="6" y="82" class="ui-mock-txt" font-size="7">Stock: 4 left !</text>
+      <text x="6" y="70" class="ui-mock-txt" fill="#047857" font-weight="700">Rs. 39,999</text>
+      <text x="6" y="82" class="ui-mock-txt" font-size="7" fill="#b91c1c">Stock: 4 left !</text>
       <rect x="6" y="88" width="120" height="16" rx="3" fill="#2563eb" />
       <text x="66" y="99" class="ui-btn" font-size="7">+ Add to Cart</text>
 
-      <!-- Item 2 -->
-      <rect x="142" y="0" width="132" height="110" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="148" y="6" width="120" height="40" rx="3" fill="#1e293b" />
+      <rect x="142" y="0" width="132" height="110" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="148" y="6" width="120" height="40" rx="3" fill="#f1f5f9" />
       <text x="148" y="58" class="ui-mock-txt" font-weight="700">Sony WH-1000XM5</text>
-      <text x="148" y="70" class="ui-mock-txt" fill="#34d399" font-weight="700">₹24,990</text>
-      <text x="148" y="82" class="ui-mock-txt" font-size="7">★★★★★ (4.8)</text>
+      <text x="148" y="70" class="ui-mock-txt" fill="#047857" font-weight="700">Rs. 24,990</text>
+      <text x="148" y="82" class="ui-mock-txt" font-size="7">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; (4.8)</text>
       <rect x="148" y="88" width="120" height="16" rx="3" fill="#2563eb" />
       <text x="208" y="99" class="ui-btn" font-size="7">+ Add to Cart</text>
 
-      <!-- Item 3 -->
-      <rect x="0" y="118" width="132" height="110" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="6" y="124" width="120" height="40" rx="3" fill="#1e293b" />
+      <rect x="0" y="118" width="132" height="110" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="6" y="124" width="120" height="40" rx="3" fill="#f1f5f9" />
       <text x="6" y="176" class="ui-mock-txt" font-weight="700">Nike Air Max SC</text>
-      <text x="6" y="188" class="ui-mock-txt" fill="#34d399" font-weight="700">₹5,495 (30%)</text>
+      <text x="6" y="188" class="ui-mock-txt" fill="#047857" font-weight="700">Rs. 5,495 (30%)</text>
       <text x="6" y="200" class="ui-mock-txt" font-size="7">In Stock</text>
       <rect x="6" y="206" width="120" height="16" rx="3" fill="#2563eb" />
       <text x="66" y="217" class="ui-btn" font-size="7">+ Add to Cart</text>
 
-      <!-- Item 4 -->
-      <rect x="142" y="118" width="132" height="110" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <rect x="148" y="124" width="120" height="40" rx="3" fill="#1e293b" />
+      <rect x="142" y="118" width="132" height="110" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <rect x="148" y="124" width="120" height="40" rx="3" fill="#f1f5f9" />
       <text x="148" y="176" class="ui-mock-txt" font-weight="700">Philips Air Fryer</text>
-      <text x="148" y="188" class="ui-mock-txt" fill="#34d399" font-weight="700">₹6,999</text>
+      <text x="148" y="188" class="ui-mock-txt" fill="#047857" font-weight="700">Rs. 6,999</text>
       <text x="148" y="200" class="ui-mock-txt" font-size="7">In Stock</text>
       <rect x="148" y="206" width="120" height="16" rx="3" fill="#2563eb" />
       <text x="208" y="217" class="ui-btn" font-size="7">+ Add to Cart</text>
 
-      <!-- Pagination bar -->
-      <rect x="0" y="238" width="275" height="25" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect x="0" y="238" width="275" height="25" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="12" y="254" class="ui-mock-txt">&lt; Prev</text>
-      <text x="80" y="254" class="ui-mock-txt" font-weight="700" fill="#34d399">[ 1 ]  2  3  4 ... 417</text>
+      <text x="80" y="254" class="ui-mock-txt" font-weight="700" fill="#047857">[ 1 ] 2 3 4 ... 417</text>
       <text x="235" y="254" class="ui-mock-txt">Next &gt;</text>
     </g>
   </g>
 
-  <!-- WIREFRAME 3: PRODUCT DETAIL PAGE (Top Far Right: 310x340) -->
+  <!-- WIREFRAME 3: PRODUCT DETAIL (Top Far Right: 310x340) -->
   <g transform="translate(850, 85)" filter="url(#shadow5)">
-    <rect width="310" height="340" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.2" />
+    <rect width="310" height="340" rx="8" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
     <rect width="310" height="26" rx="8" fill="#7c3aed" />
     <rect y="16" width="310" height="10" fill="#7c3aed" />
-    <text x="12" y="18" class="wf-frame-title" fill="#ffffff">WIREFRAME 3: PRODUCT DETAIL (PDP)</text>
+    <text x="12" y="18" class="wf-frame-title">WIREFRAME 3: PRODUCT DETAIL (PDP)</text>
 
     <!-- Gallery Mock -->
-    <rect x="10" y="34" width="130" height="110" rx="4" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+    <rect x="10" y="34" width="130" height="110" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
     <text x="75" y="90" class="ui-btn" fill="#64748b" font-size="9">[Main Photo]</text>
-    <rect x="10" y="150" width="30" height="22" rx="2" fill="#0f172a" stroke="#38bdf8" />
-    <rect x="44" y="150" width="30" height="22" rx="2" fill="#0f172a" />
-    <rect x="78" y="150" width="30" height="22" rx="2" fill="#0f172a" />
-    <rect x="112" y="150" width="28" height="22" rx="2" fill="#0f172a" />
+    <rect x="10" y="150" width="30" height="22" rx="2" fill="#ffffff" stroke="#2563eb" />
+    <rect x="44" y="150" width="30" height="22" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+    <rect x="78" y="150" width="30" height="22" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+    <rect x="112" y="150" width="28" height="22" rx="2" fill="#ffffff" stroke="#cbd5e1" />
 
     <!-- Info Section Right -->
     <g transform="translate(150, 34)">
       <text x="0" y="14" class="ui-mock-txt" font-weight="700" font-size="10">iPhone 15 Pro Max</text>
       <text x="0" y="28" class="ui-mock-txt" font-size="8">Brand: Apple | Titanium</text>
-      <text x="0" y="44" class="ui-mock-txt" font-weight="700" fill="#a78bfa" font-size="11">₹1,48,900</text>
-      <text x="0" y="58" class="ui-mock-txt" font-size="8">MRP: ₹1,59,900 (Save 7%)</text>
-      <text x="0" y="72" class="ui-mock-txt" font-size="8">EMI from ₹7,219/mo</text>
+      <text x="0" y="44" class="ui-mock-txt" font-weight="800" fill="#7c3aed" font-size="11">Rs. 1,48,900</text>
+      <text x="0" y="58" class="ui-mock-txt" font-size="8">MRP: Rs. 1,59,900 (7% OFF)</text>
+      <text x="0" y="72" class="ui-mock-txt" font-size="8">EMI from Rs.7,219/mo</text>
 
-      <rect x="0" y="80" width="150" height="40" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect x="0" y="80" width="150" height="40" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="6" y="94" class="ui-mock-txt" font-size="7" font-weight="700">Check PIN Code Delivery:</text>
       <text x="6" y="106" class="ui-mock-txt" font-size="8">[ 560038 ] (Check)</text>
-      <text x="6" y="116" class="ui-mock-txt" font-size="7" fill="#34d399">✓ Delivery Tomorrow, 5 PM</text>
+      <text x="6" y="116" class="ui-mock-txt" font-size="7" fill="#047857" font-weight="700">[OK] Delivery Tomorrow, 5 PM</text>
 
-      <!-- Action Buttons -->
       <rect x="0" y="125" width="70" height="20" rx="3" fill="#2563eb" />
       <text x="35" y="138" class="ui-btn" font-size="8">Add to Cart</text>
 
-      <rect x="76" y="125" width="74" height="20" rx="3" fill="#f59e0b" />
+      <rect x="76" y="125" width="74" height="20" rx="3" fill="#d97706" />
       <text x="113" y="138" class="ui-btn" font-size="8">Buy Now</text>
     </g>
 
-    <!-- Specifications Table & Verified Reviews -->
+    <!-- Technical Specs & Reviews -->
     <g transform="translate(10, 180)">
-      <rect width="290" height="70" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect width="290" height="70" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="14" class="ui-mock-txt" font-weight="700">Technical Specs:</text>
-      <text x="8" y="28" class="ui-mock-txt" font-size="8">• Display: 6.7" Super Retina XDR OLED 120Hz ProMotion</text>
-      <text x="8" y="42" class="ui-mock-txt" font-size="8">• Processor: Apple A17 Pro (3nm) • Camera: 48MP Triple</text>
-      <text x="8" y="56" class="ui-mock-txt" font-size="8">• Warranty: 1 Year Manufacturer Warranty for Device</text>
+      <text x="8" y="28" class="ui-mock-txt" font-size="8">&#x2022; Display: 6.7" Super Retina XDR OLED 120Hz ProMotion</text>
+      <text x="8" y="42" class="ui-mock-txt" font-size="8">&#x2022; Processor: Apple A17 Pro (3nm) &#x2022; Camera: 48MP Triple</text>
+      <text x="8" y="56" class="ui-mock-txt" font-size="8">&#x2022; Warranty: 1 Year Manufacturer Warranty for Device</text>
 
-      <!-- Customer Reviews -->
-      <rect y="78" width="290" height="65" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect y="78" width="290" height="65" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="92" class="ui-mock-txt" font-weight="700">Customer Ratings &amp; Reviews (1,482):</text>
-      <text x="8" y="106" class="ui-mock-txt" font-size="8">★★★★★ Rohan K.: "Delivered in 24 hours to Mumbai!"</text>
-      <text x="8" y="120" class="ui-mock-txt" font-size="8">★★★★☆ Priya S.: "Great display and battery life."</text>
-      <rect x="8" y="126" width="110" height="14" rx="2" fill="#7c3aed" />
-      <text x="63" y="136" class="ui-btn" font-size="7">Write a Verified Review</text>
+      <text x="8" y="106" class="ui-mock-txt" font-size="8">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; Rohan K.: "Delivered in 24 hours to Mumbai!"</text>
+      <text x="8" y="120" class="ui-mock-txt" font-size="8">&#x2605;&#x2605;&#x2605;&#x2605;&#x2606; Priya S.: "Great display and battery life."</text>
+      <rect x="8" y="126" width="115" height="14" rx="2" fill="#7c3aed" />
+      <text x="65" y="136" class="ui-btn" font-size="7">Write a Verified Review</text>
     </g>
   </g>
 
   <!-- WIREFRAME 4: EXPRESS INDIAN CHECKOUT (Bottom Left: 560x370) -->
   <g transform="translate(40, 445)" filter="url(#shadow5)">
-    <rect width="560" height="370" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+    <rect width="560" height="370" rx="8" fill="#f8fafc" stroke="#fde68a" stroke-width="1.2" />
     <rect width="560" height="26" rx="8" fill="#d97706" />
     <rect y="16" width="560" height="10" fill="#d97706" />
-    <text x="12" y="18" class="wf-frame-title" fill="#ffffff">WIREFRAME 4: EXPRESS INDIAN CHECKOUT PAGE (/checkout)</text>
+    <text x="12" y="18" class="wf-frame-title">WIREFRAME 4: EXPRESS INDIAN CHECKOUT PAGE (/checkout)</text>
 
-    <!-- Address Form (Left half) -->
+    <!-- Address Form -->
     <g transform="translate(15, 36)">
-      <text x="0" y="14" class="ui-mock-txt" font-weight="700" fill="#fbbf24">1. SHIPPING ADDRESS</text>
-      <rect y="22" width="250" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <text x="0" y="14" class="ui-mock-txt" font-weight="700" fill="#b45309">1. SHIPPING ADDRESS</text>
+      <rect y="22" width="250" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="36" class="ui-mock-txt">Full Name: Aarav Patel</text>
 
-      <rect y="50" width="250" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect y="50" width="250" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="64" class="ui-mock-txt">Street: Flat 402, Cyber Heights</text>
 
-      <rect y="78" width="120" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect y="78" width="120" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="92" class="ui-mock-txt">City: Hyderabad</text>
 
-      <rect x="130" y="78" width="120" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect x="130" y="78" width="120" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="138" y="92" class="ui-mock-txt">State: Telangana v</text>
 
-      <rect y="106" width="120" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect y="106" width="120" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="120" class="ui-mock-txt">PIN Code: 500081</text>
 
-      <rect x="130" y="106" width="120" height="22" rx="3" fill="#0f172a" stroke="#475569" stroke-width="0.8" />
+      <rect x="130" y="106" width="120" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="138" y="120" class="ui-mock-txt">Phone: +91 91234 56789</text>
 
-      <text x="0" y="146" class="ui-mock-txt" font-weight="700" fill="#fbbf24">2. PAYMENT METHOD SELECTION</text>
-      <rect y="154" width="250" height="24" rx="3" fill="#0f172a" stroke="#f59e0b" stroke-width="1" />
+      <text x="0" y="146" class="ui-mock-txt" font-weight="700" fill="#b45309">2. PAYMENT METHOD SELECTION</text>
+      <rect y="154" width="250" height="24" rx="3" fill="#ffffff" stroke="#d97706" stroke-width="1" />
       <text x="8" y="169" class="ui-mock-txt" font-weight="700">(o) UPI (Google Pay, PhonePe, Paytm)</text>
       <text x="8" y="190" class="ui-mock-txt" font-size="8">Enter UPI VPA: [ aarav@okhdfcbank ]</text>
 
-      <rect y="200" width="250" height="20" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect y="200" width="250" height="20" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="214" class="ui-mock-txt">( ) Cash on Delivery (COD)</text>
 
-      <rect y="225" width="250" height="20" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect y="225" width="250" height="20" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="239" class="ui-mock-txt">( ) NetBanking (SBI, HDFC, ICICI)</text>
 
-      <rect y="250" width="250" height="20" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect y="250" width="250" height="20" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="264" class="ui-mock-txt">( ) Debit / Credit Card (RuPay, Visa)</text>
     </g>
 
-    <!-- Order Summary (Right half) -->
+    <!-- Order Summary -->
     <g transform="translate(290, 36)">
-      <text x="0" y="14" class="ui-mock-txt" font-weight="700" fill="#fbbf24">3. ORDER SUMMARY (2 Items)</text>
-      <rect y="22" width="255" height="140" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="10" y="40" class="ui-mock-txt">• iPhone 15 Pro Max (x1)</text>
-      <text x="195" y="40" class="ui-mock-txt">₹1,48,900</text>
-      <text x="10" y="58" class="ui-mock-txt">• boAt Nirvana ANC (x1)</text>
-      <text x="205" y="58" class="ui-mock-txt">₹2,499</text>
-      <line x1="10" y1="68" x2="245" y2="68" stroke="#334155" stroke-width="0.8" />
+      <text x="0" y="14" class="ui-mock-txt" font-weight="700" fill="#b45309">3. ORDER SUMMARY (2 Items)</text>
+      <rect y="22" width="255" height="140" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="10" y="40" class="ui-mock-txt">&#x2022; iPhone 15 Pro Max (x1)</text>
+      <text x="185" y="40" class="ui-mock-txt">Rs. 1,48,900</text>
+      <text x="10" y="58" class="ui-mock-txt">&#x2022; boAt Nirvana ANC (x1)</text>
+      <text x="195" y="58" class="ui-mock-txt">Rs. 2,499</text>
+      <line x1="10" y1="68" x2="245" y2="68" stroke="#cbd5e1" stroke-width="0.8" />
 
       <text x="10" y="84" class="ui-mock-txt">Items Subtotal:</text>
-      <text x="195" y="84" class="ui-mock-txt">₹1,51,399</text>
+      <text x="185" y="84" class="ui-mock-txt">Rs. 1,51,399</text>
       <text x="10" y="100" class="ui-mock-txt">Delivery Charges:</text>
-      <text x="215" y="100" class="ui-mock-txt" fill="#34d399">FREE</text>
+      <text x="205" y="100" class="ui-mock-txt" fill="#047857" font-weight="700">FREE</text>
       <text x="10" y="116" class="ui-mock-txt">Promo (PANIC10):</text>
-      <text x="200" y="116" class="ui-mock-txt" fill="#38bdf8">- ₹2,500</text>
-      <line x1="10" y1="124" x2="245" y2="124" stroke="#334155" stroke-width="0.8" />
+      <text x="195" y="116" class="ui-mock-txt" fill="#2563eb">- Rs. 2,500</text>
+      <line x1="10" y1="124" x2="245" y2="124" stroke="#cbd5e1" stroke-width="0.8" />
 
       <text x="10" y="142" class="ui-mock-txt" font-weight="700">Total Payable Amount:</text>
-      <text x="180" y="142" class="ui-mock-txt" font-weight="700" fill="#fbbf24">₹1,48,899</text>
+      <text x="175" y="142" class="ui-mock-txt" font-weight="800" fill="#b45309">Rs. 1,48,899</text>
 
-      <!-- Place Order Button -->
-      <rect y="175" width="255" height="38" rx="6" fill="#10b981" />
-      <text x="127" y="198" class="ui-btn" font-size="11">PLACE ORDER &amp; PAY (₹1,48,899) -></text>
-      <text x="20" y="230" class="ui-mock-txt" font-size="8">✓ 256-Bit SSL Encrypted • 7-Day Easy Return Guarantee</text>
+      <rect y="175" width="255" height="38" rx="6" fill="#059669" />
+      <text x="127" y="198" class="ui-btn" font-size="11">PLACE ORDER &amp; PAY (Rs. 1,48,899) -></text>
+      <text x="10" y="230" class="ui-mock-txt" font-size="8">&#x2713; 256-Bit SSL Encrypted &#x2022; 7-Day Easy Return Guarantee</text>
     </g>
   </g>
 
-  <!-- WIREFRAME 5: ADMIN INTELLIGENCE & OPERATIONS DASHBOARD (Bottom Right: 540x370) -->
+  <!-- WIREFRAME 5: ADMIN INTELLIGENCE (Bottom Right: 540x370) -->
   <g transform="translate(620, 445)" filter="url(#shadow5)">
-    <rect width="540" height="370" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.2" />
+    <rect width="540" height="370" rx="8" fill="#f8fafc" stroke="#a5f3fc" stroke-width="1.2" />
     <rect width="540" height="26" rx="8" fill="#0891b2" />
     <rect y="16" width="540" height="10" fill="#0891b2" />
-    <text x="12" y="18" class="wf-frame-title" fill="#ffffff">WIREFRAME 5: ADMIN INTELLIGENCE &amp; OPERATIONS HUB</text>
+    <text x="12" y="18" class="wf-frame-title">WIREFRAME 5: ADMIN INTELLIGENCE &amp; OPERATIONS HUB</text>
 
     <!-- Navigation Tabs -->
     <g transform="translate(15, 34)">
       <rect x="0" y="0" width="80" height="22" rx="3" fill="#0891b2" />
       <text x="40" y="14" class="ui-btn" font-size="8">Overview</text>
-      <rect x="85" y="0" width="80" height="22" rx="3" fill="#0f172a" />
-      <text x="125" y="14" class="ui-btn" font-size="8" fill="#94a3b8">Products</text>
-      <rect x="170" y="0" width="80" height="22" rx="3" fill="#0f172a" />
-      <text x="210" y="14" class="ui-btn" font-size="8" fill="#94a3b8">Orders</text>
-      <rect x="255" y="0" width="80" height="22" rx="3" fill="#0f172a" />
-      <text x="295" y="14" class="ui-btn" font-size="8" fill="#94a3b8">Users</text>
+      <rect x="85" y="0" width="80" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="125" y="14" class="ui-btn" font-size="8" fill="#64748b">Products</text>
+      <rect x="170" y="0" width="80" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="210" y="14" class="ui-btn" font-size="8" fill="#64748b">Orders</text>
+      <rect x="255" y="0" width="80" height="22" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="295" y="14" class="ui-btn" font-size="8" fill="#64748b">Users</text>
     </g>
 
     <!-- 4 KPI Cards -->
     <g transform="translate(15, 65)">
-      <rect x="0" y="0" width="120" height="50" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect x="0" y="0" width="120" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="8" y="16" class="ui-mock-txt" font-size="7">TOTAL REVENUE</text>
-      <text x="8" y="34" class="ui-mock-txt" font-weight="700" fill="#34d399">₹45,82,450</text>
-      <text x="8" y="44" class="ui-mock-txt" font-size="7" fill="#38bdf8">+18.4% MoM</text>
+      <text x="8" y="34" class="ui-mock-txt" font-weight="800" fill="#047857">Rs. 45,82,450</text>
+      <text x="8" y="44" class="ui-mock-txt" font-size="7" fill="#2563eb">+18.4% MoM</text>
 
-      <rect x="128" y="0" width="120" height="50" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect x="128" y="0" width="120" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="136" y="16" class="ui-mock-txt" font-size="7">TOTAL ORDERS</text>
-      <text x="136" y="34" class="ui-mock-txt" font-weight="700">1,482</text>
-      <text x="136" y="44" class="ui-mock-txt" font-size="7" fill="#f59e0b">84 Processing</text>
+      <text x="136" y="34" class="ui-mock-txt" font-weight="800">1,482</text>
+      <text x="136" y="44" class="ui-mock-txt" font-size="7" fill="#d97706">84 Processing</text>
 
-      <rect x="256" y="0" width="120" height="50" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect x="256" y="0" width="120" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="264" y="16" class="ui-mock-txt" font-size="7">REGISTERED USERS</text>
-      <text x="264" y="34" class="ui-mock-txt" font-weight="700">856</text>
+      <text x="264" y="34" class="ui-mock-txt" font-weight="800">856</text>
       <text x="264" y="44" class="ui-mock-txt" font-size="7">12 Admins</text>
 
-      <rect x="384" y="0" width="120" height="50" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
+      <rect x="384" y="0" width="120" height="50" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
       <text x="392" y="16" class="ui-mock-txt" font-size="7">CATALOG VOLUME</text>
-      <text x="392" y="34" class="ui-mock-txt" font-weight="700">10,000 SKUs</text>
+      <text x="392" y="34" class="ui-mock-txt" font-weight="800">10,000 SKUs</text>
       <text x="392" y="44" class="ui-mock-txt" font-size="7">6 Categories</text>
     </g>
 
     <!-- Recharts Sales Chart Mock -->
     <g transform="translate(15, 125)">
-      <rect width="505" height="105" rx="4" fill="#0f172a" stroke="#334155" stroke-width="0.8" />
-      <text x="10" y="16" class="ui-mock-txt" font-weight="700">Sales &amp; Demand Velocity (₹ Lakhs) | View: [ Daily ] [ Weekly ] [ (o) Monthly ]</text>
-      <!-- Simulated Line Chart -->
-      <polyline points="30,85 100,75 180,60 260,65 340,45 420,30 480,22" fill="none" stroke="#06b6d4" stroke-width="2.5" />
-      <circle cx="30" cy="85" r="3" fill="#38bdf8" />
-      <circle cx="100" cy="75" r="3" fill="#38bdf8" />
-      <circle cx="180" cy="60" r="3" fill="#38bdf8" />
-      <circle cx="260" cy="65" r="3" fill="#38bdf8" />
-      <circle cx="340" cy="45" r="3" fill="#38bdf8" />
-      <circle cx="420" cy="30" r="3" fill="#38bdf8" />
-      <circle cx="480" cy="22" r="4" fill="#34d399" />
+      <rect width="505" height="105" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+      <text x="10" y="16" class="ui-mock-txt" font-weight="700">Sales &amp; Demand Velocity (Rs. Lakhs) | View: [ Daily ] [ Weekly ] [ (o) Monthly ]</text>
+      <polyline points="30,85 100,75 180,60 260,65 340,45 420,30 480,22" fill="none" stroke="#0891b2" stroke-width="2.5" />
+      <circle cx="30" cy="85" r="3" fill="#0891b2" />
+      <circle cx="100" cy="75" r="3" fill="#0891b2" />
+      <circle cx="180" cy="60" r="3" fill="#0891b2" />
+      <circle cx="260" cy="65" r="3" fill="#0891b2" />
+      <circle cx="340" cy="45" r="3" fill="#0891b2" />
+      <circle cx="420" cy="30" r="3" fill="#0891b2" />
+      <circle cx="480" cy="22" r="4" fill="#059669" />
       <text x="20" y="98" class="ui-mock-txt" font-size="7">Jan (4.8L)</text>
       <text x="90" y="98" class="ui-mock-txt" font-size="7">Feb (6.2L)</text>
       <text x="170" y="98" class="ui-mock-txt" font-size="7">Mar (7.9L)</text>
       <text x="250" y="98" class="ui-mock-txt" font-size="7">Apr (6.9L)</text>
       <text x="330" y="98" class="ui-mock-txt" font-size="7">May (9.8L)</text>
       <text x="410" y="98" class="ui-mock-txt" font-size="7">Jun (12.5L)</text>
-      <text x="465" y="98" class="ui-mock-txt" font-size="7" fill="#34d399">Jul (15.8L)</text>
+      <text x="465" y="98" class="ui-mock-txt" font-size="7" fill="#047857" font-weight="700">Jul (15.8L)</text>
     </g>
 
     <!-- Low Stock Inventory Alerts Table -->
     <g transform="translate(15, 240)">
-      <rect width="505" height="110" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="0.8" />
-      <text x="10" y="16" class="ui-mock-txt" font-weight="700" fill="#f87171">CRITICAL INVENTORY &amp; DEMAND RESTOCK ALERTS (Stock &lt;= 5)</text>
+      <rect width="505" height="110" rx="4" fill="#ffffff" stroke="#fca5a5" stroke-width="0.8" />
+      <text x="10" y="16" class="ui-mock-txt" font-weight="700" fill="#b91c1c">CRITICAL INVENTORY &amp; DEMAND RESTOCK ALERTS (Stock &lt;= 5)</text>
 
       <text x="10" y="34" class="ui-mock-txt" font-size="8">OnePlus 12R 5G 256GB</text>
       <text x="180" y="34" class="ui-mock-txt" font-size="8">Mobiles</text>
-      <text x="260" y="34" class="ui-mock-txt" font-size="8" fill="#f87171">[ 2 left ! ]</text>
+      <text x="260" y="34" class="ui-mock-txt" font-size="8" fill="#b91c1c" font-weight="700">[ 2 left ! ]</text>
       <rect x="420" y="22" width="75" height="16" rx="2" fill="#2563eb" />
       <text x="457" y="33" class="ui-btn" font-size="7">+ Restock 50</text>
 
       <text x="10" y="56" class="ui-mock-txt" font-size="8">Sony WH-1000XM5</text>
       <text x="180" y="56" class="ui-mock-txt" font-size="8">Audio</text>
-      <text x="260" y="56" class="ui-mock-txt" font-size="8" fill="#ef4444">[ 0 OUT OF STOCK ]</text>
+      <text x="260" y="56" class="ui-mock-txt" font-size="8" fill="#b91c1c" font-weight="700">[ 0 OUT OF STOCK ]</text>
       <rect x="420" y="44" width="75" height="16" rx="2" fill="#2563eb" />
       <text x="457" y="55" class="ui-btn" font-size="7">+ Restock 25</text>
 
       <text x="10" y="78" class="ui-mock-txt" font-size="8">Apple Watch Ultra 2</text>
       <text x="180" y="78" class="ui-mock-txt" font-size="8">Wearables</text>
-      <text x="260" y="78" class="ui-mock-txt" font-size="8" fill="#f87171">[ 4 left ! ]</text>
+      <text x="260" y="78" class="ui-mock-txt" font-size="8" fill="#b91c1c" font-weight="700">[ 4 left ! ]</text>
       <rect x="420" y="66" width="75" height="16" rx="2" fill="#2563eb" />
       <text x="457" y="77" class="ui-btn" font-size="7">+ Restock 15</text>
     </g>
   </g>
 </svg>
-

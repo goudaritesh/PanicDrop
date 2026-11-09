@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PanicDrop — Architecture & System Design Visual Viewer</title>
+  <title>PanicDrop — Architecture &amp; System Design Visual Viewer</title>
   <style>
     :root {
-      --bg: #0b1120;
-      --card-bg: #1e293b;
-      --border: #334155;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --accent: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -23,13 +23,13 @@
       padding-bottom: 60px;
     }
     header {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
-      padding: 30px 40px;
+      padding: 24px 40px;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     .header-content {
       max-width: 1400px;
@@ -41,16 +41,14 @@
       gap: 15px;
     }
     h1 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      background: linear-gradient(90deg, #60a5fa, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #0f172a;
     }
     .subtitle {
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 2px;
     }
     .nav-pills {
       display: flex;
@@ -58,39 +56,39 @@
       flex-wrap: wrap;
     }
     .pill {
-      background: #0f172a;
-      border: 1px solid var(--border);
-      color: var(--text);
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      color: var(--primary);
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       transition: all 0.2s ease;
     }
-    .pill:hover, .pill.active {
+    .pill:hover {
       background: var(--primary);
       border-color: var(--primary);
       color: #fff;
     }
     main {
       max-width: 1400px;
-      margin: 40px auto;
+      margin: 30px auto;
       padding: 0 30px;
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 40px;
     }
     .diagram-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
     }
     .diagram-card:hover {
-      border-color: #60a5fa;
+      border-color: #93c5fd;
     }
     .card-header {
       display: flex;
@@ -104,9 +102,9 @@
     }
     .section-badge {
       display: inline-block;
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
       padding: 4px 10px;
       border-radius: 6px;
       font-size: 11px;
@@ -117,8 +115,8 @@
     }
     .card-title {
       font-size: 20px;
-      font-weight: 700;
-      color: #fff;
+      font-weight: 800;
+      color: #0f172a;
     }
     .card-desc {
       font-size: 13px;
@@ -126,17 +124,16 @@
       margin-top: 4px;
     }
     .diagram-img-wrapper {
-      background: #090d16;
-      border: 1px solid #1e293b;
+      background: #ffffff;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
       overflow-x: auto;
     }
     .diagram-img-wrapper img {
       max-width: 100%;
       height: auto;
-      border-radius: 8px;
       display: block;
       margin: 0 auto;
     }
@@ -145,22 +142,23 @@
       gap: 10px;
     }
     .btn {
-      background: #0f172a;
+      background: #ffffff;
       border: 1px solid var(--border);
-      color: var(--text);
+      color: #0f172a;
       padding: 6px 14px;
       border-radius: 6px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
     .btn:hover {
       background: var(--primary);
+      border-color: var(--primary);
       color: #fff;
     }
     footer {
@@ -177,12 +175,14 @@
     <div class="header-content">
       <div>
         <h1>PanicDrop Architecture &amp; System Design Visualizer</h1>
-        <div class="subtitle">Interactive Blueprint • 10,000+ SKU Catalog • Indian Market E-Commerce &amp; Inventory Engine</div>
+        <div class="subtitle">Clean Enterprise Edition &#x2022; 10,000+ SKU Catalog &#x2022; Indian Market E-Commerce &amp; Inventory Engine</div>
       </div>
       <nav class="nav-pills">
         <a href="#sec-3-1" class="pill">3.1 Architecture</a>
+        <a href="#sec-3-1-proxy" class="pill">3.1 Proxy Pattern</a>
         <a href="#sec-3-2" class="pill">3.2 Workflow</a>
         <a href="#sec-3-3" class="pill">3.3 UML</a>
+        <a href="#sec-3-3-seq" class="pill">3.3 Sequence</a>
         <a href="#sec-3-4" class="pill">3.4 Database ER</a>
         <a href="#sec-3-5" class="pill">3.5 Wireframes</a>
         <a href="#sec-3-6" class="pill">3.6 Tech Stack</a>
@@ -199,14 +199,31 @@
         <div>
           <span class="section-badge">Section 3.1</span>
           <h2 class="card-title">System Architecture Blueprint</h2>
-          <p class="card-desc">Multi-Tier Micro-Modular Architecture • Dual-Mode ES6 Persistence Proxy • Vercel &amp; Render Cloud Deployment</p>
+          <p class="card-desc">Multi-Tier Micro-Modular Architecture &#x2022; Dual-Mode ES6 Persistence Proxy &#x2022; Vercel &amp; Render Cloud Deployment</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.1-system-architecture.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.1-system-architecture.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
         <img src="./docs/diagrams/3.1-system-architecture.svg" alt="3.1 System Architecture Blueprint" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.1: PROXY PATTERN -->
+    <section id="sec-3-1-proxy" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.1 Supplemental</span>
+          <h2 class="card-title">ES6 Transparent Database Proxy Pattern</h2>
+          <p class="card-desc">Zero-Downtime Dynamic Dispatcher between Mongoose ODM and Embedded In-Memory Store</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.1-proxy-pattern.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.1-proxy-pattern.svg" alt="3.1 ES6 Proxy Pattern" />
       </div>
     </section>
 
@@ -216,10 +233,10 @@
         <div>
           <span class="section-badge">Section 3.2</span>
           <h2 class="card-title">System Workflow &amp; Fulfillment Lifecycle</h2>
-          <p class="card-desc">End-to-End Customer Purchase Journey • 6-Digit PIN Code Delivery Validator • Atomic Stock Deduction • Order State Machine</p>
+          <p class="card-desc">End-to-End Customer Purchase Journey &#x2022; 6-Digit PIN Code Delivery Validator &#x2022; Atomic Stock Deduction &#x2022; Order State Machine</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.2-system-workflow.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.2-system-workflow.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
@@ -233,14 +250,31 @@
         <div>
           <span class="section-badge">Section 3.3</span>
           <h2 class="card-title">UML Use Case &amp; Class Architecture Specification</h2>
-          <p class="card-desc">Actors (Guest, Customer, Administrator) • Domain Entities (User, Product, Order, Review, Address) • Controller Subsystems</p>
+          <p class="card-desc">Actors (Guest, Customer, Administrator) &#x2022; Domain Entities (User, Product, Order, Review, Address) &#x2022; Controller Subsystems</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.3-uml-diagrams.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.3-uml-diagrams.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
         <img src="./docs/diagrams/3.3-uml-diagrams.svg" alt="3.3 UML Diagrams" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.3: UML SEQUENCE -->
+    <section id="sec-3-3-seq" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.3 Supplemental</span>
+          <h2 class="card-title">UML Sequence Diagram: Order Checkout &amp; Stock Deduction</h2>
+          <p class="card-desc">Synchronous Invocations &#x2022; Atomic Inventory Validation &#x2022; Token Verification &#x2022; Order Creation</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.3-uml-sequence.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.3-uml-sequence.svg" alt="3.3 UML Sequence Diagram" />
       </div>
     </section>
 
@@ -250,10 +284,10 @@
         <div>
           <span class="section-badge">Section 3.4</span>
           <h2 class="card-title">Database Entity-Relationship (ER) Schema</h2>
-          <p class="card-desc">Relational Entity Mappings • Primary &amp; Foreign Keys • Embedded Subdocuments • Compound Indexing for 10k Items</p>
+          <p class="card-desc">Relational Entity Mappings &#x2022; Primary &amp; Foreign Keys &#x2022; Embedded Subdocuments &#x2022; Compound Indexing for 10k Items</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.4-database-er.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.4-database-er.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
@@ -267,10 +301,10 @@
         <div>
           <span class="section-badge">Section 3.5</span>
           <h2 class="card-title">User Interface &amp; Wireframe Architecture</h2>
-          <p class="card-desc">Storefront Landing Page • Catalog with Faceted Filters • Product Detail (PDP) • Express Indian Checkout • Admin Intelligence Hub</p>
+          <p class="card-desc">Storefront Landing Page &#x2022; Catalog with Faceted Filters &#x2022; Product Detail (PDP) &#x2022; Express Indian Checkout &#x2022; Admin Intelligence Hub</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.5-interface-wireframes.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.5-interface-wireframes.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
@@ -287,7 +321,7 @@
           <p class="card-desc">React 18.3, Vite 5.4, Tailwind CSS 3.4, Node.js 22, Express 4.21, MongoDB 7.0, Mongoose 8.9, Vercel &amp; Render Cloud PaaS</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.6-technology-stack.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.6-technology-stack.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
@@ -301,10 +335,10 @@
         <div>
           <span class="section-badge">Section 3.7</span>
           <h2 class="card-title">API &amp; Component System Design</h2>
-          <p class="card-desc">React Component Tree Hierarchy • Context State Synchronization • RESTful Endpoint Specifications • Express Middleware Pipeline</p>
+          <p class="card-desc">React Component Tree Hierarchy &#x2022; Context State Synchronization &#x2022; RESTful Endpoint Specifications &#x2022; Express Middleware Pipeline</p>
         </div>
         <div class="actions">
-          <a href="./docs/diagrams/3.7-api-component-design.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+          <a href="./docs/diagrams/3.7-api-component-design.svg" target="_blank" class="btn">&#x1F50D; Open High-Res SVG</a>
         </div>
       </div>
       <div class="diagram-img-wrapper">
@@ -320,4 +354,3 @@
 
 </body>
 </html>
-

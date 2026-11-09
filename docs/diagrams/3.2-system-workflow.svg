@@ -1,225 +1,228 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090d16" />
-      <stop offset="100%" stop-color="#131c2e" />
-    </linearGradient>
-    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#8b5cf6" />
-    </linearGradient>
     <filter id="shadow2" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.4" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
     </filter>
     <marker id="arrow2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb" />
     </marker>
     <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#d97706" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669" />
     </marker>
   </defs>
 
   <style>
-    .wf-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #ffffff; }
-    .wf-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94a3b8; }
-    .step-num { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 800; fill: #38bdf8; }
-    .step-title { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #f8fafc; }
-    .step-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #94a3b8; line-height: 1.4; }
-    .badge-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 600; fill: #38bdf8; }
+    .wf-title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 800; fill: #0f172a; }
+    .wf-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
+    .step-num { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 800; fill: #2563eb; }
+    .step-title { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .step-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #475569; line-height: 1.4; }
+    .badge-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700; fill: #1d4ed8; }
     .state-title { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 700; fill: #ffffff; }
   </style>
 
-  <!-- Canvas Background -->
-  <rect width="1200" height="800" rx="16" fill="url(#bgGrad2)" />
-  <rect x="1" y="1" width="1198" height="798" rx="15" fill="none" stroke="#1e293b" stroke-width="1.5" />
+  <!-- Clean White Canvas -->
+  <rect width="1200" height="800" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
 
   <!-- Header -->
   <g transform="translate(40, 30)">
-    <text x="0" y="18" class="wf-title">PanicDrop — 3.2: System Workflow &amp; Fulfillment Lifecycle</text>
-    <text x="0" y="38" class="wf-sub">End-to-End Customer Purchase Journey • PIN Code Estimation • Atomic Stock Decrement • Order State Machine</text>
+    <text x="0" y="18" class="wf-title">PanicDrop &#x2014; 3.2: System Workflow &amp; Fulfillment Lifecycle</text>
+    <text x="0" y="38" class="wf-sub">End-to-End Customer Purchase Journey &#x2022; PIN Code Estimation &#x2022; Atomic Stock Decrement &#x2022; Order State Machine</text>
   </g>
 
   <!-- ROW 1: DISCOVERY & SELECTION (Steps 1 to 4) -->
-  <!-- Step 1: Catalog Search & Filter -->
+  <!-- Step 1 -->
   <g transform="translate(40, 85)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#0284c7" opacity="0.2" />
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2" />
     <text x="23" y="33" class="step-num">01</text>
     <text x="50" y="32" class="step-title">Catalog Discovery</text>
-    <text x="18" y="62" class="step-desc">• Search 10,000+ Flipkart items</text>
-    <text x="18" y="82" class="step-desc">• Filter: Brand, Price (₹), 4★+ rating</text>
-    <text x="18" y="102" class="step-desc">• Fast pagination across 417+ pages</text>
-    <rect x="18" y="118" width="120" height="20" rx="4" fill="#0369a1" opacity="0.3" />
+    <text x="18" y="62" class="step-desc">&#x2022; Search 10,000+ Flipkart items</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Filter: Brand, Price (Rs.), 4&#x2605;+ rating</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Fast pagination across 417+ pages</text>
+    <rect x="18" y="118" width="120" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
     <text x="24" y="132" class="badge-txt">GET /api/products</text>
   </g>
 
-  <!-- Arrow 1 -> 2 -->
-  <line x1="295" y1="160" x2="325" y2="160" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 1 to 2 -->
+  <line x1="295" y1="160" x2="325" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 2: Product Detail & PIN Check -->
+  <!-- Step 2 -->
   <g transform="translate(325, 85)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#0284c7" opacity="0.2" />
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2" />
     <text x="23" y="33" class="step-num">02</text>
     <text x="50" y="32" class="step-title">Product Details (PDP)</text>
-    <text x="18" y="62" class="step-desc">• Hi-res multi-image gallery switcher</text>
-    <text x="18" y="82" class="step-desc">• Enter 6-digit Indian PIN (e.g. 560038)</text>
-    <text x="18" y="102" class="step-desc">• Dynamic delivery date calculation</text>
-    <rect x="18" y="118" width="135" height="20" rx="4" fill="#0369a1" opacity="0.3" />
+    <text x="18" y="62" class="step-desc">&#x2022; Hi-res multi-image gallery switcher</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Enter 6-digit Indian PIN (560038)</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Dynamic delivery date calculation</text>
+    <rect x="18" y="118" width="145" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
     <text x="24" y="132" class="badge-txt">Delivery ETA Validator</text>
   </g>
 
-  <!-- Arrow 2 -> 3 -->
-  <line x1="580" y1="160" x2="610" y2="160" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 2 to 3 -->
+  <line x1="580" y1="160" x2="610" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 3: Cart & Wishlist Context -->
+  <!-- Step 3 -->
   <g transform="translate(610, 85)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#0284c7" opacity="0.2" />
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2" />
     <text x="23" y="33" class="step-num">03</text>
     <text x="50" y="32" class="step-title">Cart &amp; Slide Drawer</text>
-    <text x="18" y="62" class="step-desc">• Click "Add to Cart" or "Buy Now"</text>
-    <text x="18" y="82" class="step-desc">• Update CartContext &amp; LocalStorage</text>
-    <text x="18" y="102" class="step-desc">• Promo code apply &amp; INR Subtotal</text>
-    <rect x="18" y="118" width="140" height="20" rx="4" fill="#0369a1" opacity="0.3" />
+    <text x="18" y="62" class="step-desc">&#x2022; Click "Add to Cart" or "Buy Now"</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Update CartContext &amp; LocalStorage</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Promo code apply &amp; INR Subtotal</text>
+    <rect x="18" y="118" width="150" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
     <text x="24" y="132" class="badge-txt">CartContext (Client Sync)</text>
   </g>
 
-  <!-- Arrow 3 -> 4 -->
-  <line x1="865" y1="160" x2="895" y2="160" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 3 to 4 -->
+  <line x1="865" y1="160" x2="895" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 4: Authentication & Route Guard -->
+  <!-- Step 4 -->
   <g transform="translate(895, 85)" filter="url(#shadow2)">
-    <rect width="265" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#0284c7" opacity="0.2" />
+    <rect width="265" height="150" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2" />
     <text x="23" y="33" class="step-num">04</text>
     <text x="50" y="32" class="step-title">Auth Guard (JWT)</text>
-    <text x="18" y="62" class="step-desc">• Checks if user is authenticated</text>
-    <text x="18" y="82" class="step-desc">• If guest: redirect to /login with state</text>
-    <text x="18" y="102" class="step-desc">• If logged in: pass to /checkout</text>
-    <rect x="18" y="118" width="145" height="20" rx="4" fill="#0369a1" opacity="0.3" />
+    <text x="18" y="62" class="step-desc">&#x2022; Checks if user is authenticated</text>
+    <text x="18" y="82" class="step-desc">&#x2022; If guest: redirect to /login with state</text>
+    <text x="18" y="102" class="step-desc">&#x2022; If logged in: pass to /checkout</text>
+    <rect x="18" y="118" width="155" height="20" rx="4" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" />
     <text x="24" y="132" class="badge-txt">&lt;ProtectedRoute&gt; Guard</text>
   </g>
 
-  <!-- DOWNWARD CONNECTOR -->
-  <path d="M 1027 235 L 1027 275 L 170 275 L 170 310" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow2)" />
+  <!-- Downward connector -->
+  <path d="M 1027 235 L 1027 275 L 170 275 L 170 310" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow2)" />
 
   <!-- ROW 2: CHECKOUT & TRANSACTION (Steps 5 to 8) -->
-  <!-- Step 5: Indian Address & Payment -->
+  <!-- Step 5 -->
   <g transform="translate(40, 310)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#8b5cf6" opacity="0.2" />
-    <text x="23" y="33" class="step-num" fill="#a78bfa">05</text>
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2" />
+    <text x="23" y="33" class="step-num" fill="#7c3aed">05</text>
     <text x="50" y="32" class="step-title">Express Indian Checkout</text>
-    <text x="18" y="62" class="step-desc">• Select State (28 states / 8 UTs)</text>
-    <text x="18" y="82" class="step-desc">• Validate 6-digit Indian PIN Code</text>
-    <text x="18" y="102" class="step-desc">• Choose: UPI, COD, NetBanking, Card</text>
-    <rect x="18" y="118" width="130" height="20" rx="4" fill="#7c3aed" opacity="0.3" />
-    <text x="24" y="132" class="badge-txt" fill="#c4b5fd">UPI / COD / NetBanking</text>
+    <text x="18" y="62" class="step-desc">&#x2022; Select State (28 states / 8 UTs)</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Validate 6-digit Indian PIN Code</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Choose: UPI, COD, NetBanking, Card</text>
+    <rect x="18" y="118" width="140" height="20" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="24" y="132" class="badge-txt" fill="#6d28d9">UPI / COD / NetBanking</text>
   </g>
 
-  <!-- Arrow 5 -> 6 -->
-  <line x1="295" y1="385" x2="325" y2="385" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 5 to 6 -->
+  <line x1="295" y1="385" x2="325" y2="385" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 6: Atomic Stock Deduction -->
+  <!-- Step 6 -->
   <g transform="translate(325, 310)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#8b5cf6" opacity="0.2" />
-    <text x="23" y="33" class="step-num" fill="#a78bfa">06</text>
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2" />
+    <text x="23" y="33" class="step-num" fill="#7c3aed">06</text>
     <text x="50" y="32" class="step-title">Atomic Inventory Check</text>
-    <text x="18" y="62" class="step-desc">• Server verifies product.stock >= qty</text>
-    <text x="18" y="82" class="step-desc">• Atomically decrements product.stock</text>
-    <text x="18" y="102" class="step-desc">• Rejects if another user claims stock</text>
-    <rect x="18" y="118" width="135" height="20" rx="4" fill="#7c3aed" opacity="0.3" />
-    <text x="24" y="132" class="badge-txt" fill="#c4b5fd">POST /api/orders</text>
+    <text x="18" y="62" class="step-desc">&#x2022; Server verifies product.stock &gt;= qty</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Atomically decrements product.stock</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Rejects if another user claims stock</text>
+    <rect x="18" y="118" width="135" height="20" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="24" y="132" class="badge-txt" fill="#6d28d9">POST /api/orders</text>
   </g>
 
-  <!-- Arrow 6 -> 7 -->
-  <line x1="580" y1="385" x2="610" y2="385" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 6 to 7 -->
+  <line x1="580" y1="385" x2="610" y2="385" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 7: Order & Tracking ID Gen -->
+  <!-- Step 7 -->
   <g transform="translate(610, 310)" filter="url(#shadow2)">
-    <rect width="255" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#8b5cf6" opacity="0.2" />
-    <text x="23" y="33" class="step-num" fill="#a78bfa">07</text>
+    <rect width="255" height="150" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2" />
+    <text x="23" y="33" class="step-num" fill="#7c3aed">07</text>
     <text x="50" y="32" class="step-title">Order Creation (TRK-ID)</text>
-    <text x="18" y="62" class="step-desc">• Generates TRK-XXXXXX tracking code</text>
-    <text x="18" y="82" class="step-desc">• Persists order with 'processing' state</text>
-    <text x="18" y="102" class="step-desc">• Returns 201 Created to Checkout UI</text>
-    <rect x="18" y="118" width="140" height="20" rx="4" fill="#7c3aed" opacity="0.3" />
-    <text x="24" y="132" class="badge-txt" fill="#c4b5fd">Order Schema Persist</text>
+    <text x="18" y="62" class="step-desc">&#x2022; Generates TRK-XXXXXX tracking code</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Persists order with 'processing' state</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Returns 201 Created to Checkout UI</text>
+    <rect x="18" y="118" width="145" height="20" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="24" y="132" class="badge-txt" fill="#6d28d9">Order Schema Persist</text>
   </g>
 
-  <!-- Arrow 7 -> 8 -->
-  <line x1="865" y1="385" x2="895" y2="385" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrow2)" />
+  <!-- Arrow 7 to 8 -->
+  <line x1="865" y1="385" x2="895" y2="385" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow2)" />
 
-  <!-- Step 8: Client Confirmation & Clear -->
+  <!-- Step 8 -->
   <g transform="translate(895, 310)" filter="url(#shadow2)">
-    <rect width="265" height="150" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" />
-    <circle cx="28" cy="28" r="14" fill="#8b5cf6" opacity="0.2" />
-    <text x="23" y="33" class="step-num" fill="#a78bfa">08</text>
+    <rect width="265" height="150" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2" />
+    <text x="23" y="33" class="step-num" fill="#7c3aed">08</text>
     <text x="50" y="32" class="step-title">Order Confirmation</text>
-    <text x="18" y="62" class="step-desc">• Calls clearCart() on CartContext</text>
-    <text x="18" y="82" class="step-desc">• Surfaces Order Placed Success Banner</text>
-    <text x="18" y="102" class="step-desc">• Navigates user to /orders with tracker</text>
-    <rect x="18" y="118" width="135" height="20" rx="4" fill="#7c3aed" opacity="0.3" />
-    <text x="24" y="132" class="badge-txt" fill="#c4b5fd">clearCart() + /orders</text>
+    <text x="18" y="62" class="step-desc">&#x2022; Calls clearCart() on CartContext</text>
+    <text x="18" y="82" class="step-desc">&#x2022; Surfaces Order Placed Success Banner</text>
+    <text x="18" y="102" class="step-desc">&#x2022; Navigates user to /orders with tracker</text>
+    <rect x="18" y="118" width="140" height="20" rx="4" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1" />
+    <text x="24" y="132" class="badge-txt" fill="#6d28d9">clearCart() + /orders</text>
   </g>
 
   <!-- ROW 3: ORDER LIFECYCLE STATE MACHINE (Bottom Section) -->
   <g transform="translate(40, 500)">
-    <rect width="1120" height="255" rx="12" fill="#111827" stroke="#374151" stroke-width="1.2" filter="url(#shadow2)" />
+    <rect width="1120" height="255" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow2)" />
     <text x="24" y="32" class="step-title" font-size="16">Fulfillment Lifecycle &amp; Order Status Transitions (State Machine)</text>
     <text x="24" y="52" class="step-desc">Real-time status updates tracked by Customer in /orders and managed by Administrator in /admin/dashboard</text>
 
     <!-- State 1: Pending -->
     <g transform="translate(30, 80)">
-      <rect width="180" height="85" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
-      <text x="20" y="32" class="state-title" fill="#fbbf24">STATUS: PENDING</text>
-      <text x="20" y="52" class="step-desc">Order registered</text>
-      <text x="20" y="68" class="step-desc">Awaiting gateway/COD</text>
+      <rect width="180" height="85" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" />
+      <rect width="180" height="22" rx="8" fill="#f59e0b" />
+      <rect y="14" width="180" height="8" fill="#f59e0b" />
+      <text x="12" y="16" class="state-title">STATUS: PENDING</text>
+      <text x="12" y="46" class="step-desc">Order registered</text>
+      <text x="12" y="64" class="step-desc">Awaiting gateway/COD</text>
     </g>
 
-    <line x1="210" y1="122" x2="255" y2="122" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow-amber)" />
+    <line x1="210" y1="122" x2="255" y2="122" stroke="#d97706" stroke-width="2" marker-end="url(#arrow-amber)" />
 
     <!-- State 2: Processing -->
     <g transform="translate(255, 80)">
-      <rect width="180" height="85" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
-      <text x="20" y="32" class="state-title" fill="#60a5fa">STATUS: PROCESSING</text>
-      <text x="20" y="52" class="step-desc">Payment settled / COD ok</text>
-      <text x="20" y="68" class="step-desc">Warehouse picking &amp; pack</text>
+      <rect width="180" height="85" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" />
+      <rect width="180" height="22" rx="8" fill="#2563eb" />
+      <rect y="14" width="180" height="8" fill="#2563eb" />
+      <text x="12" y="16" class="state-title">STATUS: PROCESSING</text>
+      <text x="12" y="46" class="step-desc">Payment settled / COD ok</text>
+      <text x="12" y="64" class="step-desc">Warehouse picking &amp; pack</text>
     </g>
 
-    <line x1="435" y1="122" x2="480" y2="122" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow2)" />
+    <line x1="435" y1="122" x2="480" y2="122" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow2)" />
 
     <!-- State 3: Shipped -->
     <g transform="translate(480, 80)">
-      <rect width="180" height="85" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" />
-      <text x="20" y="32" class="state-title" fill="#c084fc">STATUS: SHIPPED</text>
-      <text x="20" y="52" class="step-desc">Handed to BlueDart/Delhivery</text>
-      <text x="20" y="68" class="step-desc">In transit to destination PIN</text>
+      <rect width="180" height="85" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" />
+      <rect width="180" height="22" rx="8" fill="#7c3aed" />
+      <rect y="14" width="180" height="8" fill="#7c3aed" />
+      <text x="12" y="16" class="state-title">STATUS: SHIPPED</text>
+      <text x="12" y="46" class="step-desc">Handed to BlueDart/Delhivery</text>
+      <text x="12" y="64" class="step-desc">In transit to destination PIN</text>
     </g>
 
-    <line x1="660" y1="122" x2="705" y2="122" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow2)" />
+    <line x1="660" y1="122" x2="705" y2="122" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow2)" />
 
     <!-- State 4: Delivered -->
     <g transform="translate(705, 80)">
-      <rect width="180" height="85" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
-      <text x="20" y="32" class="state-title" fill="#34d399">STATUS: DELIVERED</text>
-      <text x="20" y="52" class="step-desc">Delivered to recipient</text>
-      <text x="20" y="68" class="step-desc">OTP verified &amp; closed</text>
+      <rect width="180" height="85" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5" />
+      <rect width="180" height="22" rx="8" fill="#059669" />
+      <rect y="14" width="180" height="8" fill="#059669" />
+      <text x="12" y="16" class="state-title">STATUS: DELIVERED</text>
+      <text x="12" y="46" class="step-desc">Delivered to recipient</text>
+      <text x="12" y="64" class="step-desc">OTP verified &amp; closed</text>
     </g>
 
-    <!-- State 5: Cancelled (Bottom right branch) -->
+    <!-- State 5: Cancelled -->
     <g transform="translate(930, 80)">
-      <rect width="160" height="85" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1.5" />
-      <text x="16" y="32" class="state-title" fill="#f87171">STATUS: CANCELLED</text>
-      <text x="16" y="52" class="step-desc">Payment timeout or user</text>
-      <text x="16" y="68" class="step-desc">Restores inventory stock</text>
+      <rect width="160" height="85" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" />
+      <rect width="160" height="22" rx="8" fill="#dc2626" />
+      <rect y="14" width="160" height="8" fill="#dc2626" />
+      <text x="12" y="16" class="state-title">STATUS: CANCELLED</text>
+      <text x="12" y="46" class="step-desc">Payment timeout or user</text>
+      <text x="12" y="64" class="step-desc">Restores inventory stock</text>
     </g>
 
-    <path d="M 345 165 L 345 200 L 1010 200 L 1010 165" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrow-amber)" />
-    <text x="610" y="194" class="step-desc" fill="#f87171">Admin / User Cancellation (Triggers Automatic Inventory Restock)</text>
+    <path d="M 345 165 L 345 200 L 1010 200 L 1010 165" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrow-amber)" />
+    <text x="610" y="194" class="step-desc" fill="#b91c1c" font-weight="600">Admin / User Cancellation (Triggers Automatic Inventory Restock)</text>
   </g>
 </svg>
-
