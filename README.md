@@ -14,6 +14,7 @@ PanicDrop is a modern, high-performance, full-stack e-commerce platform and inte
   - **Backend**: Node.js, Express.js (REST API, JWT Auth, Route Guards)
   - **Database**: MongoDB (Mongoose with compound indexing & in-memory fallback)
   - **Deployment**: Vercel (Frontend) & Render (Backend API)
+- **Architecture & System Design Documentation**: See [`Diagrams.md`](./Diagrams.md) for full architectural models, workflows, UML, database ER diagrams, wireframes, tech stack, and API specs.
 
 ---
 
@@ -61,6 +62,8 @@ PanicDrop is a modern, high-performance, full-stack e-commerce platform and inte
 
 ## 🛠️ Tech Stack & Architecture
 
+For comprehensive engineering specifications, schema dictionaries, wireframe mockups, and API tables, explore [**`Diagrams.md`**](./Diagrams.md) or open the interactive [**`Diagrams.html`**](./Diagrams.html) in your browser.
+
 ```
 PanicDrop/
 ├── backend/
@@ -82,10 +85,54 @@ PanicDrop/
 │   ├── services/            # Axios/Fetch API Bridge
 │   ├── App.jsx              # React Router Navigation
 │   └── main.jsx
+├── docs/
+│   └── diagrams/            # Rendered High-Resolution Vector SVG Architecture Diagrams
+├── Diagrams.md              # In-Depth Engineering Architecture Specification
+├── Diagrams.html            # Standalone Browser Interactive Diagrams Viewer
 ├── vercel.json              # Vercel SPA Routing Configuration
 ├── tailwind.config.js
 └── package.json
 ```
+
+---
+
+## 📐 System Architecture & Visual Design Diagrams
+
+All diagrams below are rendered in high-resolution vector SVG format and display natively in any Markdown previewer:
+
+### 3.1: System Architecture Blueprint
+![PanicDrop 3.1: System Architecture Blueprint](./docs/diagrams/3.1-system-architecture.svg)
+
+---
+
+### 3.2: System Workflow & Order Fulfillment Lifecycle
+![PanicDrop 3.2: System Workflow & Fulfillment Lifecycle](./docs/diagrams/3.2-system-workflow.svg)
+
+---
+
+### 3.3: UML Use Case & Class Architecture Specification
+![PanicDrop 3.3: UML Use Case & Class Architecture Specification](./docs/diagrams/3.3-uml-diagrams.svg)
+
+---
+
+### 3.4: Database Entity-Relationship (ER) Schema
+![PanicDrop 3.4: Database Entity-Relationship (ER) Schema](./docs/diagrams/3.4-database-er.svg)
+
+---
+
+### 3.5: User Interface & Wireframe Architecture
+![PanicDrop 3.5: User Interface & Wireframe Architecture](./docs/diagrams/3.5-interface-wireframes.svg)
+
+---
+
+### 3.6: Technology Stack & Tooling Ecosystem
+![PanicDrop 3.6: Technology Stack & Tooling Ecosystem](./docs/diagrams/3.6-technology-stack.svg)
+
+---
+
+### 3.7: API & Component System Design
+![PanicDrop 3.7: API & Component System Design](./docs/diagrams/3.7-api-component-design.svg)
+
 
 ---
 

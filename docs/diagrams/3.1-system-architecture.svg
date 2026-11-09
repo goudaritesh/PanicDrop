@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="apiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="serviceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="mlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #ffffff; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #94a3b8; }
+    .tier-title { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; fill: #ffffff; letter-spacing: 0.5px; }
+    .box-title { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; }
+    .box-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #cbd5e1; }
+    .badge { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 600; }
+    .conn-label { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #94a3b8; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="800" rx="16" fill="url(#bgGrad)" />
+  <rect x="1" y="1" width="1198" height="798" rx="15" fill="none" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(40, 30)">
+    <circle cx="20" cy="18" r="16" fill="#3b82f6" opacity="0.2" />
+    <path d="M12 18 L20 10 L28 18 L20 26 Z" fill="#60a5fa" />
+    <text x="45" y="18" class="title">PanicDrop — 3.1: System Architecture Blueprint</text>
+    <text x="45" y="36" class="subtitle">Multi-Tier Micro-Modular Architecture • Resilient Dual-Mode Persistence • Indian Retail E-Commerce Engine</text>
+  </g>
+
+  <!-- TIER 1: CLIENT PRESENTATION TIER -->
+  <g transform="translate(40, 85)">
+    <rect width="1120" height="110" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)" opacity="0.95" />
+    <rect width="1120" height="30" rx="12" fill="url(#clientGrad)" />
+    <rect y="18" width="1120" height="12" fill="url(#clientGrad)" />
+    <text x="16" y="20" class="tier-title">TIER 1: CLIENT PRESENTATION &amp; EDGE TIER (React 18 SPA + Vercel Global Edge)</text>
+
+    <!-- Component 1: Storefront SPA -->
+    <rect x="20" y="42" width="250" height="56" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="32" y="62" class="box-title">React 18 Storefront (Vite 5.4)</text>
+    <text x="32" y="80" class="box-desc">Landing, Catalog (10k items), PDP, Checkout</text>
+
+    <!-- Component 2: Client State & Context -->
+    <rect x="290" y="42" width="250" height="56" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="302" y="62" class="box-title">Context API (Auth, Cart, Wishlist)</text>
+    <text x="302" y="80" class="box-desc">Optimistic Updates &amp; LocalStorage Sync</text>
+
+    <!-- Component 3: Analytics UI -->
+    <rect x="560" y="42" width="250" height="56" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="572" y="62" class="box-title">Admin Dashboard (Recharts 3.10)</text>
+    <text x="572" y="80" class="box-desc">Real-time KPI Cards, Sales &amp; Demand Graphs</text>
+
+    <!-- Component 4: CDN Edge Delivery -->
+    <rect x="830" y="42" width="270" height="56" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1" />
+    <text x="842" y="62" class="box-title">Vercel CDN Edge Network</text>
+    <text x="842" y="80" class="box-desc">HTTPS, SPA Rewrites (vercel.json), Brotli</text>
+  </g>
+
+  <!-- Connectors Tier 1 -> Tier 2 -->
+  <line x1="600" y1="195" x2="600" y2="230" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)" />
+  <text x="610" y="215" class="conn-label">REST API (JSON over HTTPS with Bearer JWT)</text>
+
+  <!-- TIER 2: API GATEWAY & SECURITY MIDDLEWARE -->
+  <g transform="translate(40, 230)">
+    <rect width="1120" height="100" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)" opacity="0.95" />
+    <rect width="1120" height="30" rx="12" fill="url(#apiGrad)" />
+    <rect y="18" width="1120" height="12" fill="url(#apiGrad)" />
+    <text x="16" y="20" class="tier-title">TIER 2: API GATEWAY &amp; SECURITY MIDDLEWARE (Express.js 4.21 on Render PaaS)</text>
+
+    <!-- Pipeline Items -->
+    <rect x="20" y="42" width="195" height="46" rx="6" fill="#0f172a" stroke="#6d28d9" stroke-width="1" />
+    <text x="32" y="60" class="box-title">CORS &amp; Body Parser</text>
+    <text x="32" y="76" class="box-desc">Allowed Origins &amp; JSON parse</text>
+
+    <line x1="215" y1="65" x2="245" y2="65" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)" />
+
+    <rect x="245" y="42" width="195" height="46" rx="6" fill="#0f172a" stroke="#6d28d9" stroke-width="1" />
+    <text x="257" y="60" class="box-title">Morgan Logger</text>
+    <text x="257" y="76" class="box-desc">HTTP Traffic Inspection</text>
+
+    <line x1="440" y1="65" x2="470" y2="65" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)" />
+
+    <rect x="470" y="42" width="205" height="46" rx="6" fill="#0f172a" stroke="#6d28d9" stroke-width="1" />
+    <text x="482" y="60" class="box-title">JWT Auth Guard (protect)</text>
+    <text x="482" y="76" class="box-desc">HMAC-SHA256 Token Verify</text>
+
+    <line x1="675" y1="65" x2="705" y2="65" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)" />
+
+    <rect x="705" y="42" width="195" height="46" rx="6" fill="#0f172a" stroke="#6d28d9" stroke-width="1" />
+    <text x="717" y="60" class="box-title">RBAC Guard (adminOnly)</text>
+    <text x="717" y="76" class="box-desc">Role Enforcement Clearance</text>
+
+    <line x1="900" y1="65" x2="930" y2="65" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow)" />
+
+    <rect x="930" y="42" width="170" height="46" rx="6" fill="#0f172a" stroke="#6d28d9" stroke-width="1" />
+    <text x="942" y="60" class="box-title">Error Handler</text>
+    <text x="942" y="76" class="box-desc">404 &amp; 500 Catch-All</text>
+  </g>
+
+  <!-- Connectors Tier 2 -> Tier 3 -->
+  <line x1="600" y1="330" x2="600" y2="365" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- TIER 3: BUSINESS LOGIC & CONTROLLER SERVICES -->
+  <g transform="translate(40, 365)">
+    <rect width="1120" height="110" rx="12" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" filter="url(#shadow)" opacity="0.95" />
+    <rect width="1120" height="30" rx="12" fill="url(#serviceGrad)" />
+    <rect y="18" width="1120" height="12" fill="url(#serviceGrad)" />
+    <text x="16" y="20" class="tier-title">TIER 3: CORE APPLICATION CONTROLLERS &amp; DOMAIN SERVICES</text>
+
+    <!-- Controller 1: Auth -->
+    <rect x="20" y="42" width="205" height="56" rx="8" fill="#0f172a" stroke="#0e7490" stroke-width="1" />
+    <text x="32" y="62" class="box-title">AuthController</text>
+    <text x="32" y="80" class="box-desc">bcrypt (10 rounds), token issuance</text>
+
+    <!-- Controller 2: Product -->
+    <rect x="245" y="42" width="205" height="56" rx="8" fill="#0f172a" stroke="#0e7490" stroke-width="1" />
+    <text x="257" y="62" class="box-title">ProductController</text>
+    <text x="257" y="80" class="box-desc">Faceted filters, 10k pagination</text>
+
+    <!-- Controller 3: Order -->
+    <rect x="470" y="42" width="205" height="56" rx="8" fill="#0f172a" stroke="#0e7490" stroke-width="1" />
+    <text x="482" y="62" class="box-title">OrderController</text>
+    <text x="482" y="80" class="box-desc">Atomic stock decrement &amp; TRK-ID</text>
+
+    <!-- Controller 4: User -->
+    <rect x="695" y="42" width="195" height="56" rx="8" fill="#0f172a" stroke="#0e7490" stroke-width="1" />
+    <text x="707" y="62" class="box-title">UserController</text>
+    <text x="707" y="80" class="box-desc">Profiles &amp; spend stats aggregate</text>
+
+    <!-- Controller 5: Admin -->
+    <rect x="910" y="42" width="190" height="56" rx="8" fill="#0f172a" stroke="#0e7490" stroke-width="1" />
+    <text x="922" y="62" class="box-title">AdminController</text>
+    <text x="922" y="80" class="box-desc">KPI aggregation, monthly sales</text>
+  </g>
+
+  <!-- Connectors Tier 3 -> Tier 4 -->
+  <line x1="600" y1="475" x2="600" y2="510" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- TIER 4: DATABASE PROXY & PERSISTENCE TIER -->
+  <g transform="translate(40, 510)">
+    <rect width="1120" height="135" rx="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5" filter="url(#shadow)" opacity="0.95" />
+    <rect width="1120" height="30" rx="12" fill="url(#dbGrad)" />
+    <rect y="18" width="1120" height="12" fill="url(#dbGrad)" />
+    <text x="16" y="20" class="tier-title">TIER 4: DUAL-MODE PERSISTENCE ARCHITECTURE (ES6 Proxy Abstraction)</text>
+
+    <!-- ES6 Proxy Sub-box -->
+    <rect x="20" y="42" width="370" height="80" rx="8" fill="#0f172a" stroke="#047857" stroke-width="1" />
+    <text x="32" y="62" class="box-title">Transparent Model Proxy Layer</text>
+    <text x="32" y="80" class="box-desc">• UserProxy: Dispatches to MongooseUser or MemoryUser</text>
+    <text x="32" y="96" class="box-desc">• ProductProxy: Compound index query / fast memory filter</text>
+    <text x="32" y="112" class="box-desc">• OrderProxy: In-memory arrays / Mongoose collection</text>
+
+    <!-- Flow Decision -->
+    <line x1="390" y1="82" x2="440" y2="62" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)" />
+    <line x1="390" y1="82" x2="440" y2="102" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrow-green)" />
+    <text x="400" y="55" class="conn-label" fill="#10b981">readyState === 1</text>
+    <text x="400" y="115" class="conn-label" fill="#10b981">Fallback</text>
+
+    <!-- Primary: MongoDB -->
+    <rect x="480" y="42" width="300" height="80" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5" />
+    <text x="495" y="65" class="box-title" fill="#34d399">Primary: MongoDB Atlas / Local</text>
+    <text x="495" y="85" class="box-desc">Mongoose 8.9 ODM • Text Search Indexes</text>
+    <text x="495" y="102" class="box-desc">Collections: users, products (10k), orders</text>
+
+    <!-- Fallback: High-Speed Memory Store -->
+    <rect x="800" y="42" width="300" height="80" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5" />
+    <text x="815" y="65" class="box-title" fill="#34d399">Fallback: Embedded In-Memory Store</text>
+    <text x="815" y="85" class="box-desc">store.js • Zero-Config • 10,000 Auto-Seeded SKUs</text>
+    <text x="815" y="102" class="box-desc">Instant Sub-10ms Queries • Zero Downtime</text>
+  </g>
+
+  <!-- TIER 5: PREDICTIVE INVENTORY & ANALYTICS ENGINE -->
+  <g transform="translate(40, 665)">
+    <rect width="1120" height="95" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)" opacity="0.95" />
+    <rect width="1120" height="28" rx="12" fill="url(#mlGrad)" />
+    <rect y="16" width="1120" height="12" fill="url(#mlGrad)" />
+    <text x="16" y="19" class="tier-title">TIER 5: PREDICTIVE DEMAND FORECASTING &amp; RESTOCKING SUBSYSTEM</text>
+
+    <rect x="20" y="38" width="340" height="48" rx="6" fill="#0f172a" stroke="#b45309" stroke-width="1" />
+    <text x="32" y="56" class="box-title">Demand Velocity &amp; Run-Rate</text>
+    <text x="32" y="72" class="box-desc">Tracks sales velocity across 6 Flipkart departments</text>
+
+    <rect x="380" y="38" width="340" height="48" rx="6" fill="#0f172a" stroke="#b45309" stroke-width="1" />
+    <text x="392" y="56" class="box-title">Automated Low-Stock Trigger (stock &lt;= 5)</text>
+    <text x="392" y="72" class="box-desc">Generates immediate stock-out alerts &amp; restock advice</text>
+
+    <rect x="740" y="38" width="360" height="48" rx="6" fill="#0f172a" stroke="#b45309" stroke-width="1" />
+    <text x="752" y="56" class="box-title">Procured Quantity Model (Flipkart Sales)</text>
+    <text x="752" y="72" class="box-desc">ML-informed reorder batch calculations for high-demand items</text>
+  </g>
+</svg>
+

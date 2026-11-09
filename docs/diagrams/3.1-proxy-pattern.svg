@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="proxyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#151e32" />
+    </linearGradient>
+    <linearGradient id="proxyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="proxyShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+    <marker id="proxyArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="proxyArrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+  </defs>
+
+  <style>
+    .px-title { font-family: system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 700; fill: #ffffff; }
+    .px-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #94a3b8; }
+    .px-card-title { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .px-code { font-family: monospace, system-ui; font-size: 11px; fill: #cbd5e1; }
+    .px-badge { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700; fill: #10b981; }
+  </style>
+
+  <rect width="1000" height="600" rx="16" fill="url(#proxyBg)" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(40, 30)">
+    <text x="0" y="18" class="px-title">PanicDrop — ES6 Transparent Database Proxy Architecture</text>
+    <text x="0" y="38" class="px-sub">Zero-Downtime Dynamic Interceptor: Seamless Switching Between MongoDB Atlas &amp; High-Speed Memory Store</text>
+  </g>
+
+  <!-- Step 1: Controller Request -->
+  <g transform="translate(40, 90)" filter="url(#proxyShadow)">
+    <rect width="250" height="150" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+    <rect width="250" height="28" rx="10" fill="#2563eb" />
+    <rect y="18" width="250" height="10" fill="#2563eb" />
+    <text x="16" y="19" class="px-card-title">1. Controller Invocation</text>
+    <text x="16" y="48" class="px-code" fill="#60a5fa">Product.find(query)</text>
+    <text x="16" y="68" class="px-code" fill="#60a5fa">User.findById(id)</text>
+    <text x="16" y="88" class="px-code" fill="#60a5fa">Order.create(data)</text>
+    <text x="16" y="118" class="px-sub">• Standard Mongoose syntax</text>
+    <text x="16" y="134" class="px-sub">• Zero controller changes needed</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="290" y1="165" x2="340" y2="165" stroke="#38bdf8" stroke-width="2" marker-end="url(#proxyArrowBlue)" />
+
+  <!-- Step 2: ES6 Proxy Trap -->
+  <g transform="translate(340, 75)" filter="url(#proxyShadow)">
+    <rect width="320" height="180" rx="10" fill="#111827" stroke="#10b981" stroke-width="1.5" />
+    <rect width="320" height="28" rx="10" fill="url(#proxyGrad)" />
+    <rect y="18" width="320" height="10" fill="url(#proxyGrad)" />
+    <text x="16" y="19" class="px-card-title">2. ES6 Proxy Interceptor (ProductProxy)</text>
+
+    <text x="16" y="48" class="px-code" fill="#34d399">new Proxy(MongooseProduct, {</text>
+    <text x="24" y="68" class="px-code">get(target, prop) {</text>
+    <text x="32" y="88" class="px-code">if (conn.readyState === 1)</text>
+    <text x="44" y="108" class="px-code" fill="#60a5fa">return target[prop]; // Live DB</text>
+    <text x="32" y="128" class="px-code" fill="#fbbf24">return MemoryProduct[prop];</text>
+    <text x="24" y="148" class="px-code">}</text>
+    <text x="16" y="168" class="px-code">});</text>
+  </g>
+
+  <!-- Branching Arrows -->
+  <path d="M 660 140 L 720 110" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#proxyArrow)" />
+  <path d="M 660 190 L 720 220" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#proxyArrow)" />
+
+  <!-- Target 1: MongoDB Cluster -->
+  <g transform="translate(720, 60)" filter="url(#proxyShadow)">
+    <rect width="240" height="110" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+    <rect width="240" height="24" rx="8" fill="#059669" />
+    <rect y="14" width="240" height="10" fill="#059669" />
+    <text x="16" y="17" class="px-card-title">PRIMARY: MongoDB Atlas</text>
+    <text x="16" y="44" class="px-sub">• readyState === 1 (Connected)</text>
+    <text x="16" y="64" class="px-sub">• Compound index execution</text>
+    <text x="16" y="84" class="px-sub">• Full-text regex search</text>
+  </g>
+
+  <!-- Target 2: In-Memory Database -->
+  <g transform="translate(720, 190)" filter="url(#proxyShadow)">
+    <rect width="240" height="110" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+    <rect width="240" height="24" rx="8" fill="#d97706" />
+    <rect y="14" width="240" height="10" fill="#d97706" />
+    <text x="16" y="17" class="px-card-title">FALLBACK: Embedded Store</text>
+    <text x="16" y="44" class="px-sub">• store.js memory arrays</text>
+    <text x="16" y="64" class="px-sub">• 10,000 pre-seeded Flipkart SKUs</text>
+    <text x="16" y="84" class="px-sub">• Sub-10ms query latency</text>
+  </g>
+
+  <!-- Bottom Comparison Card -->
+  <g transform="translate(40, 325)" filter="url(#proxyShadow)">
+    <rect width="920" height="240" rx="10" fill="#111827" stroke="#334155" stroke-width="1.2" />
+    <text x="20" y="28" class="px-card-title" fill="#38bdf8">ENGINEERING BENEFITS OF DUAL-MODE PROXY PERSISTENCE</text>
+
+    <!-- Column 1 -->
+    <g transform="translate(20, 45)">
+      <rect width="280" height="170" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="15" y="24" class="px-card-title" font-size="12" fill="#34d399">1. Zero Setup Overhead</text>
+      <text x="15" y="48" class="px-sub">• Developers clone the repo and run</text>
+      <text x="15" y="66" class="px-sub">  immediately without needing a</text>
+      <text x="15" y="84" class="px-sub">  local MongoDB daemon or Atlas URI.</text>
+      <text x="15" y="112" class="px-sub">• Auto-seeds 10,000 items in memory</text>
+      <text x="15" y="130" class="px-sub">  within 200ms on first boot.</text>
+    </g>
+
+    <!-- Column 2 -->
+    <g transform="translate(320, 45)">
+      <rect width="280" height="170" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="15" y="24" class="px-card-title" font-size="12" fill="#38bdf8">2. High Demonstration Uptime</text>
+      <text x="15" y="48" class="px-sub">• If MongoDB Atlas has latency or</text>
+      <text x="15" y="66" class="px-sub">  connection timeouts, server never</text>
+      <text x="15" y="84" class="px-sub">  crashes or throws unhandled errors.</text>
+      <text x="15" y="112" class="px-sub">• Gracefully services catalog queries</text>
+      <text x="15" y="130" class="px-sub">  and checkout operations.</text>
+    </g>
+
+    <!-- Column 3 -->
+    <g transform="translate(620, 45)">
+      <rect width="280" height="170" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="15" y="24" class="px-card-title" font-size="12" fill="#fbbf24">3. Clean Code Decoupling</text>
+      <text x="15" y="48" class="px-sub">• Controllers call standard Mongoose</text>
+      <text x="15" y="66" class="px-sub">  API (countDocuments, find, save).</text>
+      <text x="15" y="94" class="px-sub">• Proxy interceptor abstracts the</text>
+      <text x="15" y="112" class="px-sub">  storage backend entirely away from</text>
+      <text x="15" y="130" class="px-sub">  business domain rules.</text>
+    </g>
+  </g>
+</svg>

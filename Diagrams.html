@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PanicDrop — Architecture & System Design Visual Viewer</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --accent: #8b5cf6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 30px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .nav-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .pill:hover, .pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    main {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+    .diagram-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .diagram-card:hover {
+      border-color: #60a5fa;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .diagram-img-wrapper {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      overflow-x: auto;
+    }
+    .diagram-img-wrapper img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div>
+        <h1>PanicDrop Architecture &amp; System Design Visualizer</h1>
+        <div class="subtitle">Interactive Blueprint • 10,000+ SKU Catalog • Indian Market E-Commerce &amp; Inventory Engine</div>
+      </div>
+      <nav class="nav-pills">
+        <a href="#sec-3-1" class="pill">3.1 Architecture</a>
+        <a href="#sec-3-2" class="pill">3.2 Workflow</a>
+        <a href="#sec-3-3" class="pill">3.3 UML</a>
+        <a href="#sec-3-4" class="pill">3.4 Database ER</a>
+        <a href="#sec-3-5" class="pill">3.5 Wireframes</a>
+        <a href="#sec-3-6" class="pill">3.6 Tech Stack</a>
+        <a href="#sec-3-7" class="pill">3.7 API / Components</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECTION 3.1: SYSTEM ARCHITECTURE -->
+    <section id="sec-3-1" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.1</span>
+          <h2 class="card-title">System Architecture Blueprint</h2>
+          <p class="card-desc">Multi-Tier Micro-Modular Architecture • Dual-Mode ES6 Persistence Proxy • Vercel &amp; Render Cloud Deployment</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.1-system-architecture.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.1-system-architecture.svg" alt="3.1 System Architecture Blueprint" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.2: SYSTEM WORKFLOW -->
+    <section id="sec-3-2" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.2</span>
+          <h2 class="card-title">System Workflow &amp; Fulfillment Lifecycle</h2>
+          <p class="card-desc">End-to-End Customer Purchase Journey • 6-Digit PIN Code Delivery Validator • Atomic Stock Deduction • Order State Machine</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.2-system-workflow.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.2-system-workflow.svg" alt="3.2 System Workflow" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.3: UML DIAGRAMS -->
+    <section id="sec-3-3" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.3</span>
+          <h2 class="card-title">UML Use Case &amp; Class Architecture Specification</h2>
+          <p class="card-desc">Actors (Guest, Customer, Administrator) • Domain Entities (User, Product, Order, Review, Address) • Controller Subsystems</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.3-uml-diagrams.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.3-uml-diagrams.svg" alt="3.3 UML Diagrams" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.4: DATABASE / DATA DESIGN -->
+    <section id="sec-3-4" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.4</span>
+          <h2 class="card-title">Database Entity-Relationship (ER) Schema</h2>
+          <p class="card-desc">Relational Entity Mappings • Primary &amp; Foreign Keys • Embedded Subdocuments • Compound Indexing for 10k Items</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.4-database-er.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.4-database-er.svg" alt="3.4 Database ER Schema" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.5: INTERFACE & WIREFRAMES -->
+    <section id="sec-3-5" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.5</span>
+          <h2 class="card-title">User Interface &amp; Wireframe Architecture</h2>
+          <p class="card-desc">Storefront Landing Page • Catalog with Faceted Filters • Product Detail (PDP) • Express Indian Checkout • Admin Intelligence Hub</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.5-interface-wireframes.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.5-interface-wireframes.svg" alt="3.5 Interface & Wireframes" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.6: TECHNOLOGY STACK -->
+    <section id="sec-3-6" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.6</span>
+          <h2 class="card-title">Full-Stack Technology Stack &amp; Tooling Ecosystem</h2>
+          <p class="card-desc">React 18.3, Vite 5.4, Tailwind CSS 3.4, Node.js 22, Express 4.21, MongoDB 7.0, Mongoose 8.9, Vercel &amp; Render Cloud PaaS</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.6-technology-stack.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.6-technology-stack.svg" alt="3.6 Technology Stack" />
+      </div>
+    </section>
+
+    <!-- SECTION 3.7: API / COMPONENT DESIGN -->
+    <section id="sec-3-7" class="diagram-card">
+      <div class="card-header">
+        <div>
+          <span class="section-badge">Section 3.7</span>
+          <h2 class="card-title">API &amp; Component System Design</h2>
+          <p class="card-desc">React Component Tree Hierarchy • Context State Synchronization • RESTful Endpoint Specifications • Express Middleware Pipeline</p>
+        </div>
+        <div class="actions">
+          <a href="./docs/diagrams/3.7-api-component-design.svg" target="_blank" class="btn">🔍 Open High-Res SVG</a>
+        </div>
+      </div>
+      <div class="diagram-img-wrapper">
+        <img src="./docs/diagrams/3.7-api-component-design.svg" alt="3.7 API & Component Design" />
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>PanicDrop Ecosystem &copy; 2026. Designed for Indian Digital E-Commerce &amp; Predictive Demand Restocking.</p>
+  </footer>
+
+</body>
+</html>
+
